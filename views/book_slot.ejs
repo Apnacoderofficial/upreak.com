@@ -1,0 +1,595 @@
+<%- include('includes/head.ejs') %>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.10/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.10/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.10/index.global.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+      
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- Add the Microsoft Teams JavaScript SDK -->
+<script
+  src="https://res.cdn.office.net/teams-js/2.18.0/js/MicrosoftTeams.min.js"
+  integrity="sha384-g8DoRkiR0ECQ9rwKIgY8GjQ5h0d2jp1347CmU/IRlyUHPjJZiFWEOYc+hFtT9MGL"
+  crossorigin="anonymous"
+></script>
+
+<style>
+  :root {
+    --fc-small-font-size: .95em;
+  --fc-page-bg-color: #fff;
+  --fc-neutral-bg-color: rgba(208, 208, 208, 0.3);
+  --fc-neutral-text-color: #582929;
+  --fc-border-color: #ddd;
+  --fc-button-text-color: #fff;
+  --fc-button-bg-color: #2C3E50;
+  --fc-button-border-color: #2C3E50;
+  --fc-button-hover-bg-color: #1e2b37;
+  --fc-button-hover-border-color: #1a252f;
+  --fc-button-active-bg-color: #1a252f;
+  --fc-button-active-border-color: #151e27;
+  --fc-button-active-border-color: #151e27;
+
+--fc-event-bg-color: #3788d8 !important;
+--fc-event-border-color: #3788d8 !important;
+--fc-event-text-color: #fff !important;
+--fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25) !important;
+
+--fc-more-link-bg-color: #d0d0d0;
+--fc-more-link-text-color: inherit;
+
+--fc-event-resizer-thickness: 8px;
+--fc-event-resizer-dot-total-width: 8px;
+--fc-event-resizer-dot-border-width: 1px;
+
+--fc-non-business-color: rgba(215, 215, 215, 0.3);
+--fc-bg-event-color: rgb(143, 223, 130) !important;
+--fc-bg-event-opacity: 0.3 !important;
+--fc-highlight-color: rgba(188, 232, 241, 0.3);
+--fc-today-bg-color: rgba(255, 220, 40, 0.15);
+--fc-now-indicator-color: red !important;
+}
+a{
+  text-decoration: none;
+}
+  /* Customizing calendar icons */
+  .fc-icon {
+    color: white;
+  }
+
+  .fc-button {
+
+    color: white !important;
+    background-color: gray !important;
+  }
+
+  /* Calendar container styles */
+  #calendar {
+    /* margin: 10px auto; */
+    height: auto;
+    background-color: #fff;
+    /* Change this to your preferred background color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Adjust the shadow as needed */
+  }
+
+  /* Styles for the modal */
+  #eventModal,
+  #savedEventModal {
+    text-align: center;
+  }
+  .fc .fc-timegrid-slot {
+    border-bottom: 0px;
+    height: 3.5em;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+  
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+
+}
+</style>
+</head>
+
+<body>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <%- include('includes/navbar.ejs') %>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <%- include('includes/sidebar.ejs') %>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <% if (session.role == 'User') { %>
+            <h5>Book Slot | <a href="dash_index"><i class="fa fa-solid fa-home"></i></a> <i class="fa fa-solid fa-angle-right"></i> <a href="book_slot">Book Slot</a></h5><hr>
+            <h5>Total Credits : <%= credit_data != undefined  && booked_slot_count != undefined ? (credit_data - booked_slot_count - not_booked_slot_count ) : '' %></h5>
+            <div id='calendar' class="p-4"></div>
+          <% } else if(session.role == 'HR') { %>
+            <div class="row">
+              <div class="col-md-12 ">
+                  <div class="card shadow mb-4">
+                    <div class="card-header">
+                      <div class="row ">
+                        <h5>Book Slot | <a href="dash_index"><i class="fa fa-solid fa-home"></i></a> <i class="fa fa-solid fa-angle-right"></i> <a href="book_slot">Book Slot</a></h5>
+                        <!-- <h5 class="col pt-2">View Details</h5> -->
+                    </div>
+                    </div> 
+                  <div class="card-body">
+                    <div class="table-responsive">
+                          <table    class=" table  table-striped display expandable-table"  >
+                              <thead class="table-light">
+                                  <tr>
+                                      <th>SNo.</th>
+                                      <th>Application Id </th>
+                                      <th>Name</th>
+                                      <th>Start Time</th>
+                                      <th>End Time</th>
+                                      <th>Status</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <% for(var i = 0; i< locals.length; i++) { if (locals[i].status == 'Not Booked'){ %>
+                                    
+                                      <tr>
+                                          <td><%= i+1 %></td>
+                                          <td><%= locals[i].application_id %></td>
+                                          <td><%= locals[i].username %></td>
+                                          <td><%= moment(locals[i].start_time).format("MM/DD/YYYY, h:mm:ss A") %></td>
+                                          <td><%= moment(locals[i].end_time).format("MM/DD/YYYY, h:mm:ss A") %></td>
+                                          <td><%= locals[i].status %></td>
+                                          <td>
+                                           <!-- Button trigger modal -->
+                                              <a class="btn m-1 btn-outline-success" href="#" data-toggle="modal" data-target="#confirmationModal" data-end-time="<%= locals[i].end_time %>" data-row-id="<%= locals[i].id %>" data-application-id="<%= locals[i].application_id %>">
+                                              <i class="bi bi-calendar-check-fill"></i> Accept Slot
+                                              </a>
+                                              <a class="btn m-1 btn-outline-danger" href="/reschedule_slot/<%= locals[i].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i class="bi bi-X"></i>Cancel Slot</a>
+                                            
+                                              <!-- Modal -->
+                                              <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      Are you sure you want to proceed ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                      <a class="btn btn-success" href="">Yes</a>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <script>
+                                                $(document).ready(function () {
+                                                  $('#confirmationModal').on('show.bs.modal', function (event) {
+                                                    var button = $(event.relatedTarget); // Button that triggered the modal
+                                                    var rowId = button.data('row-id'); // Extract data from the button
+                                                    var applicationId = button.data('application-id');
+                                                    var end_time = button.data('end-time');
+                                                    
+                                                    // Convert end_time to JavaScript Date object
+                                                    var endTimeDate = new Date(end_time);
+                                                    
+                                                    // Get the current date and time
+                                                    var currentDate = new Date();
+                                                    
+                                                    // Check if end_time is greater than the current date and time
+                                                    if (endTimeDate > currentDate) {
+                                                      var modal = $(this);
+                                                      modal.find('.modal-title').text('Confirmation for Row ' + rowId);
+                                                      modal.find('.modal-body').text('Are you sure you want to proceed for Application ' + applicationId + '?');
+                                              
+                                                      // Update the 'Yes' button href
+                                                      var acceptUrl = '/accept_slot/' + rowId + '?application_id=' + applicationId;
+                                                      modal.find('.btn-success').attr('href', acceptUrl);
+                                                    } else {
+                                                      // If end_time is not greater than current date and time, you can show a different message or handle accordingly.
+                                                      var modal = $(this);
+                                                      modal.find('.modal-title').text('Slot Expired');
+                                                      modal.find('.modal-body').text('The time for this slot has expired.');
+                                                      // You can disable the 'Yes' button or provide an alternative action.
+                                                      modal.find('.btn-success').prop('disabled', true);
+                                                      modal.find('.btn-success').hide();
+                                                    }
+                                                  });
+                                                });
+                                              </script>
+                                              
+ 
+                                            <!-- <a class="btn m-1 btn-outline-warning" href="/reschedule/<%= locals[i].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Reschedule"><i class="bi bi-arrow-clockwise"></i></a>
+                                            
+                                            <a class="btn m-1 btn-outline-primary" href="/generate_report/<%= locals[i].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate Report"><i class="bi bi-card-checklist"></i></a> -->
+                                          </td>
+                                      </tr>
+                                      <% }} %>
+                              </tbody>
+                              </tfoot>
+                          </table>                    
+                  </div>
+                  </div>
+                 
+          
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 ">
+                  <div class="card shadow mb-4">
+                    <div class="card-header">
+                      <div class="row ">
+                        <h5>Booked Slot </h5>
+                        <!-- <h5 class="col pt-2">View Details</h5> -->
+                    </div>
+                    </div> 
+                  <div class="card-body">
+                    <div class="table-responsive">
+                          <table  class=" table  table-striped display expandable-table" id="myTable2" >
+                              <thead class="table-light">
+                                  <tr>
+                                      <th>SNo.</th>
+                                      <th>Name</th>
+                                      <th>Start Time</th>
+                                      <th>End Time</th>
+                                      <th>Meeting Status</th>
+                                      <th>Report Status</th>
+                                      <th>Link</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <% for(var i = 0; i< booked_meetings.length; i++) { if(booked_meetings[i].status == 'Booked'){ %>
+                                      <tr>
+                                          <td><%= i+1 %></td>
+                                          <td><%= booked_meetings[i].username %></td>
+                                          <td><%= moment(booked_meetings[i].start_time).format("MM/DD/YYYY, h:mm:ss A") %></td>
+                                          <td><%= moment(booked_meetings[i].end_time).format("MM/DD/YYYY, h:mm:ss A") %></td>
+                                          <td><%= booked_meetings[i].status %></td>
+                                          <td><%= booked_meetings[i].process_status == 1 ? 'Saved' : 'Not Saved' %></td>
+                                          <td><a href="<%= booked_meetings[i].meeting_link %>">Link</a></td>
+                                          <td>
+                                            <!-- <a class="btn m-1 btn-outline-success" href="/accept_slot/<%= booked_meetings[i].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Accept Slot"><i class="bi bi-calendar-check-fill"></i></a> -->
+                                            
+                                            <!-- <a class="btn m-1 btn-outline-warning" href="/reschedule_slot/<%= booked_meetings[i].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Reschedule"><i class="bi bi-arrow-clockwise"></i></a>
+                                             -->
+                                             <a class="btn m-1 btn-outline-warning reschedule-btn" href="" 
+                                              data-bs-toggle="tooltip" data-bs-placement="top" title="Reschedule"
+                                              data-row-id="<%= booked_meetings[i].id %>"
+                                              data-application-id="<%= booked_meetings[i].application_id %>"
+                                              data-end-time="<%= booked_meetings[i].end_time %>">
+                                              <i class="bi bi-arrow-clockwise"></i>
+                                           </a>
+                                            <a class="btn m-1 btn-outline-primary" href="add_report?id=<%= booked_meetings[i].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Report"><i class="bi bi-card-checklist"></i></a>
+                                          </td>
+                                      </tr>
+                                      <% }} %>
+                              </tbody>
+                              </tfoot>
+                          </table>                    
+                   </div>
+                  </div>
+            
+          
+                  </div>
+                </div>
+            </div>
+          
+          <% } %>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <%- include('includes/footer.ejs') %>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <script>
+    $(document).ready(function () {
+      $('.reschedule-btn').on('click', function (event) {
+        event.preventDefault();
+        var button = $(this);
+        var rowId = button.data('row-id');
+        var applicationId = button.data('application-id');
+        var end_time = button.data('end-time');
+        
+        // Convert end_time to JavaScript Date object
+        var endTimeDate = new Date(end_time);
+        
+        // Get the current date and time
+        var currentDate = new Date();
+  
+        if (endTimeDate < currentDate) {
+          // If end_time is less than current date and time
+          alert('This slot cannot be rescheduled as it has already expired.');
+          // You can show a modal or perform any other action based on your requirements.
+        } else {
+          // If end_time is greater than or equal to current date and time
+          // Proceed with the rescheduling logic or navigate to the reschedule URL
+          window.location.href = '/reschedule_slot/' + rowId;
+        }
+      });
+    });
+  </script>
+  
+  <!-- Modal for Event Details -->
+  <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="eventDetails"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="btnYes">Yes</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Already Saved Event Details -->
+  <div class="modal fade" id="savedEventModal" tabindex="-1" role="dialog" aria-labelledby="savedEventModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="savedEventModalLabel">Saved Event Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="savedEventDetails"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let email = '<%= session.userid %>';
+    let data = <%- JSON.stringify(locals) %>;
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      let isAddingEvent = false;
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        allDaySlot: false,
+        slotMinTime: '09:00:00',
+        slotMaxTime: '18:00:00',
+        selectable: true,
+        timeZone: 'UTC',
+        headerToolbar: {
+          left: 'title',
+          center: '',
+          right: 'prev,next,today,timeGridWeek,timeGridDay'
+        },
+        events: [
+          <% if(locals && locals != undefined ){
+            locals.forEach(function(event) { %>
+          {
+            title: '<%= event.title %>',
+            start: '<%= event.start_time %>',
+            end: '<%= event.end_time %>',
+            email: '<%= event.email %>',
+            savedEvent: true // Add this property for saved events
+          },
+          <% })}; %>
+        ],
+        selectConstraint: {
+          startTime: '09:00',
+          endTime: '18:00',
+        },
+        eventClick: function (info) {
+          if (info.event.extendedProps.savedEvent) {
+            const savedEventDetails = `<strong>${info.event.title}</strong><br>
+              Start: ${info.event.start.toISOString()}<br>
+              End: ${info.event.end.toISOString()}<br>
+              Email: ${info.event.extendedProps.email}`;
+            document.getElementById('savedEventDetails').innerHTML = savedEventDetails;
+            $('#savedEventModal').modal('show');
+          } else {
+            const eventDetails = `<strong>${info.event.title}</strong><br>
+              Start: ${info.event.start.toISOString()}<br>
+              End: ${info.event.end.toISOString()}<br>
+              Email: ${info.event.extendedProps.email}`;
+            document.getElementById('eventDetails').innerHTML = eventDetails;
+            $('#eventModal').modal('show');
+          }
+        },
+        select: function (info) {
+          const today = new Date();
+          let not_booked_slot_count = `<%= not_booked_slot_count %>`;
+          let credit_data = parseInt(`<%= credit_data %>`);
+          let booked_slot_count = parseInt(`<%= booked_slot_count %>`);
+          let phone_verify = '<%- user_details ? user_details.phone_verify : "" %>';
+          let email_verify = '<%- user_details ? user_details.email_verify : "" %>';
+          let whatsapp_verify = '<%- user_details ? user_details.whatsapp_verify : "" %>';          
+          let credit_score = credit_data - booked_slot_count - not_booked_slot_count;
+  
+          if (isAddingEvent) {
+            alert('Another event is being added. Please wait until the process is complete.');
+            return;
+          }
+  
+          if (not_booked_slot_count && not_booked_slot_count > 0) {
+            alert('Another slot can be booked only after completing the first interview!');
+            return
+          } else {
+            if (phone_verify === 'unverified' || email_verify === 'unverified' || whatsapp_verify === 'unverified') {
+              alert('Kindly complete verification first.');
+              return
+            } else if (credit_score <= 0 || credit_data <= 0 || booked_slot_count >= credit_data) {
+              alert('Kindly purchase a product. You have no credit.');
+              return
+            } else {
+              $('#createEventModal').modal('show');
+  
+              document.getElementById('btnSave').addEventListener('click', function () {
+                const title = document.getElementById('eventTitle').value;
+                const startDateTime = document.getElementById('startDateTime').value;
+                const endDateTime = document.getElementById('endDateTime').value;
+  
+                if (!title || !startDateTime || !endDateTime) {
+                  alert('Please fill in all the required fields.');
+                  return;
+                } 
+                
+                const selectedStart = new Date(startDateTime);
+                const selectedEnd = new Date(endDateTime);
+                const durationInHours = (selectedEnd - selectedStart) / (1000 * 60);
+                
+                if (selectedStart.getHours() < 9 || selectedEnd.getHours() > 18) {
+                  alert('Event can only be added between 9 am to 6 pm.');
+                  return;
+                }
+                if (durationInHours > 30) {
+                  alert('Event duration cannot exceed 30 min.');
+                  return;
+                }
+
+                if (selectedStart <= today || selectedEnd <= today) {
+                  alert('Please select a valid time range (starting from today or a future date).');
+                } else {
+                  
+                  const eventDetails = `${title}<br>Start: ${startDateTime}<br>End: ${endDateTime}<br>Email: ${email}`;
+                  document.getElementById('eventDetails').innerHTML = eventDetails;
+  
+                  const event = {
+                    title: title,
+                    start: startDateTime,
+                    end: endDateTime,
+                    allDay: false,
+                    extendedProps: {
+                      userEmail: email,
+                      savedEvent: false
+                    }
+                  };
+                  calendar.addEvent(event);
+  
+                  axios.post('/book_slot', {
+                      title: title,
+                      start: startDateTime,
+                      end: endDateTime,
+                      userEmail: email
+                    })
+                    .then(response => {
+                      window.location.reload();
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    })
+                    .finally(() => {
+                      isAddingEvent = false;
+                    });
+  
+                  $('#createEventModal').modal('hide');
+                }
+              });
+  
+              $('#createEventModal').on('hidden.bs.modal', function () {
+                document.getElementById('eventTitle').value = '';
+                document.getElementById('startDateTime').value = '';
+                document.getElementById('endDateTime').value = '';
+              });
+            }
+          }
+        },
+      });
+  
+      $('#savedEventModal').on('hidden.bs.modal', function () {
+        document.getElementById('savedEventDetails').innerHTML = '';
+      });
+  
+      calendar.render();
+    });
+  </script>
+  <div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="createEventModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createEventModalLabel">Create Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="eventTitle">Name:</label>
+            <input type="text" class="form-control" id="eventTitle" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="startDateTime">Start Date and Time:</label>
+            <input type="datetime-local" class="form-control" id="startDateTime">
+          </div>
+          <div class="form-group">
+            <label for="endDateTime">End Date and Time:</label>
+            <input type="datetime-local" class="form-control" id="endDateTime">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="btnSave">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>  
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-EvMAG9Cdj2UQzdS5CqAEggRr/JjkUZ9wLPApY+32fe9Rc8dBNjaG1tFv5fByVbM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cbqWlYNxlZN3UqZKl3xnqNSVZYP+6caKn1tkQh3e9ZKhdwBekF1WxTrbqUq5npbc"
+    crossorigin="anonymous"></script>
+    <!-- added beacause it is not working properly -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+      $('table').DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      });
+  });
+</script>
+</body>

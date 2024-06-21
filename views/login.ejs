@@ -1,0 +1,218 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/custom.css">
+<style>
+  .ftco-navbar-light {
+  background: transparent !important;
+  position: absolute;
+  top: 0px !important;
+  left: 0;
+  right: 0;
+  z-index: 3; }
+  .back{
+    /* background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: white;
+  }
+  body .btn{
+    border-radius:12px !important;
+  }
+  .shadow {
+         box-shadow: 0rem !important;
+    }
+    .content-wrapper {
+    /* background: #F5F7FF; */
+    padding: 0 !important;
+    /* width: 100%; */
+ 
+}
+.btn{
+  border-radius: 25px !important;
+}
+input{
+  border-color: black !important;
+  border-radius: 5px !important;
+}
+</style>
+<body  class="back">
+
+
+  <div class="row">
+    
+    <div class="col-lg-4 col-md-6">
+      <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+          <div class="content-wrapper d-flex align-items-center auth px-0" style="">
+            <div class="row w-100 mx-0">
+              <div class=" mx-auto bg-white rounded">
+                <div class="auth-form-light text-center py-5 px-4 px-sm-5">
+                  <div class="brand-logo text-center">
+                   <a  href="/"> <img src="/images/main_logo.png" alt="logo"></a>
+                  </div>
+                  <h2>Welcome Back !</h2>
+                  <h4 class="font-weight-light">SignIn to enjoy our amazing Job services.</h4>
+                  <% if (Success.length > 0) { %>
+                    <% Success.forEach(function(message) { %>
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= message %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    <% }) %>
+                  <% } %>
+                  
+                  <% if (errors.length > 0) { %>
+                    <% errors.forEach(function(message) { %>
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= message %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    <% }) %>
+                  <% } %>
+                  
+                  <script>
+                    // Function to hide alerts after 10 seconds
+                    setTimeout(function() {
+                      var alerts = document.querySelectorAll('.alert');
+                      alerts.forEach(function(alert) {
+                        alert.classList.remove('show');
+                        alert.classList.add('hide');
+                      });
+                    }, 5000); // 10000 milliseconds = 10 seconds
+                  </script>
+                  
+                  <form class="pt-3" action="/login" method="POST" onsubmit="return onSubmit()" autocomplete="off">
+                    <div class="form-group">
+                      <input type="email" name="mail"class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="pswrd"class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="g-recaptcha"
+                    data-sitekey="6Lc9j8kpAAAAAFfbOTk1VfabQWk5_9MUv_V819AC"
+                    data-callback="onRecaptchaSuccess"
+                    data-expired-callback="onRecaptchaResponseExpiry"
+                    data-error-callback="onRecaptchaError"
+                    aria-required="true"
+                    required></div>
+                    <div class="mt-3">
+                       
+                      <button  type="submit" value="submit" class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn">Sign In</button>
+                      <a href="#" role="button" data-toggle="modal" data-target="#exampleModal" class="text-muted text-black" ><p style="margin-top:10px;margin-left: -60px; text-align:left; display: inline-block;">Reset Password </p></a>
+                      <a href="/" class="text-muted text-black" ><p style="margin-top:10px;float:right; display: inline-block;">-- Back To Home -- </p></a>
+                      <a href="/auth/google">  <button type="button" class="btn btn-outline-dark d-block w-100 mb-1"><i class="fa-brands fa-google"></i> SignIn With Google</button></a>
+                      <a href="/signup">  <button type="button" class="btn bg-dark d-block w-100">Lets Signup Now</button></a>
+        </div>
+                        
+                    <!-- <div class="my-2 d-flex justify-content-between align-items-center">
+                      <div class="form-check">
+                        <label class="form-check-label text-muted">
+                          <input type="checkbox" class="form-check-input">
+                          Keep me signed in
+                        </label>
+                      </div>
+                  
+                    </div> -->
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+      </div>  
+  </div>
+  <div class="col-lg-8 col-md-6 text-center" style="background:black">
+    <div class="container p-5 custom-container ">
+<div class="text-center">
+</div>
+      <h1 class="custom-heading animate text-white">Are You Looking for a Job? We have Helped 100+ Job Seekers to Find Jobs.</h1>
+      <!-- <p class="text-center custom-para animate">We are a recruitment company that connects talented individuals with top companies and organizations, guiding them towards their dream jobs and helping them achieve their career aspirations.</p> -->
+      <div class="d-flex justify-content-center align-items-center text-center">
+        <a href="/jobs" class="btn-lg bg-white text-black explore-btn mr-1 " style="border-radius: 25px;">Explore More</a>
+        <a href="/services" class="btn-lg btn-outline-dark bg-transparent border explore-btn ml-1 text-white " style="border-radius: 25px;">View Services</a>
+      </div>
+      
+    </div>
+  </div>
+    
+  </div>
+  
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="auth modal-header">
+          <!-- <div class="brand-logo">
+            <a  href="/"> <img src="/images/main_logo.jpg" alt="logo" ></a>
+           </div> -->
+          <h5 class="modal-title" id="exampleModalLabel">Know Your Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form  class="" action="/reset_password" method="POST" autocomplete="off">
+            <div class="form-group">
+              <label for="recipient-email" class="col-form-label">Enter Your Registered Email Only:</label>
+              <input type="email" required class="form-control" id="recipient-email" name="email" required>
+           
+            </div>
+            <button  type="submit" value="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Reset</button>
+                 
+          </form>
+        </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <script src="../../js/settings.js"></script>
+  <script src="../../js/todolist.js"></script>
+  <!-- endinject -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+ // Function to animate each word in the heading
+ function animateWords(element) {
+   const words = element.textContent.split(' '); // Split text into words
+   const animatedWords = words.map(word => `<span class="animated-word">${word}</span>`); // Wrap each word in a span
+   element.innerHTML = animatedWords.join(' '); // Replace content with animated words
+   const animatedWordSpans = element.querySelectorAll('.animated-word'); // Select all word spans
+
+   // Apply animation to each word span
+   animatedWordSpans.forEach((word, index) => {
+     setTimeout(() => {
+       word.classList.add('show');
+     }, index * 100); // Delay each word animation for a staggered effect
+   });
+ }
+
+ // Trigger animation for heading on page load
+ const heading = document.querySelector('.custom-heading');
+ animateWords(heading);
+});
+
+   </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer>
+</script>
+<script>
+  function onSubmit() {
+      // Check if reCAPTCHA challenge is completed
+      if (grecaptcha.getResponse() == '') {
+          alert('Please complete the reCAPTCHA challenge.');
+          return false; // Prevent form submission
+      }
+      // Form submission allowed
+      return true;
+  }
+</script>
+</body>
