@@ -20,21 +20,6 @@ const MAIL_SETTINGS = {
 
 const transporter = nodemailer.createTransport(MAIL_SETTINGS);
 
-const sendTwoStepEmail = async (recipientEmail, otp) => {
-  try {
-    const msg = await transporter.sendMail({
-      to: recipientEmail,
-      from: MAIL_SETTINGS.auth.user,
-      subject: 'Login - Two Step Verification',
-      text: `Your Email is: ${recipientEmail} and OTP is: ${otp} valid upto 10 min`,
-    });
-
-    console.log('Reset email sent successfully!');
-  } catch (error) {
-    console.error('Error sending reset email:', error);
-  }
-};
-
 const sendPasswordEmail = async (recipientEmail, password) => {
   try {
     const msg = await transporter.sendMail({
@@ -775,8 +760,7 @@ module.exports = {
   sendReportDownloadEmail,
   sendHRSlotConfirmEmail,
   sendrequestmail,
-  sendrequestreceivedmail,
-  sendTwoStepEmail
+  sendrequestreceivedmail
 };
 
 

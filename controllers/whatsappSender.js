@@ -1,44 +1,33 @@
 const axios = require('axios');
 
-async function sendMessageToWhatsApp(campaignName, phoneNumber, userName, templateParams, url = null, fileName = null) {
+async function sendMessageToWhatsApp(phoneNumber, message) {
   try {
-    const apiUrl = 'https://backend.aisensy.com/campaign/t1/api/v2';
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGYxY2YwZTY0OWY5MGMxMWE1MGIzNCIsIm5hbWUiOiJVcHJlYWsgNTQyNSIsImFwcE5hbWUiOiJBaVNlbnN5IiwiY2xpZW50SWQiOiI2NjRmMWNlZmU2NDlmOTBjMTFhNTBiMjkiLCJhY3RpdmVQbGFuIjoiQkFTSUNfTU9OVEhMWSIsImlhdCI6MTcxNjQ2MDc4NH0.PcEcQihSBxBHKNafYfXyYMU-w0xV_nWYk5PrrOUZRnQ';
-
-    const requestBody = {
-      apiKey: apiKey,
-      campaignName: campaignName,
-      destination: phoneNumber,
-      userName: userName,
-      templateParams: templateParams,
-    };
-
-    // Add media property only if url and fileName are provided
-    if (url && fileName) {
-      requestBody.media = {
-        url: url,
-        filename: fileName,
-      };
-    }
+    const apiUrl = 'https://wa.intractly.com/api/send';
+    const accessToken = '65dc418d3bc90'; // Replace with your actual access token
+    const instanceId = '65E6C94B7054E'; // Replace with your actual instance ID
 
     const response = await axios.post(
       apiUrl,
-      requestBody,
+      {
+        number: phoneNumber,
+        message: message,
+        instance_id: instanceId,
+        access_token: accessToken,
+      },
       {
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        maxBodyLength: Infinity,
       }
     );
-    
-    if (response.data.success === 'true') {
-      console.log('Message sent successfully :', response.data.submitted_message_id);
+    if (response.data.status == 'success') {
+      console.log('Message sent successfully.',response.data.status);
     } else {
-      console.error("Message can't be sent successfully :", response.data);
+      console.error("Message can't be sent successfully.",response.data.message);
     }
   } catch (error) {
-    console.error('Failed to send message:', error);
+    console.error('Failed to send message:', error.message);
   }
 }
 
