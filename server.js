@@ -1,43 +1,48 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+var flash = require('express-flash');
 const db = require("./config/dbconfig");
-const winston = require("./config/winston");
+// const winston = require("./config/winston");
 const cron = require('node-cron');
 const moment = require("moment");
-var morgan = require('morgan');
-const { loadCorporateCorners } = require('./middleware/middleware');
-// const { sendMessageToWhatsApp } = require('./controllers/whatsappSender');
-const { sendReportDownloadEmail } = require('./controllers/emailSender');
+// var morgan = require('morgan');
+// const { sendMessageToWhatsApp } = require('./controllers/whatsAppSender');
+const { sendReportDownloadEmail } = require('./controllers/emailSender')
+const redisClient = require('./config/redisClient');
 
 const app = express();
 
+// app.use(morgan('combined', { stream: winston.stream }));
+
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:false,
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 },
+    resave: false 
+}));
+
+app.use(flash());
+
+app.use(function (req, res, next) {
+    if ('HEAD' == req.method || 'OPTIONS' == req.method) return next();
+    // break session hash / force express to spit out a new cookie once per second at most
+    req.session._garbage = Date();
+    req.session.touch();
+    res.locals.session = req.session;
+    app.locals.session = req.session;
+    app.locals.errors = req.flash('Error');
+    app.locals.Success = req.flash('Success');
+    next();
+});
 
 app.set('view engine', 'ejs');
-
-app.use(loadCorporateCorners);
 
 app.use(express.static("public"));
 app.use('/uploads',express.static("uploads"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-// app.use(morgan('combined', { stream: winston.stream }));
-
-app.use(sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
-    resave: false 
-}));
-
-app.use(function (req, res, next) {
-    if ('HEAD' == req.method || 'OPTIONS' == req.method) return next();
-    // break session hash / force express to spit out a new cookie once per second at most
-    app.locals.session = req.session;
-    next();
-  });
 
 require("./routes/file_route")(app);
 
@@ -90,6 +95,21 @@ let port = process.env.PORT;
 if(port == null || port == ""){
     port = 3000;
 }
-app.listen(port,function(){
-    console.log("Upreak Server has started on port",port);
+// app.listen(port,function(){
+//     console.log("Upreak Server has started on port",port);
+// });
+
+
+// Check if Redis is connected before starting the server
+redisClient.once('connect', () => {
+    // Start your Express server
+    app.listen(port, () => {
+        console.log(`Upreak Server is running on port ${port}`);
+    });
+});
+
+// Handle Redis connection errors
+redisClient.on('error', (err) => {
+    console.error('Error connecting to Redis:', err);
+    process.exit(1); // Exit with non-zero code to indicate failure
 });
