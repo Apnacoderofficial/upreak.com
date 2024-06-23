@@ -1,7 +1,7 @@
 const path = require('path');
 const moment = require("moment");
 const db = require("../config/dbconfig");
-const { sendMessageToWhatsApp } = require('./../controllers/whatsappSender');
+const { sendMessageToWhatsApp } = require('./../controllers/whatsAppSender');
 const { sendReportDownloadEmail } = require('./../controllers/emailSender');
 const cron = require('node-cron');
 

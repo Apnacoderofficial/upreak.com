@@ -7,7 +7,7 @@ const db = require("./config/dbconfig");
 const cron = require('node-cron');
 const moment = require("moment");
 // var morgan = require('morgan');
-// const { sendMessageToWhatsApp } = require('./controllers/whatsAppSender');
+const { sendMessageToWhatsApp } = require('./controllers/whatsAppSender');
 const { sendReportDownloadEmail } = require('./controllers/emailSender')
 const redisClient = require('./config/redisClient');
 
@@ -74,15 +74,9 @@ async function reportDownloadEmail() {
         await Promise.all(filteredReports.map(report => sendReportDownloadEmail(report.candidateemail)));
 
         // Send WhatsApp messages to filteredReports concurrently
-        // await Promise.all(filteredReports.map(report => sendMessageToWhatsApp(`91${report.candidatephone}`, `Dear ${report.candidatename},\nCongratulation! Your report is ready.
-        //     \nYou can view your report by following the below instructions:
-        //     \nStep 1: Login into your Portal
-        //     \nStep 2: Click on the Product Tab 
-        //     \nStep 3: Then after the dropdown, click on Reports
-        //     \nStep 4: Now you can download your Report.
-        //     \nThanks for your time and patience. Feel free to contact us.
-        //     \nBest Regards
-        //     \nUpreak`)));
+        await Promise.all(filteredReports.map(report => 
+            sendMessageToWhatsApp('report_alert', `91${report.candidatephone}`, report.candidatename, [report.candidatename])
+        ));
 
         console.log('Cron running done');
     } catch (error) {

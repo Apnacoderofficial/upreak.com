@@ -77,7 +77,6 @@ module.exports = app => {
   router.get("/generateQR", dash_path.generateQR);
   router.get("/privacypolicy", dash_path.privacypolicy);
   router.get("/dash_index", dash_path.get_index);
-  router.get("/help", dash_path.help);
   router.get("/login", dash_path.getlogin);
   router.get("/signup", dash_path.getsignup);
   router.get("/aboutus", dash_path.aboutus);
