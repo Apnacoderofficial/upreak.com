@@ -1,0 +1,490 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+   
+    <li class="nav-item">
+      <a class="nav-link" href="/dash_index">
+        <i class="fa fa-solid fa-bars p-2"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+  <% if (session.role === 'Master') { %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#members" aria-expanded="false" aria-controls="members">
+        <i class="fa fa-solid fa-users p-2"></i>
+        <span class="menu-title">Manage Team</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="members">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/add_member"> Add Member</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/list_members"> List Members</a></li>
+        </ul>
+      </div>
+    </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#hr" aria-expanded="false" aria-controls="hr">
+          <i class="fa fa-solid fa-user p-2"></i>
+          <span class="menu-title">HR</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="hr">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/performance_hr">HR Performance</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/list_candidate_details">
+          <i class="fa fa-solid fa-users p-2"></i>
+          <span class="menu-title">Cadidate Details</span>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#job_seekers" aria-expanded="false" aria-controls="job_seekers">
+          <i class="fa fa-solid fa-user-doctor p-2"></i>
+          <span class="menu-title">Job Seekers</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="job_seekers">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/add_job_seekers"> Add Job Seeker </a></li>
+            <li class="nav-item"> <a class="nav-link" href="/view_job_seekers"> List Job Seekers </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#jobs_div" aria-expanded="false" aria-controls="jobs_div">
+          <i class="fa fa-solid fa-user-doctor p-2"></i>
+          <span class="menu-title">Jobs</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="jobs_div">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/list_jobs"> Posted Jobs </a></li>
+            <li class="nav-item"> <a class="nav-link" href="/list_job_application"> Job Applications </a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/viewcorporatecorner">
+          <i class="fa fa-solid fa-user-doctor p-2"></i>
+          <span class="menu-title">Corporate Corner </span>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/view_mou">
+          <i class="fa fa-solid fa-school p-2"></i>
+          <span class="menu-title">College MOU</span>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#feedback" aria-expanded="false" aria-controls="feedback">
+          <i class="fa fa-solid fa-comments p-2"></i>
+          <span class="menu-title">Feedback</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="feedback">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/view_feedbacks"> View Feedbacks</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ques" aria-expanded="false" aria-controls="ques">
+          <i class="fa fa-solid fa-question p-2"></i>
+          <span class="menu-title">Questions</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ques">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/add_ques"> Add Questions</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/view_ques"> View Questions</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="verify">
+          <i class="fa fa-solid fa-file p-2"></i>
+          <span class="menu-title"> Form Details</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="register">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/registration_details"> Partner Details</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/contact_details"> Contact Details</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/issue"> Issues Details</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/service_request_details"> Service Request</a></li>
+          </ul>
+        </div>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#payment" aria-expanded="false" aria-controls="verify">
+          <i class="fa fa-solid fa-credit-card p-2"></i>
+          <span class="menu-title"> Products </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="payment">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/view_products"> Product Details</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/payment_details"> Payment Details</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/view_resumes">
+          <i class="fa fa-solid fa-school p-2"></i>
+          <span class="menu-title">Resume</span>
+          <i class="menu-arrow"></i>
+        </a>
+      </li>
+	    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#Testimonials" aria-expanded="false" aria-controls="Testimonials">
+          <i class="fa fa-solid fa-comment p-2"></i>
+          <span class="menu-title">Testimonials</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="Testimonials">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/add_testimonials"> Add Testimonials</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/view_testimonials"> View Testimonials</a></li>
+          </ul>
+        </div>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#blogs" aria-expanded="false" aria-controls="Testimonials">
+          <i class="fa fa-solid fa-blog p-2"></i>
+          <span class="menu-title">Blogs</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="blogs">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/add_blogs"> Add Blogs</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/view_blogs"> View Blogs</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  href="/settings?id=1" aria-expanded="false" aria-controls="Settings">
+          <i class="fa fa-solid fa-gear p-2"></i>
+          <span class="menu-title">Settings</span>
+          <i class="menu-arrow"></i>
+        </a>
+      </li>
+	    
+      <li class="nav-item">
+        <a class="nav-link" href="/getTokenData">
+          <i class="fa fa-solid fa-school p-2"></i>
+          <span class="menu-title">Meeting Token</span>
+          <i class="menu-arrow"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/view_activity">
+          <i class="fa fa-solid fa-table-list p-2"></i>
+          <span class="menu-title">Activity  Log </span>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+      </li>
+    </ul>
+  <% }  else  if (session.role === 'Admin') { %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#hr" aria-expanded="false" aria-controls="hr">
+        <i class="fa fa-solid fa-user p-2"></i>
+        <span class="menu-title">HR</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="hr">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/performance_hr">HR Performance</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#job_seekers" aria-expanded="false" aria-controls="job_seekers">
+        <i class="fa fa-solid fa-user-doctor p-2"></i>
+        <span class="menu-title">Job Seekers</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="job_seekers">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/add_job_seekers"> Add Job Seeker </a></li>
+          <li class="nav-item"> <a class="nav-link" href="/view_job_seekers"> View Job Seekers </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#jobs_div" aria-expanded="false" aria-controls="jobs_div">
+        <i class="fa fa-solid fa-user-doctor p-2"></i>
+        <span class="menu-title">Jobs</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="jobs_div">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/list_jobs"> Posted Jobs </a></li>
+          <li class="nav-item"> <a class="nav-link" href="/list_job_application"> Job Applications </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-file p-2"></i>
+        <span class="menu-title"> Form Details</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="register">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/registration_details"> Partner Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/contact_details"> Contact Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/issue"> Issues Details</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#payment" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-credit-card p-2"></i>
+        <span class="menu-title"> Products </span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="payment">
+        <ul class="nav flex-column sub-menu">
+          <!-- <li class="nav-item"> <a class="nav-link" href="/view_products"> Product Details</a></li> -->
+          <li class="nav-item"> <a class="nav-link" href="/payment_details"> Payment Details</a></li>
+        </ul>
+      </div>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ques" aria-expanded="false" aria-controls="ques">
+        <i class="fa fa-solid fa-question p-2"></i>
+        <span class="menu-title">Questions</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ques">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/add_ques"> Add Questions</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/view_ques"> View Questions</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#feedback" aria-expanded="false" aria-controls="feedback">
+        <i class="fa fa-solid fa-comments p-2"></i>
+        <span class="menu-title">Feedback</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="feedback">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/view_feedbacks"> View Feedbacks</a></li>
+        </ul>
+      </div>
+    </li>  
+    </ul>
+  <% }  else  if (session.role === 'SubAdmin') { %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#hr" aria-expanded="false" aria-controls="hr">
+        <i class="fa fa-solid fa-user p-2"></i>
+        <span class="menu-title">HR</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="hr">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/performance_hr">HR Performance</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#job_seekers" aria-expanded="false" aria-controls="job_seekers">
+        <i class="fa fa-solid fa-user-doctor p-2"></i>
+        <span class="menu-title">Job Seekers</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="job_seekers">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/add_job_seekers"> Add Job Seeker </a></li>
+          <li class="nav-item"> <a class="nav-link" href="/view_job_seekers"> View Job Seekers </a></li>
+        </ul>
+      </div>
+    </li>    
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-file p-2"></i>
+        <span class="menu-title"> Form Details</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="register">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/registration_details"> Partner Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/contact_details"> Contact Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/issue"> Issues Details</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#payment" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-credit-card p-2"></i>
+        <span class="menu-title"> Products </span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="payment">
+        <ul class="nav flex-column sub-menu">
+          <!-- <li class="nav-item"> <a class="nav-link" href="/view_products"> Product Details</a></li> -->
+          <li class="nav-item"> <a class="nav-link" href="/payment_details"> Payment Details</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <% }  else  if (session.role === 'User') { %>
+
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#details" aria-expanded="false" aria-controls="details">
+        <i class="fa fa-solid fa-user p-2"></i>
+        <span class="menu-title">My Details</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="details">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/edit_details"> Edit Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/view_details"> View Details</a></li>
+        </ul>
+      </div>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#verify" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-check p-2"></i>
+        <span class="menu-title">Verification</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="verify">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/verify_job_seeker"> Verify Phone</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/verify_job_seeker1"> Verify Whatsapp</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/verify_job_seeker2"> Verify Email</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#payment_user" aria-expanded="false" aria-controls="verify">
+          <i class="fa fa-solid fa-credit-card p-2"></i>
+          <span class="menu-title"> Products </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="payment_user">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/products"> Products Details</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/payment_details"> Purchased Product</a></li>
+          </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#booking" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-credit-card p-2"></i>
+        <span class="menu-title"> Booking Details </span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="booking">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/book_slot" onclick="checkMobile(event)"> Book Slots</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/meeting_details"> Booked Slots</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/report_details"> Reports</a></li>
+        </ul>
+      </div>
+  </li>
+     
+  <script>
+    function checkMobile() {
+        if (isMobileDevice()) {
+            // Trigger your modal or alert here
+            event.preventDefault();
+            alert("You can only book slot via desktop.");
+        }
+    }
+
+    function isMobileDevice() {
+      return window.innerWidth <= 1024;
+    }
+  </script>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#resume" aria-expanded="false" aria-controls="verify">
+        <i class="fa fa-solid fa-file p-2"></i>
+        <span class="menu-title"> Resume </span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="resume">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/resume"> Built Resume</a></li>
+        </ul>
+      </div>
+  </li>
+          <li class="nav-item">
+        <a class="nav-link" href="/list_job_application">
+          <i class="fa fa-solid fa-tasks p-2"></i>
+          <span class="menu-title">Job Applications</span>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#feedback" aria-expanded="false" aria-controls="feedback">
+        <i class="fa fa-solid fa-comments p-2"></i>
+        <span class="menu-title">Feedback</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="feedback">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/add_feedback"> Add Feedback</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <%} else if (session.role === 'HR') { %>
+    
+   
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#interview" aria-expanded="false" aria-controls="interview">
+        <i class="fa fa-solid fa-comments p-2"></i>
+        <span class="menu-title">Interview Slots</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="interview">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/book_slot"> Slots</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#feedback" aria-expanded="false" aria-controls="feedback">
+        <i class="fa fa-solid fa-comments p-2"></i>
+        <span class="menu-title">Feedback</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="feedback">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/add_feedback"> Add Feedback</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <%} else if (session.role === 'Manager') { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/list_candidate_details">
+        <i class="fa fa-solid fa-users p-2"></i>
+        <span class="menu-title">Cadidate Details</span>
+        <i class="menu-arrow"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/candidate_combined_list">
+        <i class="fa fa-solid fa-users p-2"></i>
+        <span class="menu-title">Combined View</span>
+        <i class="menu-arrow"></i>
+      </a>
+    </li>
+  <% } %>
+</nav>
+
+

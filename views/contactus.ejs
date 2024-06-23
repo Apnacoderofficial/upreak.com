@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Upreak- Contact Us</title>
+    <link rel="shortcut icon" href="/images/main_logo.png" type="image/x-icon" height="100%" width="100%">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+  </head>
+  <body>
+    
+	  <%- include('includes/main_nav.ejs') %>
+    <!-- END nav -->
+<style>
+/*------------------------------------------------------------------
+ * Website Name: Hustbee
+ * App URI: http://www.brandio.io/envato/hustbee
+ * Author: Brandio
+ * Author URI: http://www.brandio.io/
+ * Description: 
+ * Version: 1.0
+ * Copyright 2018 Hustbee.
+ -------------------------------------------------------------------*/
+/*------------------------------------------------------------------
+[Table of contents]
+
+1 - General Styles
+2 - Header Styles
+3 - Top Content Styles
+4 - Features Section Styles
+5 - Pricing Section Styles
+6 - Latest News Section Styles
+7 - Domain Search Section Styles
+8 - Support Links Section Styles
+9 - Services Section Styles
+10- Blog Section Styles
+11 - Support Details Section Styles
+12 - Questions Section Styles
+13 - Contact Section Styles
+14 - Domain Pricing Section Styles
+15 - Domain Features Section Styles
+16 - Plain Content Section Styles
+17 - Other Sections Styles
+18 - Footer Styles
+19 - Responsive Styles
+
+/* custom container */
+
+#header-holder {
+    position: relative;
+    background-color: #f8fafc;
+    z-index: 10;
+}
+
+#header-holder .cloud-bg {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/cloud-bg.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 110%;
+    background-position: 50% 100%;
+    opacity: 0.17;
+    z-index: -1;
+}
+
+#header-holder .custom-bg {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/custom-bg.svg");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: 100% 20%;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+#header-holder.innerpage:before {
+    background-image: none;
+}
+
+#header-holder.innerpage.clouds-bg:before {
+    background-image: url("../images/cloud-bg-df.png");
+}
+
+#header-holder.innerpage.lighter {
+    background-color: #152c53;
+}
+
+#header-holder.innerpage.lighter nav.navbar .navbar-nav.other-navbar > li .btn-client-area {
+    background-color: rgba(51, 60, 78, 0.25);
+}
+
+#header-holder.innerpage.lighter nav.navbar .navbar-nav.other-navbar > li .btn-client-area:hover, #header-holder.innerpage.lighter nav.navbar .navbar-nav.other-navbar > li .btn-client-area:focus {
+    background-color: rgba(51, 60, 78, 0.45);
+}
+
+#header-holder.innerpage.light-bg {
+    background-color: #5993f9;
+}
+
+#header-holder.innerpage.light-bg nav.navbar .navbar-nav.other-navbar > li .btn-client-area {
+    color: #ffffff;
+    background-color: rgba(51, 60, 78, 0.25);
+}
+
+#header-holder.innerpage.light-bg nav.navbar .navbar-nav.other-navbar > li .btn-client-area:hover, #header-holder.innerpage.light-bg nav.navbar .navbar-nav.other-navbar > li .btn-client-area:focus {
+    background-color: rgba(51, 60, 78, 0.45);
+}
+
+#header-holder.innerpage.grey-bg {
+    background-color: #838ea2;
+}
+
+#header-holder.innerpage.grey-bg nav.navbar .navbar-nav.other-navbar > li .btn-client-area {
+    color: #ffffff;
+    background-color: rgba(51, 60, 78, 0.25);
+}
+
+#header-holder.innerpage.grey-bg nav.navbar .navbar-nav.other-navbar > li .btn-client-area:hover, #header-holder.innerpage.grey-bg nav.navbar .navbar-nav.other-navbar > li .btn-client-area:focus {
+    background-color: rgba(51, 60, 78, 0.45);
+}
+
+#header-holder.light-header {
+    background-color: #EDF4FF;
+}
+
+#header-holder.light-header .cloud-bg {
+    background-image: url("../images/cloud-bg2.svg");
+    opacity: 1;
+}
+
+
+/* ----------------------------------
+    3 - Top Content Styles
+-----------------------------------*/
+#top-content {
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+#top-content .page-title {
+    font-size: 23px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#top-content .page-title .title-with-icon {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    margin-bottom: 7px;
+}
+
+#top-content .page-title .title-with-icon .icon {
+    width: 60px;
+    height: 60px;
+    background-color: #5993fa;
+    display: inline-block;
+    border-radius: 36px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 24px;
+    padding-top: 10px;
+}
+
+#top-content .page-title .title-with-icon .icon img {
+    width: 33px;
+    -webkit-filter: grayscale(100%) brightness(130%);
+    -moz-filter: grayscale(100%) brightness(130%);
+    -ms-filter: grayscale(100%) brightness(130%);
+    filter: grayscale(100%) brightness(130%);
+}
+
+#top-content .page-title .title-with-icon .text {
+    font-size: 23px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#top-content .page-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.light-header #top-content .page-title {
+    color: #2A74E3;
+}
+
+.light-header #top-content .page-title .title-with-icon .icon {
+    background-color: #5993fa;
+}
+
+.light-header #top-content .page-title .title-with-icon .text {
+    color: #2A74E3;
+}
+
+.light-header #top-content .page-subtitle {
+    color: #2A74E3;
+}
+
+.light-header #top-content form .domain-input {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3D5E98;
+    background-color: #fff;
+    border: 0;
+    border-radius: 50px;
+    padding: 12px 32px;
+    height: inherit;
+    outline: none;
+    -webkit-box-shadow: 4px 12px 18px rgba(31, 27, 90, 0.1);
+    box-shadow: 4px 12px 18px rgba(31, 27, 90, 0.1);
+}
+
+.light-header #top-content form .hbtn.search {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px 32px;
+    margin-left: 24px;
+}
+
+#header-holder.innerpage.light-bg #top-content .page-title .title-with-icon .icon {
+    background-color: #ffc600;
+}
+
+#header-holder.innerpage.light-bg #top-content .page-title .title-with-icon .icon img {
+    width: 38px;
+    -webkit-filter: grayscale(0%) brightness(100%);
+    -moz-filter: grayscale(0%) brightness(100%);
+    -ms-filter: grayscale(0%) brightness(100%);
+    filter: grayscale(0%) brightness(100%);
+}
+
+.innerpage #top-content {
+    padding-top: 55px;
+    padding-bottom: 80px;
+    text-align: center;
+}
+
+.innerpage #top-content.st-on-top {
+    padding-bottom: 200px;
+}
+
+.innerpage #top-content.less-padding-bottom {
+    padding-bottom: 35px;
+}
+
+.main-slider .slide {
+    padding-top: 160px;
+    padding-bottom: 80px;
+}
+
+.main-slider .slide > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.main-slider .slide > .row [class^="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.main-slider .b-text {
+    font-size: 65px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 64px;
+    letter-spacing: 2px;
+    margin-bottom: 35px;
+}
+
+.main-slider .m-text {
+    font-size: 23px;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 55px;
+}
+
+.main-slider .m-text .bold {
+    font-weight: 700;
+}
+
+.main-slider .img-holder {
+    text-align: center;
+}
+
+.main-slider .img-holder img {
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+    margin-top: -70px;
+}
+
+.main-slider .slick-dots {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.main-slider .slick-dots li {
+    display: inline-block;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.main-slider .slick-dots li button {
+    border: 0;
+    background: #ffc601;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 8px;
+    height: 8px;
+    font-size: 0;
+    padding: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.main-slider .slick-dots li.slick-active button {
+    width: 60px;
+    background: #ffffff;
+}
+
+.light-header .main-slider .slide .b-text {
+    font-size: 65px;
+    color: #2A74E3;
+    margin-top: -90px;
+}
+
+.light-header .main-slider .slide .m-text {
+    color: #333C4E;
+}
+
+.light-header .main-slider .slide .m-text .bold {
+    color: #4E8BE6;
+}
+
+.light-header .main-slider .slick-dots li button {
+    background: #2A74E3;
+}
+
+.light-header .main-slider .slick-dots li.slick-active button {
+    background: #ffffff;
+}
+
+.main-domain-search-holder {
+    text-align: center;
+}
+
+.main-domain-search-holder .b-text {
+    margin-bottom: 70px;
+}
+
+.main-domain-search-holder form {
+    display: inline-block;
+    width: 80%;
+    max-width: 720px;
+    margin-bottom: 20px;
+}
+
+.main-domain-search-holder .input-items {
+    position: relative;
+    width: 100%;
+}
+
+.main-domain-search-holder .input-items .input-items-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.main-domain-search-holder .form-control.domain-input {
+    font-size: 22px;
+    font-weight: 300;
+    color: #f8fafc;
+    border-radius: 50px;
+    border: 3px solid #5993fa;
+    padding: 13px 32px;
+    height: inherit;
+    background-color: #fff;
+    outline: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.main-domain-search-holder .form-control.domain-input:hover, .main-domain-search-holder .form-control.domain-input:focus {
+    background-color: #ececec;
+}
+
+.main-domain-search-holder .btn {
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 6px 27px;
+    outline: none !important;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.main-domain-search-holder .btn.search {
+    color: #f8fafc;
+    background-color: #ffc600;
+}
+
+.main-domain-search-holder .btn.search:hover, .main-domain-search-holder .btn.search:focus {
+    background-color: #f0ba00;
+}
+
+.main-domain-search-holder .btn.transfer {
+    color: #fff;
+    background-color: #5993fa;
+}
+
+.main-domain-search-holder .btn.transfer:hover, .main-domain-search-holder .btn.transfer:focus {
+    background-color: #4083f9;
+}
+
+
+/*------------------------------------------------------------------
+	8 - Support Links Section Styles
+-------------------------------------------------------------------*/
+.support-links {
+    background-color: #0b0e1a;
+}
+
+.support-links > .row .hylink-holder {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.support-links > .row .hylink-holder:first-child {
+    background-color: #0b0e1a;
+    text-align: right;
+    padding-right: 80px;
+    padding-left: 40px;
+}
+
+.support-links > .row .hylink-holder:last-child {
+    background-color: #0b0e1a;
+    text-align: left;
+    padding-left: 80px;
+    padding-left: 40px;
+}
+
+.hylink-box {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    max-width: 490px;
+    padding: 15px 15px 15px 135px;
+}
+
+.hylink-box .icon {
+    position: absolute;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 106px;
+    height: 106px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    -webkit-box-shadow: 0 8px 12px rgba(31, 27, 90, 0.08);
+    box-shadow: 0 8px 12px rgba(31, 27, 90, 0.08);
+}
+
+.hylink-box .icon img {
+    width: 57px;
+}
+
+.hylink-box .link {
+    font-size: 19px;
+    font-weight: 700;
+    color: #3d5e98;
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+    margin-bottom: 6px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.hylink-box .link:after {
+    font-family: "hustbee" !important;
+    content: "\63";
+    color: #3d5e98;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-weight: 400;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.hylink-box .link:hover, .hylink-box .link:focus {
+    color: #4469aa;
+}
+
+.hylink-box .link:hover:after, .hylink-box .link:focus:after {
+    margin-left: 10px;
+}
+
+.hylink-box .text {
+    font-size: 16px;
+    font-weight: 300;
+    color: #62647b;
+    line-height: 21px;
+}
+
+.support-details {
+    background-color: black !important;
+    
+}
+
+.support-details > .container > .row > [class^="col"] {
+    padding: 0;
+}
+
+.support-box {
+    text-align: left;
+    padding: 80px 60px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.support-box .icon {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    width: 106px;
+    height: 106px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 35px;
+    -webkit-box-shadow: 0 8px 12px rgba(31, 27, 90, 0.08);
+    box-shadow: 0 8px 12px rgba(31, 27, 90, 0.08);
+}
+
+.support-box .icon i {
+    font-size: 50px;
+}
+
+.support-box .icon.grey i {
+    color: #6e7c96;
+}
+
+.support-box .icon.green i {
+    color: #64cf68;
+}
+
+.support-box .icon.blue i {
+    color: #2a74e3;
+}
+
+.support-box .icon.purple i {
+    color: #ab70f4;
+}
+
+.support-box .title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 7px;
+}
+
+.support-box .details a {
+    display: inline-block;
+    width: 100%;
+    color: #d8e4fa;
+    font-size: 16px;
+    text-decoration: none;
+    margin-bottom: 3px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.support-box .details a:hover, .support-box .details a:focus {
+    color: #c1d4f7;
+}
+
+/*------------------------------------------------------------------
+	12 - Questions Section Styles
+-------------------------------------------------------------------*/
+.questions {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    /* border-bottom: 1px solid #c7c8cc; */
+}
+
+.questions .row-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #3d5e98;
+    margin-bottom: 40px;
+}
+
+.questions .cards-holder {
+    display: inline-block;
+    width: 100%;
+    /*max-width: 994px;*/
+    text-align: left;
+}
+
+.question-card {
+    text-align: left;
+    border: 0;
+    margin-bottom: 20px;
+}
+
+.question-card .card-header {
+    border: 0;
+    background: none;
+    padding: 0;
+}
+
+.question-card .card-header button {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    font-size: 19px;
+    font-weight: 700;
+    color: #2a74e3;
+    background-color: #fff;
+    border: 1px solid #82a9ff;
+    padding: 12px 64px 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.question-card .card-header button:after {
+    position: absolute;
+    font-family: "hustbee" !important;
+    content: "\62";
+    top: 5px;
+    right: 22px;
+    font-size: 28px;
+    font-weight: 300;
+    color: #ffc600;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.question-card .card-header button:hover, .question-card .card-header button:focus {
+    border-color: #3674ff;
+}
+
+.question-card .card-header button.collapsed {
+    color: #152c53;
+    border-color: #dce2ea;
+}
+
+.question-card .card-header button.collapsed:after {
+    color: #94a5c3;
+    -webkit-transform: scaleY(-1);
+    -moz-transform: scaleY(-1);
+    -ms-transform: scaleY(-1);
+    transform: scaleY(-1);
+}
+
+.question-card .card-header button.collapsed:hover, .question-card .card-header button.collapsed:focus {
+    border-color: #acbacd;
+}
+
+.question-card .card-body {
+    font-size: 18px;
+    font-weight: 300;
+    color: #090a19;
+    padding: 22px 20px;
+}
+.search-row {
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    margin-top: -28px;
+    margin-bottom: -28px;
+    background-color: ;
+}
+
+.search-question-holder {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 850px;
+}
+
+.search-question-holder ::-webkit-input-placeholder {
+    color: black;
+}
+
+.search-question-holder :-moz-placeholder {
+    color: black;
+}
+
+.search-question-holder ::-moz-placeholder {
+    color: black;
+}
+
+.search-question-holder :-ms-input-placeholder {
+    color: black;
+}
+
+.search-question-holder .search-input {
+    width: 100%;
+    font-size: 19px;
+    font-weight: 700;
+    color: black;
+    outline: none;
+    border: 0;
+    border-radius: 26px;
+    padding: 14px 38px;
+    -webkit-box-shadow: 0 6px 5px rgba(31, 27, 90, 0.06);
+    box-shadow: 0 6px 5px rgba(31, 27, 90, 0.06);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid black;
+}
+
+.search-question-holder .search-input:hover, .search-question-holder .search-input:focus {
+    -webkit-box-shadow: 0 6px 7px rgba(31, 27, 90, 0.08);
+    box-shadow: 0 6px 7px rgba(31, 27, 90, 0.08);
+}
+
+.search-question-holder .btn-search {
+    position: absolute;
+    top: 11px;
+    right: 13px;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.search-question-holder .btn-search:hover, .search-question-holder .btn-search:focus {
+    opacity: 0.8;
+}
+
+.domain-search-only {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+    background-color: #23395f;
+}
+
+.domain-search-only .domain-input-holder {
+    display: inline-block;
+    width: 100%;
+    max-width: 820px;
+}
+
+.domain-search-only .domain-input-holder ::-webkit-input-placeholder {
+    color: #4266a3;
+}
+
+.domain-search-only .domain-input-holder :-moz-placeholder {
+    color: #4266a3;
+}
+
+.domain-search-only .domain-input-holder ::-moz-placeholder {
+    color: #4266a3;
+}
+
+.domain-search-only .domain-input-holder :-ms-input-placeholder {
+    color: #4266a3;
+}
+
+.domain-search-only .domain-input-holder .domain-input {
+    display: inline-block;
+    width: 72%;
+    font-size: 19px;
+    font-weight: 700;
+    color: #3d5e98;
+    border: 0;
+    padding: 12px 34px;
+    border-radius: 100px;
+    outline: 0;
+    text-align: left;
+    -webkit-box-shadow: 0 14px 12px rgba(31, 27, 90, 0.1);
+    box-shadow: 0 14px 12px rgba(31, 27, 90, 0.1);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.domain-search-only .domain-input-holder .domain-input:hover, .domain-search-only .domain-input-holder .domain-input:focus {
+    -webkit-box-shadow: 0 14px 16px rgba(31, 27, 90, 0.15);
+    box-shadow: 0 14px 16px rgba(31, 27, 90, 0.15);
+}
+
+.domain-search-only .domain-input-holder button {
+    display: inline-block;
+    width: 23%;
+    margin-left: 15px;
+    font-size: 19px;
+    font-weight: 600;
+    color: #ffffff;
+    border: 0;
+    padding: 12px 22px;
+    border-radius: 100px;
+    background-color: #5993fa;
+    outline: 0;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.domain-search-only .domain-input-holder button:hover, .domain-search-only .domain-input-holder button:focus {
+    background-color: #4083f9;
+}
+
+/*------------------------------------------------------------------
+	18 - Footer Styles
+-------------------------------------------------------------------*/
+.footer {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 22px;
+    background-color: #f8fafc;
+}
+
+.btn-go-top {
+    display: inline-block;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px;
+    background-color: #5993fa;
+    text-align: center;
+    border-radius: 100px;
+    padding-top: 13px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.btn-go-top i {
+    font-size: 20px;
+    color: #ffffff;
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+.btn-go-top:hover, .btn-go-top:focus {
+    top: -25px;
+    background-color: black;
+}
+
+.footer-menu {
+    margin-bottom: 50px;
+}
+
+.footer-menu h4 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #5993fa;
+    margin-bottom: 40px;
+}
+
+.footer-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-menu ul li {
+    font-size: 16px;
+    color: #91a0bd;
+    margin-bottom: 20px;
+}
+
+.footer-menu ul li a {
+    position: relative;
+    font-size: 16px;
+    color: #91a0bd;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.footer-menu ul li a:before {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    left: 1px;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.footer-menu ul li a:hover, .footer-menu ul li a:focus {
+    color: #ffffff;
+}
+
+.footer-menu ul li a:hover:before, .footer-menu ul li a:focus:before {
+    width: 10px;
+}
+
+.footer-menu ul.social li {
+    display: inline-block;
+    margin-right: 28px;
+}
+
+.footer-menu ul.social li a:before {
+    display: none;
+}
+
+.footer-menu ul.social li a i {
+    font-size: 22px;
+}
+
+.sub-footer {
+    border-top: 1px solid #91a0bd;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sub-footer .sub-footer-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sub-footer .sub-footer-menu ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.sub-footer .sub-footer-menu ul li:last-child {
+    margin-right: 0;
+}
+
+.sub-footer .sub-footer-menu ul li a {
+    font-size: 14px;
+    color: #65728b;
+}
+
+.sub-footer .copyright {
+    text-align: right;
+    font-size: 14px;
+    color: #65728b;
+}
+
+/*------------------------------------------------------------------
+    19 - Responsive Styles
+-------------------------------------------------------------------*/
+@media (max-width: 1200px) {
+    .main-slider .slide {
+        padding-top: 120px;
+    }
+
+    .main-slider .b-text {
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .light-header .main-slider .slide .b-text {
+        font-size: 50px;
+    }
+
+    .custom-footer-menu ul.social li {
+        margin-right: 20px;
+    }
+
+    .custom-footer-menu ul.social li:last-child {
+        margin-right: 0;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row .th {
+        font-size: 12px;
+    }
+
+    .features .feature-info .feature-title {
+        font-size: 30px;
+        margin-bottom: 13px;
+    }
+
+    .latest-news .post-box .post-title {
+        max-width: 100%;
+    }
+
+    .footer-menu h4 {
+        font-size: 17px;
+        margin-bottom: 36px;
+    }
+
+    .footer-menu ul li {
+        margin-bottom: 16px;
+        font-size: 13px;
+    }
+
+    .footer-menu ul li a {
+        font-size: 13px;
+    }
+
+    .footer-menu ul.social li a i {
+        font-size: 20px;
+    }
+
+    .support-links > .row .hylink-holder:first-child {
+        padding-left: 116px;
+    }
+
+    .support-links > .row .hylink-holder:last-child {
+        padding-right: 116px;
+    }
+}
+
+@media (max-width: 992px) {
+    .same-height.rtl-row div[class^="col-"] {
+        float: inherit;
+    }
+
+    nav.navbar .navbar-nav.other-navbar {
+        display: none;
+    }
+
+    .light-header #top-content form .domain-input {
+        font-size: 16px;
+        padding: 10px 32px;
+        margin-bottom: 20px;
+    }
+
+    .light-header #top-content form .hbtn.search {
+        font-size: 16px;
+        padding: 10px 32px;
+        margin-left: 0;
+    }
+
+    .main-slider .slide {
+        padding-top: 80px;
+    }
+
+    .main-slider .img-holder {
+        margin-bottom: 30px;
+    }
+
+    .main-slider .img-holder img {
+        margin-top: -40px;
+    }
+
+    .main-slider .b-text {
+        font-size: 38px;
+        line-height: 45px;
+    }
+
+    .light-header .main-slider .slide .b-text {
+        margin-top: 0;
+        font-size: 38px;
+    }
+
+    .main-domain-search-holder form {
+        max-width: 620px;
+    }
+
+    .features .feature-info {
+        padding: 50px 0;
+    }
+
+    .features .feature-info .feature-title {
+        font-size: 27px;
+        margin-bottom: 8px;
+    }
+
+    .features .img-holder {
+        padding: 68px 0;
+    }
+
+    .features .def-aligned {
+        text-align: left;
+    }
+
+    .domain-search-holder {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .domain-search-holder .title {
+        margin-bottom: 15px;
+        font-size: 25px;
+    }
+
+    .domain-search-holder .img-holder {
+        display: none;
+    }
+
+    .domain-search-holder .domain-input-holder {
+        margin-top: 20px;
+    }
+
+    .domain-search-holder .domain-input-holder .domain-input {
+        width: 62%;
+    }
+
+    .domain-search-holder .domain-input-holder button {
+        width: 33%;
+    }
+
+    .domain-search-only .domain-input-holder .domain-input {
+        width: 62%;
+    }
+
+    .domain-search-only .domain-input-holder button {
+        width: 33%;
+    }
+
+    .pricing-box .pricing-button a {
+        font-size: 18px;
+    }
+
+    .pricing .row-title {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .domain-pricing .row-title {
+        font-size: 25px;
+    }
+
+    .domain-features .row-title {
+        font-size: 25px;
+    }
+
+    .latest-news .row-title {
+        font-size: 25px;
+    }
+
+    .support-links > .row .hylink-holder {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .support-links > .row .hylink-holder:first-child {
+        padding-right: 20px;
+        padding-left: 120px;
+    }
+
+    .support-links > .row .hylink-holder:last-child {
+        padding-left: 35px;
+        padding-right: 100px;
+    }
+
+    .footer-menu h4 {
+        margin-bottom: 30px;
+    }
+
+    .sub-footer .sub-footer-menu {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .sub-footer .copyright {
+        text-align: center;
+    }
+
+    .text-photo-sc .text-box {
+        max-width: 100%;
+    }
+
+    .text-photo-sc .opposite {
+        text-align: left;
+    }
+
+    .hstb-pricing-table-holder {
+        overflow: scroll;
+        border-radius: 10px;
+        border: 1px solid #d3d3dd;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row {
+        border-left: 0px solid #d3d3dd;
+        border-right: 0px solid #d3d3dd;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row.thead {
+        border-top: 0px solid #d3d3dd;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row:last-child {
+        border-bottom: 0px solid #d3d3dd;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row .th {
+        padding: 17px 10px;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row .td {
+        padding: 17px 10px;
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row.trow:before {
+        height: 54px;
+        margin-top: -27px;
+        border: 0px solid rgba(211, 211, 221, 0);
+    }
+
+    .hstb-pricing-table-holder .hstb-table .row.trow:hover:before, .hstb-pricing-table-holder .hstb-table .row.trow:focus:before {
+        border: 0px solid #d3d3dd;
+        border-radius: 0;
+        -webkit-transform: scaleX(1) scaleY(1);
+        -moz-transform: scaleX(1) scaleY(1);
+        -ms-transform: scaleX(1) scaleY(1);
+        transform: scaleX(1) scaleY(1);
+    }
+
+    .text-photo-sc .rtl-row div[class^="col-"] {
+        float: inherit;
+    }
+
+    .text-photo-sc .photo-holder {
+        max-height: 350px;
+    }
+
+    .support-details {
+        padding-top: 55px;
+        padding-bottom: 35px;
+    }
+
+    .support-box {
+        position: relative;
+        text-align: left;
+        padding: 0 30px 0 110px;
+        margin: 25px 0;
+    }
+
+    .support-box .icon {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 13px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-bottom: 0;
+    }
+
+    .support-box .icon i {
+        font-size: 38px;
+    }
+
+    .contact-us .address-details {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #header-holder .custom-bg {
+        background-size: 70%;
+    }
+
+    .rtl-row div[class^="col-"] {
+        float: inherit;
+    }
+
+    nav.navbar .navbar-collapse {
+        text-align: center;
+    }
+
+    nav.navbar .navbar-nav {
+        width: 100%;
+        margin: 0;
+    }
+
+    nav.navbar .navbar-nav > li {
+        padding: 10px 16px;
+    }
+
+    nav.navbar .navbar-nav > li > a:after {
+        display: none;
+    }
+
+    nav.navbar .navbar-nav > li > a.dropdown-toggle {
+        margin-bottom: 5px;
+    }
+
+    nav.navbar .navbar-nav > li > a.btn-client-area {
+        display: inline-block;
+    }
+
+    nav.navbar .navbar-nav > li > a.btn-chat {
+        display: none;
+    }
+
+    nav.navbar .navbar-nav > li.active > a {
+        color: #ffc600;
+    }
+
+    nav.navbar .navbar-nav > li.dropdown .custom-dropdown-menu {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    nav.navbar .navbar-nav > li .chat-info {
+        display: none;
+    }
+
+    nav.navbar .navbar-nav.other-navbar {
+        display: inherit;
+    }
+
+    .main-domain-search-holder form {
+        max-width: 520px;
+    }
+
+    .main-domain-search-holder .input-items .input-items-btn {
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        top: 0;
+        right: 0;
+    }
+
+    .main-domain-search-holder .form-control.domain-input {
+        padding: 10px 32px;
+    }
+
+    .features .img-holder {
+        padding: 40px 0;
+    }
+
+    .features .img-holder img {
+        max-width: 260px;
+    }
+
+    .features .feature-info {
+        max-width: 100%;
+    }
+
+    .latest-news .row-title {
+        text-align: center;
+    }
+
+    .latest-news .main-btn-holder {
+        text-align: center;
+    }
+
+    .domain-search-holder .domain-input {
+        margin-bottom: 15px;
+    }
+
+    .support-links > .row .hylink-holder:first-child, .support-links > .row .hylink-holder:last-child {
+        padding-left: 30px;
+        padding-right: 30px;
+        text-align: left;
+    }
+
+    .hylink-box {
+        max-width: 100%;
+    }
+
+    .domain-search-holder .domain-input-holder .domain-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .domain-search-holder .domain-input-holder button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .domain-search-only .domain-input-holder .domain-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .domain-search-only .domain-input-holder button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .support-details {
+        padding-top: 55px;
+        padding-bottom: 35px;
+    }
+
+    .support-box {
+        position: relative;
+        text-align: left;
+        padding: 0 30px 0 110px;
+        margin: 25px 0;
+    }
+
+    .support-box .icon {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 13px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-bottom: 0;
+    }
+
+    .support-box .icon i {
+        font-size: 38px;
+    }
+
+    .form-row > .col, .form-row > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .support-details > .container > .row > [class^="col"] {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .service-box {
+        margin: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    nav.navbar .navbar-nav > li.dropdown .custom-dropdown-menu .dropdown-items-holder .items .link {
+        margin-bottom: 5px;
+    }
+
+    nav.navbar .navbar-toggle {
+        margin-right: 0;
+    }
+
+    .navbar-brand {
+        padding: 24px 0;
+    }
+
+    .main-slider .b-text {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    .light-header .main-slider .slide .b-text {
+        font-size: 30px;
+    }
+
+    .features {
+        padding-bottom: 40px;
+    }
+
+    .features .img-holder {
+        padding: 40px 0;
+    }
+
+    .features .feature-info {
+        padding: 10px 0 60px;
+    }
+
+    .features .feature-info .feature-title {
+        font-size: 25px;
+    }
+
+    .features > .container > .row:last-child .feature-info {
+        padding-bottom: 20px;
+    }
+
+    .text-photo-sc .text-box {
+        padding: 40px 20px;
+    }
+
+    .pricing {
+        padding-bottom: 40px;
+    }
+
+    .pricing .row-title {
+        font-size: 25px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .latest-news {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .latest-news .row-title {
+        font-size: 25px;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .latest-news .main-btn-holder {
+        display: none;
+    }
+
+    .domain-search-holder {
+        padding-top: 35px;
+        padding-bottom: 40px;
+    }
+
+    .domain-search-holder .title {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .domain-search-holder .domain-input {
+        text-align: center;
+    }
+
+    .domain-search-holder button {
+        font-size: 19px;
+        font-weight: 700;
+    }
+
+    .domain-search-holder .domain-input-holder {
+        margin-top: 25px;
+    }
+
+    .support-links > .row .hylink-holder {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .hylink-box {
+        padding: 0 15px 15px 100px;
+    }
+
+    .hylink-box .icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .hylink-box .icon img {
+        width: 35px;
+    }
+
+    .pricing-box.inner {
+        margin: 20px 0;
+    }
+
+    .sub-pricing {
+        padding-bottom: 20px;
+    }
+
+    .domain-search-only .domain-input-holder .domain-input {
+        text-align: center;
+    }
+
+    .domain-search-only .domain-input-holder button {
+        font-weight: 700;
+    }
+
+    .domain-pricing .info-img {
+        display: none;
+    }
+
+    .domain-pricing .row-title {
+        font-size: 25px;
+    }
+
+    .domain-features {
+        padding-bottom: 40px;
+    }
+
+    .domain-features .row-title {
+        font-size: 25px;
+    }
+
+    .question-card .card-header button {
+        font-size: 16px;
+    }
+
+    .question-card .card-header button:after {
+        top: 8px;
+        font-size: 22px;
+    }
+
+    .question-card .card-body {
+        font-size: 16px;
+    }
+
+    .question-card .card-body p {
+        font-size: 16px;
+    }
+}
+.custom-container{
+margin-bottom: 12px !important;
+}
+label{
+    font-weight: 800 !important;
+    color: #000;
+}
+input{
+    border: 1px solid #000 !important;
+}
+textarea{
+    border: 1px solid #000 !important;
+}
+
+
+</style>
+
+<!-- <div class="hero-wrap hero-wrap-2" style="" data-stellar-background-ratio="0.5">
+    <div class=""></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-start">
+        <div class="col-md-12 ftco-animate text-center mb-5">
+            <p class="breadcrumbs mb-0"><span class="mr-3"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Registration</span></p>
+          <h1 class="mb-3 bread">Upreak Help Desk</h1>
+          <p>Search here and Get your jobs query Resolved</p>
+        </div>
+      </div>
+  </div>
+</div> -->
+<div class="container p-5 pb-0 custom-container ">
+    <h1 class="custom-heading animate">Upreak Help Desk</h1>
+    <p class="text-center custom-para animate">search here and get jobs query resolved</p>
+    <div class="d-flex justify-content-center align-items-center text-center">
+      <!-- <a href="#featured-3" class="btn-lg btn-dark text-white explore-btn mr-1 explore">Explore More</a>
+      <a href="login" class="btn-lg btn-outline-dark bg-transparent border explore-btn ml-1 start">Start Now</a> -->
+    </div></div>
+<div class="search-row container-fluid">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="search-question-holder">
+                  <form>
+                      <input class="search-input" type="text" placeholder="Search a question"><button class="btn-search"></button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="support-details container-fluid">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-sm-6 col-md-3">
+              <div class="support-box">
+                  <div class="icon grey"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256" xml:space="preserve"><style>.st1{fill:#291b4a}.st4{fill:#d3d3d3}.st5{fill:#ebe7f2}.st6{fill:#f9b087}.st7{fill:#ff8639}.st8{fill:#65c1d6}.st9{fill:#149cb2}</style><circle transform="rotate(-45.001 128 128.002)" cx="128" cy="128" style="fill:#382b73" r="119.4"/><path class="st1" d="M200.059 176.407a2.5 2.5 0 0 0 2.5-2.5V70.08a2.5 2.5 0 0 0-2.5-2.5H55.941a2.5 2.5 0 0 0-2.5 2.5v103.827a2.5 2.5 0 1 0 5 0V72.58h139.118v101.327a2.5 2.5 0 0 0 2.5 2.5z"/><path class="st1" d="M67.05 82v86.256a2.5 2.5 0 0 0 2.5 2.5h116.9a2.5 2.5 0 0 0 2.5-2.5V82a2.5 2.5 0 0 0-2.5-2.5H69.55a2.5 2.5 0 0 0-2.5 2.5zm5 2.5h111.9v9.188H72.05V84.5zm0 14.188h111.9v67.068H72.05V98.688zM38.842 183.92a2.5 2.5 0 0 0 2.5 2.5h173.316a2.5 2.5 0 1 0 0-5H41.342a2.5 2.5 0 0 0-2.5 2.5z"/><path class="st1" d="M96.285 111.309c-.029.015-.059.023-.087.04-.024.014-.043.033-.066.048-6.74 3.997-11.271 11.343-11.271 19.731 0 12.642 10.285 22.927 22.927 22.927s22.927-10.285 22.927-22.927-10.285-22.927-22.927-22.927a22.788 22.788 0 0 0-11.503 3.108zm11.504 37.747c-9.885 0-17.927-8.042-17.927-17.927 0-5.683 2.667-10.747 6.806-14.034l8.965 15.298a2.499 2.499 0 0 0 2.157 1.236h17.732c-1.224 8.702-8.699 15.427-17.733 15.427zm17.732-20.428h-16.299l-8.247-14.073a17.815 17.815 0 0 1 6.814-1.353c9.034 0 16.509 6.724 17.732 15.426zM144.738 114.981a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5zM144.738 131.128a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5zM144.738 147.275a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5z"/><g><path class="st4" d="M67.05 92.188a2.5 2.5 0 0 0 2.5 2.5h116.9a2.5 2.5 0 1 0 0-5H69.55a2.5 2.5 0 0 0-2.5 2.5z"/><path class="st5" d="M67.05 92.188a2.5 2.5 0 0 0 2.5 2.5h116.9a2.5 2.5 0 1 0 0-5H69.55a2.5 2.5 0 0 0-2.5 2.5zm120.4 0c0 .551-.449 1-1 1H69.55c-.551 0-1-.449-1-1s.449-1 1-1h116.9c.551 0 1 .449 1 1z"/><path class="st8" d="M200.059 172.407a2.5 2.5 0 0 0 2.5-2.5V66.08a2.5 2.5 0 0 0-2.5-2.5H55.941a2.5 2.5 0 0 0-2.5 2.5v103.827a2.5 2.5 0 1 0 5 0V68.58h139.118v101.327a2.5 2.5 0 0 0 2.5 2.5z"/><path class="st8" d="M67.05 78v86.256a2.5 2.5 0 0 0 2.5 2.5h116.9a2.5 2.5 0 0 0 2.5-2.5V78a2.5 2.5 0 0 0-2.5-2.5H69.55a2.5 2.5 0 0 0-2.5 2.5zm5 2.5h111.9v81.256H72.05V80.5zM38.842 179.92a2.5 2.5 0 0 0 2.5 2.5h173.316a2.5 2.5 0 1 0 0-5H41.342a2.5 2.5 0 0 0-2.5 2.5z"/><path class="st9" d="M200.059 172.407a2.5 2.5 0 0 0 2.5-2.5V66.08a2.5 2.5 0 0 0-2.5-2.5H55.941a2.5 2.5 0 0 0-2.5 2.5v103.827a2.5 2.5 0 1 0 5 0V68.58h139.118v101.327a2.5 2.5 0 0 0 2.5 2.5zM58.441 67.08a1.5 1.5 0 0 0-1.5 1.5v101.327c0 .551-.449 1-1 1s-1-.449-1-1V66.08c0-.551.449-1 1-1h144.118c.551 0 1 .449 1 1v103.827c0 .551-.449 1-1 1s-1-.449-1-1V68.58a1.5 1.5 0 0 0-1.5-1.5H58.441z"/><path class="st9" d="M67.05 78v86.256a2.5 2.5 0 0 0 2.5 2.5h116.9a2.5 2.5 0 0 0 2.5-2.5V78a2.5 2.5 0 0 0-2.5-2.5H69.55a2.5 2.5 0 0 0-2.5 2.5zm120.4 0v86.256c0 .551-.449 1-1 1H69.55c-.551 0-1-.449-1-1V78c0-.551.449-1 1-1h116.9c.551 0 1 .449 1 1z"/><path class="st9" d="M72.05 163.256h111.9a1.5 1.5 0 0 0 1.5-1.5V80.5a1.5 1.5 0 0 0-1.5-1.5H72.05a1.5 1.5 0 0 0-1.5 1.5v81.256a1.5 1.5 0 0 0 1.5 1.5zm0-82.756h111.9v81.256H72.05V80.5zM38.842 179.92a2.5 2.5 0 0 0 2.5 2.5h173.316a2.5 2.5 0 1 0 0-5H41.342a2.5 2.5 0 0 0-2.5 2.5zm176.816 0c0 .551-.449 1-1 1H41.342c-.551 0-1-.449-1-1s.449-1 1-1h173.316c.552 0 1 .449 1 1z"/><path class="st6" d="M84.862 127.128c0 12.642 10.285 22.927 22.927 22.927s22.927-10.285 22.927-22.927-10.285-22.927-22.927-22.927-22.927 10.285-22.927 22.927zm40.854 0c0 9.885-8.042 17.927-17.927 17.927s-17.927-8.042-17.927-17.927 8.042-17.927 17.927-17.927c9.885.001 17.927 8.043 17.927 17.927z"/><path class="st6" d="m109.222 124.628-9.603-16.387a2.5 2.5 0 0 0-4.314 2.528l10.327 17.623a2.499 2.499 0 0 0 2.157 1.236h20.427a2.5 2.5 0 1 0 0-5h-18.994z"/><g><path class="st6" d="M144.738 110.981a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5z"/></g><g><path class="st4" d="M144.738 127.128a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5z"/></g><g><path class="st5" d="M144.738 127.128a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5zm2.5-1h21.4c.551 0 1 .449 1 1s-.449 1-1 1h-21.4c-.551 0-1-.449-1-1s.449-1 1-1z"/></g><g><path class="st6" d="M144.738 143.275a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5z"/></g><g><path class="st7" d="M125.521 128.128h-17.732c-.354 0-.684-.189-.863-.494l-8.965-15.298a1.5 1.5 0 0 0-2.228-.417c-4.686 3.721-7.373 9.264-7.373 15.209 0 10.712 8.715 19.427 19.427 19.427 9.616 0 17.878-7.187 19.217-16.719a1.502 1.502 0 0 0-1.483-1.708zm-17.732 16.928c-9.885 0-17.927-8.042-17.927-17.927 0-5.683 2.667-10.747 6.806-14.034l8.965 15.298a2.499 2.499 0 0 0 2.157 1.236h17.732c-1.224 8.702-8.699 15.427-17.733 15.427z"/><path class="st7" d="M100.403 109.168a1.5 1.5 0 0 0-.721 2.145l8.247 14.073c.269.459.762.742 1.294.742h16.299a1.5 1.5 0 0 0 1.485-1.709c-1.339-9.531-9.601-16.718-19.217-16.718a19.29 19.29 0 0 0-7.387 1.467zm25.118 15.46h-16.299l-8.247-14.073a17.815 17.815 0 0 1 6.814-1.353c9.034 0 16.509 6.724 17.732 15.426z"/><path class="st7" d="M96.285 107.309c-.028.015-.059.023-.087.04-.024.014-.043.033-.066.048-6.74 3.997-11.271 11.343-11.271 19.731 0 12.642 10.285 22.927 22.927 22.927s22.927-10.285 22.927-22.927-10.285-22.927-22.927-22.927a22.788 22.788 0 0 0-11.503 3.108zm32.931 19.819c0 11.815-9.612 21.427-21.427 21.427s-21.427-9.612-21.427-21.427c0-7.521 4.037-14.587 10.57-18.462l.026-.017.036-.019.046-.026a21.37 21.37 0 0 1 10.749-2.904c11.815.002 21.427 9.614 21.427 21.428z"/><g><path class="st7" d="M144.738 110.981a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5zm2.5-1h21.4c.551 0 1 .449 1 1s-.449 1-1 1h-21.4c-.551 0-1-.449-1-1s.449-1 1-1z"/></g><g><path class="st7" d="M144.738 143.275a2.5 2.5 0 0 0 2.5 2.5h21.4a2.5 2.5 0 1 0 0-5h-21.4a2.5 2.5 0 0 0-2.5 2.5zm2.5-1h21.4c.551 0 1 .449 1 1s-.449 1-1 1h-21.4c-.551 0-1-.449-1-1s.449-1 1-1z"/></g></g></g></svg></div>
+                  <div class="details-holder">
+                      <div class="title">Client area</div>
+                      <div class="details">
+                          <a href="login">Login Here</a>
+                          <a href="/chatUpreak">Let's Sign Up</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+              <div class="support-box">
+                  <div class="icon green"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"><style>.st1{fill:#edf3fc}.st2{fill:#330d84}.st3{fill:#ffbe1b}.st10{fill:#5d8ef9}</style><path class="st1" d="M255.999 40.928c-118.778 0-215.071 96.294-215.071 215.074 0 118.776 96.292 215.068 215.071 215.068S471.07 374.778 471.07 256.002c0-118.78-96.293-215.074-215.071-215.074z"/><path class="st1" d="M255.999 1C115.391 1 1 115.392 1 256.002 1 396.609 115.391 511 255.999 511S511 396.609 511 256.002C511 115.392 396.607 1 255.999 1zm0 501.831c-136.103 0-246.83-110.727-246.83-246.829 0-136.104 110.727-246.834 246.83-246.834 136.102 0 246.832 110.729 246.832 246.834 0 136.102-110.73 246.829-246.832 246.829z"/><path class="st3" d="M316.042 219.581zM315.804 218.166zM316.234 220.648zM317.34 225.776l.002.008-.002-.008zM316.927 224.034l.088.383-.088-.383zM317.143 224.969l.05.208-.05-.208zM316.694 222.965c.043.205.084.388.125.578l-.125-.578zM314.744 209.242c.032.42.069.828.105 1.238-.036-.41-.073-.818-.105-1.238zM315.562 216.591c.053.365.107.724.162 1.074-.055-.349-.108-.709-.162-1.074zM324.636 207.452c-1.108-.903-2.336-1.196-3.556-1.127-2.042 14.753-3.471 20.48-3.471 20.48s-.05-.178-.13-.483c.166 4.672.303 8.87.399 12.315.943.181 1.94.156 2.869-.297 3.113-1.521 5.964-13.762 7.007-17.717 1.039-3.953 1.359-9.529-3.118-13.171zM315.036 212.417c-.042-.395-.084-.79-.123-1.197.039.407.081.802.123 1.197zM315.111 213.112zM315.329 214.904zM193.146 235.637c.067-.443.253-1.723.481-3.639v-.003c-.288 2.419-.509 3.82-.509 3.82s-3.104-12.166-4.206-20.199c-.221-1.604-1.805-4.407-3.583-9.265a4.918 4.918 0 0 0-2.6 1.101c-4.477 3.643-4.154 9.219-3.117 13.172 1.04 3.955 3.895 16.195 7.01 17.717 2.451 1.195 5.379-.553 6.515-1.352l.009-1.352zM285.034 298.432c-1.095-3.412-1.653-6.928-1.88-10.301-4.958 2.947-9.823 5.225-14.66 7.463-4.128 1.908-19.203 2.369-24.331-.014-3.942-1.836-9.099-4.525-14.274-7.565-.223 3.408-.782 6.967-1.889 10.416-1.279 3.988-9.248 7.26-18.022 10.504 1.694 2.338 17.958 23.695 46.852 23.695 30.103 0 45.648-22.059 46.76-23.695-9.399-2.95-17.059-5.833-18.556-10.503z"/><path d="M314.48 200.217c.139-7.023.877-15.129.066-20.259-.81-5.133-3.514-13.51-9.723-14.049 0 0-27.67 31.009-87.008 27.112-5.756-.379-10.869-1.287-15.435-2.596-5.655 4.408-7.691 9.961-7.531 14.51.525 15.307-1.449 29.018-1.704 30.701a992.29 992.29 0 0 0-.027 7.105c0 15.766 9.712 25.961 24.117 36.949 8.035 6.131 19.59 12.473 26.927 15.889 5.128 2.383 20.203 1.922 24.331.014 7.752-3.586 15.576-7.277 23.734-13.66 13.367-10.455 25.797-22.295 25.797-35.596 0-3.354-.217-10.758-.546-20.02-.616-2.348-3.25-13.195-2.998-26.1z" style="fill:#ffe37b"/><path class="st10" d="M317.387 138.802c-6.847-8.339-15.399-12.586-24.86-11.428-7.2-9.368-18.607-16.479-36.723-15.437-28.467 1.639-76.843 20.563-75.744 65.382 1.065 25.181 8.359 34.712 8.852 38.296 1.103 8.033 4.206 20.199 4.206 20.199s2.293-14.533 1.731-30.879c-.16-4.549 1.876-10.101 7.531-14.51 4.566 1.309 9.679 2.217 15.435 2.596 59.338 3.896 87.008-27.112 87.008-27.112 6.209.539 8.913 8.916 9.723 14.049.811 5.13.072 13.235-.066 20.259-.284 14.6 3.129 26.588 3.129 26.588s1.616-6.475 3.867-23.396c1.287-9.672 14.062-42.503-4.089-64.607z"/><path d="m334.325 318.077-30.665-9.244s-15.57 23.799-46.83 23.799c-30.57 0-47.009-23.916-47.009-23.916l-31.952 9.455c-17.004 5.035-28.671 20.652-28.671 38.389v43.605h213.604v-43.761c0-17.659-11.568-33.235-28.477-38.327z" style="fill:#5932ae"/><path id="XMLID_23_" class="st2" d="M389.768 170.311c6.931-.068 27.923 8.85 31.829 25.798 4.711 20.439-37.092 103.783-65.503 110.117-2.877.648-5.758.98-8.578 1.005-20.502.199-32.755-13.091-33.536-19.909-.779-6.821 8.05-19.924 15.355-21.896 5.787-1.319 11.666 2.339 15.192 5.012 3.681 2.791 8.089 5.757 17.097 1.033 9.383-4.92 31.859-43.183 31.593-53.009-.175-6.708-6.872-8.884-12.788-13.424-2.825-2.171-7.075-7.269-7.24-13.887-.138-5.139 8.559-20.763 16.579-20.84z"/><path class="st10" d="m203.362 111.617 2.504.596-2.504.599c-14.638 3.513-26.063 14.462-29.74 28.481l-.627 2.394-.621-2.394c-3.674-14.018-15.105-24.968-29.748-28.481l-2.493-.599 2.493-.596c14.643-3.514 26.074-14.467 29.748-28.481l.621-2.396.627 2.396c3.678 14.014 15.103 24.967 29.74 28.481zM252.413 87.384l1.128.269-1.128.27c-6.597 1.583-11.746 6.518-13.403 12.836l-.283 1.079-.28-1.079c-1.656-6.318-6.807-11.252-13.407-12.836l-1.124-.27 1.124-.269c6.599-1.584 11.751-6.52 13.407-12.836l.28-1.08.283 1.08c1.657 6.316 6.806 11.252 13.403 12.836z"/><path class="st2" d="m412.136 330.294 1.75.417-1.75.418c-10.23 2.455-18.214 10.107-20.784 19.904l-.438 1.673-.434-1.673c-2.567-9.797-10.556-17.449-20.79-19.904l-1.742-.418 1.742-.417c10.233-2.456 18.222-10.111 20.79-19.905l.434-1.674.438 1.674c2.569 9.795 10.554 17.449 20.784 19.905z"/><path class="st3" d="m180.957 288.374 1.107.264-1.107.265c-6.472 1.553-11.524 6.395-13.15 12.593l-.277 1.058-.275-1.058c-1.624-6.198-6.679-11.04-13.153-12.593l-1.102-.265 1.102-.264c6.474-1.554 11.529-6.397 13.153-12.593l.275-1.059.277 1.059c1.626 6.196 6.678 11.039 13.15 12.593zM151.514 320.88l1.486.354-1.486.355c-8.688 2.085-15.469 8.584-17.651 16.904l-.372 1.421-.369-1.421c-2.18-8.32-8.965-14.819-17.656-16.904l-1.48-.355 1.48-.354c8.691-2.086 15.475-8.586 17.656-16.904l.369-1.422.372 1.422c2.182 8.317 8.963 14.818 17.651 16.904z"/></svg></div>
+                  <div class="details-holder">
+                      <div class="title">Call or Chat</div>
+                      <div class="details">
+                          <a href="tel:+919901381877">Tel: +91 9901381877</a>
+                          <a href="tel:+917483756277">Tel: +91 7483756277</a>
+                          <a href="javascript:void(Tawk_API.toggle())">Start chatting now</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+              <div class="support-box">
+                  <div class="icon blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" xml:space="preserve"><switch><g><circle fill="#382B73" cx="500" cy="500" r="398"/><circle fill="#473080" cx="500" cy="500" r="344.3"/><path fill="#382B73" d="M640 433.8V324c0-8.3-6.7-15-15-15H370c-8.3 0-15 6.7-15 15v113.7l-54.5 41.9v220.5c0 4.9 2.4 9.3 6 12 .3.3.7.5 1 .7 0 0 .1 0 .1.1.3.2.7.4 1 .6.1 0 .2.1.2.1.3.2.6.3 1 .4.1 0 .3.1.4.1l.9.3c.2.1.4.1.6.1.3.1.5.1.8.2.3.1.5.1.8.1.2 0 .4.1.6.1.5 0 1 .1 1.4.1h369c.5 0 1 0 1.4-.1.2 0 .4-.1.6-.1.3 0 .5-.1.8-.1.3-.1.5-.1.8-.2.2 0 .4-.1.6-.1l.9-.3c.1 0 .3-.1.4-.1.3-.1.7-.3 1-.4.1 0 .2-.1.2-.1.4-.2.7-.4 1-.6 0 0 .1 0 .1-.1.4-.2.7-.5 1-.7 3.6-2.7 6-7.1 6-12V479.6L640 433.8z"/><g><path fill="#1CAEE4" d="M684.5 695.1h-369c-8.3 0-15-6.7-15-15V459.6h399v220.5c0 8.3-6.7 15-15 15z"/><path fill="#177BC0" d="M500 541.7 305.5 691.2c2.7 2.4 6.2 3.8 10 3.8h369c3.8 0 7.3-1.5 10-3.8L500 541.7z"/><path fill="#A72973" d="m500 613 199.5-153.4h-399z"/><path fill="#EF5A9D" d="M500 306.2 300.5 459.6h399z"/><path fill="#FFF" d="M355 501.5 500 613l140-107.7V304c0-8.3-6.7-15-15-15H370c-8.3 0-15 6.7-15 15v197.5z"/><path fill="#D1D3D4" d="M470.2 571 355 482.4v19.1L500 613l140-107.7v-18.9L530.1 571c-17.6 13.5-42.2 13.5-59.9 0zM471.5 386.8h127.1c7.4 0 13.4-6 13.4-13.4s-6-13.4-13.4-13.4H471.5c-7.4 0-13.4 6-13.4 13.4-.1 7.4 6 13.4 13.4 13.4z"/><path fill="#2DBBA5" d="M471.5 378.4h127.1c7.4 0 13.4-6 13.4-13.4s-6-13.4-13.4-13.4H471.5c-7.4 0-13.4 6-13.4 13.4-.1 7.4 6 13.4 13.4 13.4z"/><path fill="#00A58C" d="M598.5 365h-127c-5 0-9.3-2.7-11.6-6.7-1.1 2-1.8 4.2-1.8 6.7 0 7.4 6 13.4 13.4 13.4h127.1c7.4 0 13.4-6 13.4-13.4 0-2.4-.7-4.7-1.8-6.7-2.4 4-6.7 6.7-11.7 6.7z"/><g><path fill="#D1D3D4" d="M401.5 442.2h197.1c7.4 0 13.4-6 13.4-13.4s-6-13.4-13.4-13.4H401.5c-7.4 0-13.4 6-13.4 13.4-.1 7.4 6 13.4 13.4 13.4z"/><path fill="#2DBBA5" d="M401.5 433.8h197.1c7.4 0 13.4-6 13.4-13.4s-6-13.4-13.4-13.4H401.5c-7.4 0-13.4 6-13.4 13.4-.1 7.4 6 13.4 13.4 13.4z"/><path fill="#00A58C" d="M598.5 420.4h-197c-5 0-9.3-2.7-11.6-6.7-1.1 2-1.8 4.2-1.8 6.7 0 7.4 6 13.4 13.4 13.4h197.1c7.4 0 13.4-6 13.4-13.4 0-2.4-.7-4.7-1.8-6.7-2.4 4-6.7 6.7-11.7 6.7z"/></g><g><path fill="#D1D3D4" d="M401.5 497.6h197.1c7.4 0 13.4-6 13.4-13.4s-6-13.4-13.4-13.4H401.5c-7.4 0-13.4 6-13.4 13.4-.1 7.4 6 13.4 13.4 13.4z"/><path fill="#2DBBA5" d="M401.5 489.2h197.1c7.4 0 13.4-6 13.4-13.4s-6-13.4-13.4-13.4H401.5c-7.4 0-13.4 6-13.4 13.4-.1 7.4 6 13.4 13.4 13.4z"/><path fill="#00A58C" d="M598.5 475.9h-197c-5 0-9.3-2.7-11.6-6.7-1.1 2-1.8 4.2-1.8 6.7 0 7.4 6 13.4 13.4 13.4h197.1c7.4 0 13.4-6 13.4-13.4 0-2.4-.7-4.7-1.8-6.7-2.4 3.9-6.7 6.7-11.7 6.7z"/></g></g></g></switch></svg></div>
+                  <div class="details-holder">
+                      <div class="title">Send e-mail</div>
+                      <div class="details">
+                          <a href="mailto:info@upreak.com">info@upreak.com</a>
+                          <a href="mailto:jobs@upreak.com">jobs@upreak.com</a>
+                          <!--<a href="#">admin@hustbee.co</a>-->
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="support-box">
+                <div class="icon blue p-2">
+                    <svg height="500px" width="500px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512" xml:space="preserve">
+<circle style="fill:#273B7A;" cx="256" cy="256" r="256"/>
+<path style="fill:#121149;" d="M512,256c0-4.918-0.153-9.799-0.426-14.648L398.222,128L162.047,283.87l18.997,18.997L113.778,384
+	l127.574,127.574C246.201,511.848,251.083,512,256,512C397.384,512,512,397.384,512,256z"/>
+<polygon style="fill:#E09112;" points="303.407,156.444 208.593,128 113.778,156.444 113.778,384 208.593,355.556 303.407,384 
+	398.222,355.556 398.222,128 "/>
+<polygon style="fill:#FEE187;" points="208.593,355.556 113.778,384 113.778,156.444 208.593,128 "/>
+<g>
+	<polygon style="fill:#FFC61B;" points="303.407,384 208.593,355.556 208.593,128 303.407,156.444 	"/>
+	<polygon style="fill:#FFC61B;" points="113.778,256 113.778,384 208.593,355.556 208.593,256 	"/>
+</g>
+<polygon style="fill:#EAA22F;" points="208.593,256 208.593,355.556 303.407,384 303.407,256 "/>
+<polygon style="fill:#E09112;" points="398.222,355.556 303.407,384 303.407,156.444 398.222,128 "/>
+<polygon style="fill:#FF5419;" points="303.407,256 303.407,384 398.222,355.556 398.222,256 "/>
+<path style="fill:#386895;" d="M207.731,186.396c-24.278,0-43.96,19.682-43.96,43.96c0,30.639,43.96,87.919,43.96,87.919
+	s43.96-55.775,43.96-87.919C251.69,206.077,232.008,186.396,207.731,186.396z M207.731,248.57c-9.98,0-18.07-8.09-18.07-18.07
+	s8.09-18.07,18.07-18.07s18.07,8.09,18.07,18.07S217.71,248.57,207.731,248.57z"/>
+<path style="fill:#273B7A;" d="M251.69,230.355c0-24.278-19.682-43.96-43.96-43.96c-0.048,0-0.095,0.003-0.143,0.003v26.038
+	c0.048,0,0.095-0.007,0.143-0.007c9.98,0,18.07,8.09,18.07,18.07c0,9.98-8.09,18.07-18.07,18.07c-0.048,0-0.095-0.007-0.143-0.007
+	v69.523c0.091,0.119,0.143,0.188,0.143,0.188S251.69,262.499,251.69,230.355z"/>
+</svg>
+              
+                </div>
+                <div class="details-holder">
+                    <div class="title">Address</div>
+                    <div class="details">
+                        <a href="mailto:info@upreak.com">Near Kottureshwara College, Gangavati Industrial Estate Gangawati
+                            pampa nagar
+                            gangavathi, karnataka 583227
+                            India
+                            </a>
+                        <!--<a href="#">admin@hustbee.co</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+      </div>
+  </div>
+</div>
+<div class="questions container-fluid">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <h6 class="text-dark" style="font-size:45px;">FAQ's</h6>
+              <p class="mb-5 text-dark" style="font-size:19px;">Some general questions regarding our services</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="cards-holder">
+                 
+                  <div class="question-card">
+                      <div class="card-header question-holder">
+                          <button type="button" data-toggle="collapse" data-target="#ques2" class="collapsed">How does Upreak assist job seekers?</button>
+                      </div>
+                      <div id="ques2" class="collapse">
+                          <div class="card-body answer-holder">
+                            To begin their journey, job seekers fill out a comprehensive profile detailing their skills and career aspirations. Upreak then utilizes a sophisticated matching algorithm to connect them with fitting job opportunities.
+                            </div>
+                      </div>
+                  </div>
+                  <div class="question-card">
+                      <div class="card-header question-holder">
+                          <button type="button" data-toggle="collapse" data-target="#ques3" class="collapsed">What unique services does Upreak provide?</button>
+                      </div>
+                      <div id="ques3" class="collapse">
+                          <div class="card-body answer-holder">
+                            Our services include personalized job matching, extensive sector coverage, and access to a network of industry experts. We also offer innovative recruitment solutions at an affordable rate.
+                            </div>
+                      </div>
+                  </div>
+                  <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques4" class="collapsed">In what ways does Upreak streamline the recruitment process?</button>
+                    </div>
+                    <div id="ques4" class="collapse">
+                        <div class="card-body answer-holder">
+                            Guiding candidates every step of the way, Upreak's expert recruiters manage interview scheduling and provide all necessary support to ensure a smooth and efficient experience.  
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques5" class="collapsed">What are the costs associated with Upreak's services?</button>
+                    </div>
+                    <div id="ques5" class="collapse">
+                        <div class="card-body answer-holder">
+                            Our clients only pay a nominal fee upon the successful placement of a candidate. Additionally, candidates may be eligible for a referral bonus, fostering a mutually beneficial situation.  
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques6" class="collapsed">Who stands to benefit from Upreak's services?</button>
+                    </div>
+                    <div id="ques6" class="collapse">
+                        <div class="card-body answer-holder">
+                            Both job seekers in pursuit of new opportunities and companies in search of top talent will find immense value in our comprehensive services.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques7" class="collapsed">How can I get started with Upreak?</button>
+                    </div>
+                    <div id="ques7" class="collapse">
+                        <div class="card-body answer-holder">
+                            Kickstart your Upreak experience by visiting our website to register, or reach out to us directly for more detailed information.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques8" class="collapsed">What Can Upreak’s Mock Interviews Offer? </button>
+                    </div>
+                    <div id="ques8" class="collapse">
+                        <div class="card-body answer-holder">
+                            Gain practical experience with real-life interview scenarios, enhancing your skills and confidence. Get constructive feedback to ace your next job interview.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques9" class="collapsed">How Do Mock Interviews Benefit Me? </button>
+                    </div>
+                    <div id="ques9" class="collapse">
+                        <div class="card-body answer-holder">
+                            Prepare for common questions, polish your answers, and boost your interview confidence, setting you up for success.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques10" class="collapsed">What Does Career Guidance Entail? </button>
+                    </div>
+                    <div id="ques10" class="collapse">
+                        <div class="card-body answer-holder">
+                            Receive personalized advice on career paths, industry trends, and skill development, tailored to your professional aspirations.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques11" class="collapsed">How to Access These Services? </button>
+                    </div>
+                    <div id="ques11" class="collapse">
+                        <div class="card-body answer-holder">
+                            Simply register on Upreak's website and choose 'Mock Interviews' or 'Career Guidance' to begin your journey.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques12" class="collapsed">Are These Services Free? </button>
+                    </div>
+                    <div id="ques12" class="collapse">
+                        <div class="card-body answer-holder">
+                            Visit Upreak's website for detailed pricing on each service.
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="card-header question-holder">
+                        <button type="button" data-toggle="collapse" data-target="#ques13" class="collapsed">Who Should Use These Services? </button>
+                    </div>
+                    <div id="ques13" class="collapse">
+                        <div class="card-body answer-holder">
+                            Ideal for anyone seeking to improve their interview techniques or looking for expert career direction.
+                        </div>
+                    </div>
+                </div>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="contact-us container">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+            <h1 class="font-weight-bold pb-2 text-center text-black">Get In Touch</h1>
+              <p class="mb-2 text-center text-dark" style="font-size:19px;">Elevate Your Experience: Explore Our Range of Specialized Services.</p>
+          </div>
+      </div>
+  </div>
+  <div class="container-fluid">
+      <div class="row mt-5">
+          <div class="col-md-12">
+            <form action="/save_contact" class="p-3 contact-form" method="POST">
+            
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" class="form-control" name="name" id="nameInput" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" class="form-control" name="email"id="emailInput" placeholder="Your Email" value=""required>
+                            </div>
+                            <div class="form-group">
+                              <label for="subject">Issue Subject</label>
+                              <input type="text" class="form-control" name="subject"id="subjectInput" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="message">Description</label>
+                              <textarea id="messageInput" cols="30" name="message" rows="7" class="form-control" placeholder="Message" required></textarea>
+                            </div>
+                            <input type="text" class="form-control" name="category" id="subjectInput" value="ticket" hidden>
+                            <div class="form-group d-block w-100 ftco-animate">
+                              <input type="submit" value="Send Message" class="btn btn-dark py-3 px-5">
+                            </div>
+                        </form>
+          </div>
+         
+      </div>
+  </div>
+</div>
+
+<script src="https://www.apnacoder.com/assets/hosting/js/jquery.min.js"></script>
+<script src="https://www.apnacoder.com/assets/hosting/js/bootstrap.min.js"></script>
+<script src="https://www.apnacoder.com/assets/hosting/js/slick.min.js"></script>
+<script src="https://www.apnacoder.com/assets/hosting/js/main.js"></script>
+</body>
+</html>
+    <%- include('includes/main_footer.ejs') %>
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+    
+  </body>
+</html>
