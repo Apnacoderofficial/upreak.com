@@ -8,7 +8,7 @@ const axios = require('axios');
 const crypto = require('crypto');
 const path = require('path');
 const QRCode = require('qrcode');
-const { sendMessageToWhatsApp } = require('./whatsappSender');
+const { sendMessageToWhatsApp } = require('./whatsAppSender');
 const { sendOTP } = require('./smsOTPSender');
 const moment = require("moment");
 const { Op } = require('sequelize');
@@ -286,7 +286,8 @@ exports.save_chatbot = (async (req, res) => {
       const recipientEmail = user_resp[3].response;
       const recipientPassword = user_resp[4].response;
       await Promise.all([
-        sendMessageToWhatsApp(`91${user_resp[1].response}`, `Welcome to Upreak \n\nDear ${recipientName},Congratulations on taking a significant step towards your career success! We're excited to have you join us at upreak. You are all set to login , your credentials are given below: \n\nEmail : ${recipientEmail} \nPassword : ${recipientPassword} \n\nThanks And Regards, \nTeam Upreak`),
+        sendMessageToWhatsApp('user_signup', `91${user_resp[1].response}`, recipientName, [recipientName, recipientEmail, recipientPassword], 'https://upreak.com/images/main_logo.png', 'upreak logo'),
+        // sendMessageToWhatsApp(`91${user_resp[1].response}`, `Welcome to Upreak \n\nDear ${recipientName},Congratulations on taking a significant step towards your career success! We're excited to have you join us at upreak. You are all set to login , your credentials are given below: \n\nEmail : ${recipientEmail} \nPassword : ${recipientPassword} \n\nThanks And Regards, \nTeam Upreak`),
         sendWelcomeEmail(recipientEmail, recipientPassword)
       ])
         .then(() => {
@@ -931,7 +932,8 @@ exports.post_bookslot = async (req, res) => {
           process_status: '0'
         };
         await db.meetings.create(newMeeting, { raw: true });
-        await sendMessageToWhatsApp(`91${req.session.phonenumber}`, `Dear ${req.session.username}, Your Slot booking is in process.We will update you shortly.\n\nThanks And Regards, \nTeam Upreak`);
+        await sendMessageToWhatsApp('slot_alert', `91${req.session.phonenumber}`, req.session.username, [req.session.username]);
+        // await sendMessageToWhatsApp(`91${req.session.phonenumber}`, `Dear ${req.session.username}, Your Slot booking is in process.We will update you shortly.\n\nThanks And Regards, \nTeam Upreak`);
       }
       res.redirect("book_slot");
     } catch (err) {
@@ -989,8 +991,11 @@ exports.accept_slot = async (req, res) => {
         });
 
         const promises = [
-          sendMessageToWhatsApp(`91${user_details[0].phone_number}`, `Dear ${user_details[0].username}, \nYour Slot has been booked Successfully. \nMeting details: \nMeeting Time: ${start_time} to ${end_time},\nCandidate Email : ${user_details[0].email} \nThanks And Regards, \nTeam Upreak`),
-          sendMessageToWhatsApp(`91${user_details[0].hr_phone_number}`, `Dear HR, \nYour selected slot has been booked Successfully. \nMeting details: \nMeeting Time: ${start_time} to ${end_time},\nCandidate Name : ${user_details[0].username} \nCandidate Application Id : ${user_details[0].application_id} \nThanks And Regards, \nTeam Upreak`),
+          sendMessageToWhatsApp('slot-confirmation', `91${user_details[0].phone_number}`, user_details[0].username, [user_details[0].username, start_time, end_time, user_details[0].email], 'https://upreak.com/images', 'main_logo.png'),
+          sendMessageToWhatsApp('slot-confirmation-hr', `91${user_details[0].hr_phone_number}`, 'HR', [start_time, end_time, user_details[0].username, user_details[0].application_id], 'https://upreak.com/images', 'main_logo.png'),
+
+          // sendMessageToWhatsApp(`91${user_details[0].phone_number}`, `Dear ${user_details[0].username}, \nYour Slot has been booked Successfully. \nMeting details: \nMeeting Time: ${start_time} to ${end_time},\nCandidate Email : ${user_details[0].email} \nThanks And Regards, \nTeam Upreak`),
+          // sendMessageToWhatsApp(`91${user_details[0].hr_phone_number}`, `Dear HR, \nYour selected slot has been booked Successfully. \nMeting details: \nMeeting Time: ${start_time} to ${end_time},\nCandidate Name : ${user_details[0].username} \nCandidate Application Id : ${user_details[0].application_id} \nThanks And Regards, \nTeam Upreak`),
           sendSlotConfirmEmail(hr_details[0].email, hr_details[0].username, hr_details[0].meeting_link, start_time, end_time),
           sendHRSlotConfirmEmail(hr_details[0].alloted_HR, hr_details[0].username, hr_details[0].phone_number, hr_details[0].meeting_link, start_time, end_time)
         ];
@@ -1053,7 +1058,8 @@ exports.reschedule_slot = async (req, res) => {
           where: { id: id }
         })
         const promises = [
-          sendMessageToWhatsApp(`91${user_details[0].phone_number}`, `Dear ${user_details[0].username}, Your Slot has been cancelled, kindly book another slot. \nThanks And Regards, \nTeam Upreak`)
+          sendMessageToWhatsApp('slot-cancelled', `91${user_details[0].phone_number}`, user_details[0].username, [user_details[0].username])
+          // sendMessageToWhatsApp(`91${user_details[0].phone_number}`, `Dear ${user_details[0].username}, Your Slot has been cancelled, kindly book another slot. \nThanks And Regards, \nTeam Upreak`)
         ];
         await Promise.all(promises);
       }
@@ -1062,7 +1068,8 @@ exports.reschedule_slot = async (req, res) => {
           where: { id: id }
         })
         const promises = [
-          sendMessageToWhatsApp(`91${user_details[0].phone_number}`, `Dear ${user_details[0].username}, Your Slot has been cancelled, kindly book another slot. \nThanks And Regards, \nTeam Upreak`)
+          sendMessageToWhatsApp('slot-cancelled', `91${user_details[0].phone_number}`, user_details[0].username, [user_details[0].username])
+          // sendMessageToWhatsApp(`91${user_details[0].phone_number}`, `Dear ${user_details[0].username}, Your Slot has been cancelled, kindly book another slot. \nThanks And Regards, \nTeam Upreak`)
         ];
         await Promise.all(promises);
       }
@@ -1692,64 +1699,6 @@ exports.register_mou = async (req, res) => {
     phone_verify: 'unverified',
     email_verify: 'unverified'
   };
-  let createdby = `MOU_${req.body.shortname}`;
-  const ddata = {
-    username: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    role: 'User',
-    createdby: createdby,
-    phonenumber: req.body.number,
-  };
-  let user_registered = await Response.findOne({ where: { emailid: req.body.email } });
-  if (!user_registered) {
-    let dataid = await Response.create(data);
-    await Response.update({
-      application_id: 'UP1000' + dataid.id,
-    }, {
-      where: { emailid: req.body.email }
-    })
-    await User.create(ddata)
-      .then(async () => {
-        let res_data = await (Response.findOne({ where: { emailid: req.body.email } }))
-        if (res_data !== null)
-          await sendWelcomeEmail(req.body.email, req.body.password);
-        res.send({
-          status: true,
-          msg: 'Successfully Registered, Thank You!',
-        });
-      })
-      .catch(err => {
-        console.error(err);
-        res.send({
-          status: false,
-          msg: err.message
-        });
-        return;
-      });
-  }
-  else {
-    res.send({
-      status: false,
-      msg: 'User Already Registered!'
-    });
-    return;
-  }
-
-};
-
-exports.register_mou = async (req, res) => {
-  const data = {
-    name: req.body.name,
-    emailid: req.body.email,
-    phonenumber: req.body.number,
-    gender: req.body.gender,
-    password: req.body.password,
-    city: req.body.city,
-    urole: 'User',
-    phone_verify: 'unverified',
-    email_verify: 'unverified'
-  };
 
   const createdby = `MOU_${req.body.shortname}`;
   const ddata = {
@@ -1817,7 +1766,8 @@ exports.purchase = async (req, res) => {
 
     const details = await Payment.findOne({ where: { transactionId } });
 
-    await sendMessageToWhatsApp(`91${details.phone}`, `Dear ${details.name}, Your Payment has been ${code == 'PAYMENT_SUCCESS' ? 'completed successfully' : 'failed'}. Trans id.: ${details.transactionId} Amount:Rs ${amount}. \n Thanks & Regards, \nTeam Upreak`);
+    await sendMessageToWhatsApp('payment-status', `91${details.phone}`, details.name, [details.name,`${code == 'PAYMENT_SUCCESS' ? 'completed successfully' : 'failed'}`, details.transactionId, amount])
+    // await sendMessageToWhatsApp(`91${details.phone}`, `Dear ${details.name}, Your Payment has been ${code == 'PAYMENT_SUCCESS' ? 'completed successfully' : 'failed'}. Trans id.: ${details.transactionId} Amount:Rs ${amount}. \n Thanks & Regards, \nTeam Upreak`);
 
     // if(code != 'PAYMENT_SUCCESS'){
     //   await sendMessageToWhatsApp(`91${details.phone}`, `Dear ${details.name}, Your Payment has been failed. Trans id.: ${details.transactionId} Amount:Rs ${amount} Thanks Upreak Team`);
@@ -1934,6 +1884,8 @@ exports.save_payment_details = async (req, res) => {
 exports.reset_password = async (req, res) => {
   try {
     const recipientEmail = req.body.email;
+    if(!recipientEmail)
+      return res.redirect("/login");
     let res_data = await User.findOne({ where: { email: recipientEmail } });
     if (res_data != null)
       await sendPasswordEmail(recipientEmail, res_data.password)
@@ -2142,7 +2094,8 @@ exports.verify_otp = async (req, res) => {
 exports.verify_details1 = async (req, res) => {
   const whatsappnumber = req.body.Whatsappnumber;
   const otp = generateOTP();
-  await sendMessageToWhatsApp(`91${whatsappnumber}`, `Dear ${req.session.username}, Your One Time Password is U- ${otp}. \nThanks And Regards, \nTeam Upreak`)
+  await sendMessageToWhatsApp('whatsApp_OTP', `91${whatsappnumber}`, req.session.username, [req.session.username, otp])
+  // await sendMessageToWhatsApp(`91${whatsappnumber}`, `Dear ${req.session.username}, Your One Time Password is U- ${otp}. \nThanks And Regards, \nTeam Upreak`)
     .then(() => {
       console.log('Message sent successfully');
       res.render('verify_job_seeker1', { otpSent: true, verified: false, otp: otp });
@@ -2372,7 +2325,7 @@ exports.postsignup = async (req, res) => {
     if (!user && !resp) {
       await User.create({
         phonenumber: req.body.phone,
-        username: req.body.uname,
+        username:  req.body.uname,
         email: req.body.mail,
         password: req.body.pswrd,
         role: 'User',
@@ -2390,6 +2343,8 @@ exports.postsignup = async (req, res) => {
         whatsapp_verify: 'unverified',
         email_verify: 'unverified'
       });
+
+      await sendMessageToWhatsApp('user_signup', `91${req.body.phone}`,  req.body.uname, [ req.body.uname,  req.body.mail,  req.body.pswrd], 'https://upreak.com/images/main_logo.png', 'upreak logo');
     }
     return res.redirect("/login");
   } catch (error) {
@@ -2542,14 +2497,6 @@ exports.registration_details = (req, res) => {
 
 };
 
-exports.help = (req, res) => {
-
-  if (req.session.role) {
-    res.render("error-404");
-
-  } else
-    res.redirect("/login");
-};
 
 exports.add_feedback = (req, res) => {
 
