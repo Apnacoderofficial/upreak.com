@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('upreak','upreak','upreak',{
-    host: 'localhost',
+const sequelize = new Sequelize('upreak', 'upreak', 'upreak', {
+    host: '143.110.249.17',
     dialect: 'postgres'
 });
 
