@@ -1,0 +1,134 @@
+<%- include('includes/head.ejs') %>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    
+            <body>
+            <div class="container-scroller">
+              <!-- partial:partials/_navbar.html -->
+              <%- include('includes/navbar.ejs') %>
+              <!-- partial -->
+              <div class="container-fluid page-body-wrapper">
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <%- include('includes/sidebar.ejs') %>
+                <!-- partial -->
+                <div class="main-panel"> <div class="content-wrapper">
+                  <div class="row">
+                    <div class="col-md-12 grid-margin">
+                      <div class="row">
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                          <h3 class="font-weight-bold">Meeting Details</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="card shadow mb-4">
+                          <div class="card-header">
+                            <div class="row ">
+                              <h5 class="col pt-2">View Details</h5>
+                              <!-- <a href="/panel/book_slot" class="btn btn-primary col-md-offset-6 mx-1"  style="float: right;" >View Evemts</a> -->
+                              <a class="btn btn-primary col-md-offset-6 mx-1" style="float: right;"
+                              href="<%= (user_Data[0] && user_Data[0].phone_verify !== 'unverified' && user_Data[0].email_verify !== 'unverified' && user_Data[0].whatsapp_verify !== 'unverified') ? '/panel/book_slot' : 'javascript:void(0);' %>"
+                              <%= (user_Data[0] && user_Data[0].phone_verify !== 'unverified' && user_Data[0].email_verify !== 'unverified' && user_Data[0].whatsapp_verify !== 'unverified') ? '' : 'disabled' %>
+                              onclick="<%= (user_Data[0] && user_Data[0].phone_verify !== 'unverified' && user_Data[0].email_verify !== 'unverified' && user_Data[0].whatsapp_verify !== 'unverified') ? '' : 'alert(\'Please complete your verification before proceeding.\'); return false;' %>">
+                              View Events
+                            </a>
+                              <!-- <a href="/panel/add_job_seekers" class="btn btn-primary col-md-offset-6 mx-1" style="float: right;" >Add</a> -->
+                              <!-- <a href="/export_payment_details" class="btn btn-primary col-md-offset-6" style="float: right;" >Export</a> -->
+                          </div>
+                          </div>
+                        <div class="card-body">      
+                          <div class="table-responsive">
+                            <table  class="table table-striped display expandable-table"  width="100%" cellspacing="0">
+                                <thead class="table-light">
+                                    <tr class=" text-center">                   
+                                        <!-- <th>Id</th> -->
+                                        <th>SNo.</th>
+                                        <th>Title</th>
+                                        <th>Email</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        
+                                        <th>Meeting Link</th>
+                                        <th>Status</th>
+                                        <th>Scheduled Date</th>
+                                        <th>Actions</th>
+                                        <!-- <th>Action</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <% for (var i = 0; i < locals.length ; i++) {%>
+                                    <% if( session.role == 'User' && locals[i].email == session.userid) {%>  
+                                        <tr>
+                                          
+                                            <!-- <td><%= locals[i].id %></td> -->
+                                            <td><%= i+1 %></td>
+                                            <td><%= locals[i].title %></td>
+                                            <td><%= locals[i].email %></td>
+                                            <td><%= locals[i].start_time %></td>
+                                            <td><%= locals[i].end_time %></td>
+                                            <% if(locals[i].status == 'Booked') { %>
+                                            <td><a class="btn btn-warning" href="<%= locals[i].meeting_link %>">Link</a></td>
+                                            <%} else {%>
+                                              <td>
+                                                In Progress
+                                              </td>
+                                              <%}%>
+                                            <td><%= locals[i].status == 'Not Booked' ? 'In Progress' :  locals[i].status  %> </td>
+                                            <td><%= locals[i].createdAt %></td>
+                                            <td>
+                                              <!-- <a href="/panel/book_slot" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add">Add</a> -->
+                                              <% if(locals[i].status != 'Booked') { %>
+                                            <a href="/panel/reschedule_slot/<%= locals[i].id %>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel">Cancel</a></td>
+                                            
+                                            <%} else {%>
+                                              <b> - </b>
+                                              <%}%>
+                                            <!-- <td><a href="" class="btn btn-primary"><i class="fa fa-solid fa-trash"></i></a></td> -->
+                                        </tr>
+                                        
+                                          <% }}%>
+                                </tbody>
+                                </tfoot>
+                            </table>
+                          </div>                    
+                        </div>
+                  
+                
+                        </div>
+                      </div>
+                    </div>
+                </div>
+       
+                  <!-- content-wrapper ends -->
+                  <!-- partial:partials/_footer.html -->
+                  <%- include('includes/footer.ejs') %>
+                  <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+              </div>
+              <!-- page-body-wrapper ends -->
+            </div>
+<!-- added beacause it is not working properly -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+      $('table').DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      });
+  });
+</script>
+</body>
