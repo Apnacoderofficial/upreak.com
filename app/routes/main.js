@@ -103,13 +103,13 @@ router.get("/get_started",
     authMiddleWare,
     asyncMiddleware(main.get_started));
 
-// router.get("/resume-builder",
-//         authMiddleWare,
-//         asyncMiddleware(main.resume_builder));
+router.get("/resume-builder",
+        authMiddleWare,
+        asyncMiddleware(main.resume_builder));
 
-// router.get("/resume-templates",
-//             authMiddleWare,
-//             asyncMiddleware(main.resume_templates));
+router.get("/resume-templates",
+            authMiddleWare,
+            asyncMiddleware(main.resume_templates));
 
     
 // general

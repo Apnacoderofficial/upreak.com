@@ -240,23 +240,23 @@ module.exports = {
   },
 
 
-  // resume_builder: async (req, res) => {
-  //   try {
-  //     res.render("resume_builder");
-  //   } catch (err) {
-  //     console.error(err);
-  //     res.redirect("/error-500");
-  //   }
-  // },
+  resume_builder: async (req, res) => {
+    try {
+      res.render("resume_builder");
+    } catch (err) {
+      console.error(err);
+      res.redirect("/error-500");
+    }
+  },
 
-  // resume_templates: async (req, res) => {
-  //   try {
-  //     res.render("resume_templates");
-  //   } catch (err) {
-  //     console.error(err);
-  //     res.redirect("/error-500");
-  //   }
-  // },
+  resume_templates: async (req, res) => {
+    try {
+      res.render("resume_templates");
+    } catch (err) {
+      console.error(err);
+      res.redirect("/error-500");
+    }
+  },
 
   blog: async (req, res) => {
     try {
