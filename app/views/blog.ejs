@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Upreak - Blog</title>
+    <link rel="shortcut icon" href="/images/main_logo.png" type="image/x-icon" height="100%" width="100%">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <style>
+
+.blogcard {
+  border-radius: 12px;
+  min-height: 400px;
+  max-height: 450px;
+  border: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: slideUp 0.5s ease forwards; /* Apply animation */
+}
+
+/* Hover effect */
+.blogcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+      body{
+          color:black !important  ;
+      }
+      .card-text{
+              color: #999999 !important;
+      }
+      .card {
+        min-height: 400px;
+        max-height: 450px;
+        border: none;
+        transition: transform 0.3s ease;
+      }
+  
+      .bg-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+  
+      .bg-image img {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        height: auto;
+      }
+  
+      .mask {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        /* background-color: rgba(0, 0, 0, 0.3); */
+        border-radius: 10px;
+      }
+  
+      .card-body {
+        padding: 20px;
+      }
+  
+      .card-title {
+        font-weight: 800;
+        font-size: 1.25rem;
+      }
+  
+      .card-text {
+        color: #666;
+      }
+  
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+      }
+  
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+  
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+  </style>
+  <body>
+    
+	  <%- include('includes/main_nav.ejs') %>
+    <!-- END nav -->
+    
+    <div class="container p-5 custom-container mb-0">
+      <h1 class="custom-heading animate">Our Vast Range of Services <br>has Helped over 100+ Job Seekers Find Employment.</h1>
+      <p class="text-center custom-para animate">We are a recruitment company that connects talented individuals with top companies and organizations, guiding them towards their dream jobs and helping them achieve their career aspirations.</p>
+      <div class="d-flex justify-content-center align-items-center text-center animate">
+      </div>
+    </div>
+    
+<section class="ftco-section">
+  <div class="container">
+    <section class="website">
+     <!--    <h3>Website Development</h1>-->
+     <!--<hr>-->
+       <section class="">
+     <div class="row fadein">
+      <% for (let i = 0; i < locals.length; i++) { %>
+        <a href="/preview_blogs/<%= locals[i].url_title %>">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card blogcard" style="">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light rounded">
+              <img src="uploads/<%= locals[i].photo %>" class="img-fluid rounded" />
+              <a href="/preview_blogs/<%= locals[i].url_title %>">
+                <div class="mask"></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <h6><i class="fa-solid fa-tag"></i> Jobs</h6>
+              <h5 class="card-title" style="font-weight: 800;"><%= locals[i].heading %></h5>
+              <p class="card-text"><%= locals[i].metadescription %></p>
+              <!-- <a href="/preview_blogs/<%= locals[i].url_title %>" class="btn d-block w-100 text-white btn-primary">Read</a> -->
+            </div>
+          </div>
+        </div>
+      </a>
+                <% } %>
+     </div>
+   </section>
+    </section>
+ </div>
+</section>
+    <%- include('includes/main_footer.ejs') %>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/js/google-map.js"></script>
+  <script src="/js/main.js"></script>
+    
+  </body>
+</html>

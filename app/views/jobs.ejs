@@ -1,0 +1,255 @@
+<head>
+    <!-- HTML Meta Tags -->
+<meta name="description" content="Welcome to Upreak, a leading recruitment company dedicated to empowering freshers and experienced professionals in their pursuit of fulfilling careers. Our mission is to connect talented individuals with top companies and organizations, guiding them towards their dream jobs and helping them achieve their career aspirations.">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://upreak.com">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Upreak.com">
+<meta property="og:description" content="Welcome to Upreak, a leading recruitment company dedicated to empowering freshers and experienced professionals in their pursuit of fulfilling careers. Our mission is to connect talented individuals with top companies and organizations, guiding them towards their dream jobs and helping them achieve their career aspirations.">
+<meta property="og:image" content="https://upreak.com/images/main_logo.png">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://upreak.com">
+<meta property="twitter:url" content="https://upreak.com/">
+<meta name="twitter:title" content="Upreak.com">
+<meta name="twitter:description" content="Welcome to Upreak, a leading recruitment company dedicated to empowering freshers and experienced professionals in their pursuit of fulfilling careers. Our mission is to connect talented individuals with top companies and organizations, guiding them towards their dream jobs and helping them achieve their career aspirations.">
+<meta name="twitter:image" content="https://upreak.com/images/main_logo.png">
+    <title>Upreak - Jobs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="/images/main_logo.png" type="image/x-icon" height="100%" width="100%">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <link rel="stylesheet" href="css/job.css">
+  </head>
+
+  <body>
+    
+    <%- include('includes/main_nav.ejs') %>
+
+    <!-- END nav -->
+    <div class=" p-1  pb-0 mb-4" style="margin-top: 12%;">
+      <h1 class="custom-heading animate mb-2">Welcome to Upreak Job Center!</h1>
+      <p class="text-center custom-para animate">We’re always searching for amazing people. Take a look at our current openings.</p>
+      <!-- <div class="d-flex justify-content-center align-items-center text-center">
+        <a href="services" class="btn-lg btn-dark text-white explore-btn mr-1 explore">Explore More</a>
+        <a href="/panel/signup" class="btn-lg btn-outline-dark border explore-btn ml-1 start">Get Start Now</a>
+      </div> -->
+      </div>
+
+    <div class="job-listing-area pt-120 pb-120">
+      <div class="container">
+          <div class="row">
+              <!-- Left content -->
+              <div class="col-xl-3 col-lg-3 col-md-4 ">
+                  <div class="row">
+                      <div class="col-12">
+                              <div class="small-section-tittle2 mb-45">
+                              <div class="ion"> <svg 
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  width="20px" height="12px">
+                              <path fill-rule="evenodd"  fill="rgb(27, 207, 107)"
+                                  d="M7.778,12.000 L12.222,12.000 L12.222,10.000 L7.778,10.000 L7.778,12.000 ZM-0.000,-0.000 L-0.000,2.000 L20.000,2.000 L20.000,-0.000 L-0.000,-0.000 ZM3.333,7.000 L16.667,7.000 L16.667,5.000 L3.333,5.000 L3.333,7.000 Z"/>
+                              </svg>
+                            </div>
+                            <h4>Filter Jobs</h4>
+                          </div>
+                      </div>
+                  </div>    
+                    <form id="filterForm" action="/jobs" method="POST">
+
+                        <!-- Job Category Listing start -->
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+                        <div class="job-category-listing mb-10 p-3">
+                            <!-- single one -->
+                            <div class="single-listing">
+                                <!-- select-Categories start -->
+                                <div class="select-Categories pt-1 pb-10">
+                                    <div class="small-section-tittle2">
+                                        <h4>Job Type</h4>
+                                    </div>
+                                    <select id="job_type" name="job_type" class="form-control">
+                                    <option value="">Select Job Type</option>
+                                    <option value="Full Time"<%= typeof bData != 'undefined' ? (!!bData.job_type) ?  bData.job_type === 'Full Time' ? 'selected' : '' :  '' : '' %>>Full Time</option>
+                                    <option value="Part Time"<%= typeof bData != 'undefined' ? (!!bData.job_type) ?  bData.job_type === 'Part Time' ? 'selected' : '' :  '' : '' %>>Part Time</option>
+                                    <option value="Remote"<%= typeof bData != 'undefined' ? (!!bData.job_type) ?  bData.job_type === 'Remote' ? 'selected' : '' :  '' : '' %>>Remote</option>
+                                    <option value="Freelance"<%= typeof bData != 'undefined' ? (!!bData.job_type) ?  bData.job_type === 'Freelance' ? 'selected' : '' :  '' : '' %>>Freelance</option>
+                                </select>
+                                </div>
+                                <!-- select-Categories End -->
+                            </div>
+                            <!-- single two -->
+                            <div class="single-listing ">
+                                <div class="small-section-tittle2">
+                                    <h4>Job Location</h4>
+                                </div>
+                                <!-- Select job items start -->
+                                <div class="select-job-items2 ">
+                                <input type="text" id="location" name="location" class="form-control" autocomplete="off" placeholder="Enter Location" value="<%- typeof bData != 'undefined' ? bData.location : '' %>" >
+                                </div> 
+                                <!--  Select job items End-->
+                                <!-- select-Categories start -->
+                               <div class="select-Categories pt-10 pb-10">
+                                    <div class="small-section-tittle2">
+                                        <h4>Experience</h4>
+                                    </div>
+                                    <select id="experience" name="experience" class="form-control">
+                                    <option value="">Select Experience</option>
+                                    <option value="0"<%= typeof bData != 'undefined' ? (!!bData.experience) ?  bData.experience === '0' ? 'selected' : '' :  '' : '' %>>Fresher</option>
+                                    <option value="1"<%= typeof bData != 'undefined' ? (!!bData.experience) ?  bData.experience === '1' ? 'selected' : '' :  '' : '' %>>Experience</option>
+                                </select>
+                                </div>
+                                <!-- select-Categories End -->
+                            </div>
+                            <!-- single three -->
+                            <div class="single-listing">
+                                <!-- select-Categories start -->
+                                <div class="select-Categories pb-10">
+                                    <div class="small-section-tittle2">
+                                        <h4>Posted Within</h4>
+                                    </div>
+                                    <select id="createdAt" name="createdAt" class="form-control">
+                                    <option value="">Select Posted Date</option>
+                                    <option value="0"<%= typeof bData != 'undefined' ? (!!bData.createdAt) ?  bData.createdAt === '0' ? 'selected' : '' :  '' : '' %>>Today</option>
+                                    <option value="1"<%= typeof bData != 'undefined' ? (!!bData.createdAt) ?  bData.createdAt === '1' ? 'selected' : '' :  '' : '' %>>This Month</option>
+                                    <option value="2"<%= typeof bData != 'undefined' ? (!!bData.createdAt) ?  bData.createdAt === '2' ? 'selected' : '' :  '' : '' %>>Older</option>
+                                </select>
+                                </div>
+                                <!-- select-Categories End -->
+                            </div>
+                            <div class="col-md-12 mt-4 mx-5 justify-content-center mx-auto">
+                                <button type="submit" class="btn btn-primary me-2">Apply</button>
+                                <a href="/jobs" class="btn btn-outline-secondary ">Reset</a>
+                              </div>
+                        </div>
+                        
+                    </form>
+                    
+                    
+                  <!-- Job Category Listing End -->
+              </div>
+              <!-- Right content -->
+              
+              <div class="col-xl-9 col-lg-9 col-md-8">
+                  <!-- Featured_job_start -->
+                  <section class="featured-job-area">
+                      <div class="container">
+                            <!-- Count of Job list Start -->
+                            <div class="row">
+                                <div class="col-lg-12 ">
+                                    <div class="count-job mb-35">
+                                        <span><%= locals.length %> Jobs Found</span>
+                                        <!-- Select job items start -->
+                                        <div class="select-job-items">
+                                            <!-- <span>Sort by</span>
+                                            <select name="select" class="form-control">
+                                                <option value="">None</option>
+                                                <option value="">job list</option>
+                                                <option value="">job list</option>
+                                                <option value="">job list</option>
+                                            </select> -->
+                                        </div>
+                                        <!--  Select job items End-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Count of Job list End -->
+                            <!-- single-job-content -->
+                            <div class="job-list-container">
+                                <% for (let i = 0; i < locals.length; i++) { %>
+                                    <div class="single-job-items mb-20 border-bottom border-5">
+                                        <div class="job-items">
+                                            <div class="company-img">
+                                                <img  src="../uploads/<%= locals[i].photo %>" alt="Logo" width="80" height="80">
+                                            </div>
+                                            <div class="job-tittle job-tittle2">
+
+                                                    <h4 class="truncated-heading"><%= locals[i].heading %></h4>
+                                            
+                                                <ul>
+                                                    <li><%= locals[i].job_type %></li> &nbsp;
+                                                    <%  const locations = locals[i].location.split(',').map(location => location.trim()); %>
+                                                    <li>
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    <% locations.forEach((location, index) => { %>
+                                                    <%= location %><%= (index % 2 === 0 && index < locations.length - 1) ? ', ' : '' %>
+                                                        <% if ((index + 1) % 2 === 0 && index < locations.length) { %>
+                                                            <br>
+                                                        <% } %>
+                                                    <% }) %>
+                                                    </li>
+                                                    <li> <%= locals[i].amount %></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="items-link items-link2 f-right">
+                                            <% if (locals[i].status == 1)  { %>
+                                                <a class="btn" href="/job_details?jobId=<%= locals[i].job_id %>">Apply</a>
+                                            <% } else { %>
+                                                <strong>Closed</strong>
+                                            <% } %>
+                                            <span><%= locals[i].createdAt %></span>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                      </div>
+                  </section>
+                  <!-- Featured_job_end -->
+              </div>
+              
+          </div>
+      </div>
+  </div>
+    
+
+    <%- include('includes/main_footer.ejs') %>
+
+    
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+          stroke="#F96D00" /></svg></div>
+  
+  
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/jquery.animateNumber.min.js"></script>
+    <script src="/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    </script>
+    <script src="/js/google-map.js"></script>
+    <script src="/js/main.js"></script>
