@@ -1,0 +1,90 @@
+.blogcard {
+  border-radius: 12px;
+  min-height: 400px;
+  max-height: 450px;
+  border: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: slideUp 0.5s ease forwards; /* Apply animation */
+}
+
+/* Hover effect */
+.blogcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+      body{
+          color:black !important  ;
+      }
+      .card-text{
+              color: #999999 !important;
+      }
+      .card {
+        min-height: 400px;
+        max-height: 450px;
+        border: none;
+        transition: transform 0.3s ease;
+      }
+  
+      .bg-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+  
+      .bg-image img {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        height: auto;
+      }
+  
+      .mask {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        /* background-color: rgba(0, 0, 0, 0.3); */
+        border-radius: 10px;
+      }
+  
+      .card-body {
+        padding: 20px;
+      }
+  
+      .card-title {
+        font-weight: 800;
+        font-size: 1.25rem;
+      }
+  
+      .card-text {
+        color: #666;
+      }
+  
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+      }
+  
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+  
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }

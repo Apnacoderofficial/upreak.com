@@ -1,0 +1,276 @@
+<%- include('includes/header.ejs') %>
+<title>Resumes Templates - Upreak</title>
+  <style>
+    section h1{
+      font-weight: 800;
+      font-size: 2rem;
+      margin-top: 2.5rem;
+    }
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {
+      margin: 0 -5px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      /* text-align: center; */
+      /* background-color: #f1f1f1; */
+    }
+    .card {
+      border-radius: 8px;
+      height: auto;
+      width: 100%
+    }
+
+    .card.border {
+      border: 1px solid #e8ebf2
+    }
+
+    .image,
+    .image-container {
+      width: 100%
+    }
+
+    .image {
+      object-fit: cover
+    }
+
+    .image.image_full_width_sm {
+      border-radius: 7px 7px 0 0;
+      height: 160px
+    }
+
+    .image.image_full_width_lg {
+      border-radius: 7px 7px 0 0;
+      height: 280px
+    }
+
+    .image.image_md {
+      height: 112px;
+      margin-top: 32px;
+      width: 112px
+    }
+
+    .image.image_sm {
+      height: 64px;
+      margin-top: 24px;
+      width: 64px
+    }
+
+    .image.image_xs {
+      margin-top: 34px
+    }
+
+    .image.image_left_text_right,
+    .image.image_xs {
+      height: 24px;
+      width: 24px
+    }
+
+    .text-container>:not(:last-child) {
+      margin-bottom: 16px
+    }
+
+    p {
+      font-size: 20px !important;
+    }
+  </style>
+</head>
+
+<body class="text-black">
+  <%- include('includes/main_nav.ejs') %>
+  <!-- END nav -->
+
+  <div class="container p-1 mb-2" style="margin-top: 130px;">
+    <h1 class="custom-heading animate mb-1">Get Creative Resume and Cover letter that inspire</h1>
+    <!-- <p class="text-center custom-para animate">We are a recruitment company that connects talented individuals with top companies and organizations, guiding them towards their dream jobs and helping them achieve their career aspirations.</p> -->
+    <div class="d-flex justify-content-center align-items-center text-center">
+    </div>
+  </div>
+ 
+
+  <section class="container mt-3">
+    <div class="row">
+        <% resumes.forEach(resume => { %>
+            <% if(resume.resume_category !== null) { %>
+            <!-- Display the resume image or a placeholder if no resume is available -->
+            <div class="col-md-3 mb-4" data-bs-toggle="modal" data-bs-target="#imageModal-<%= resume.id %>">
+                <div class="card" style="width: 100%; border: none;">
+                    <div class="card-body">
+                        <% if (resume.resume_category == "information_technology") { %>
+                            <img src="/uploads/<%= resume.photo %>" style="width: 100%; height: 100%;" alt="<%= resume.resume_category %>-<%= resume.id %>">
+                            <h5 class="card-title mt-2"><%= resume.resume_title %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= resume.resume_category %></h6>
+                        <% } else { %>
+                            <img src="https://img.freepik.com/free-vector/page-found-concept-illustration_114360-1869.jpg?t=st=1719822666~exp=1719823266~hmac=c7a525bc4742282f3ff4515dfb81cda8551b033ad60bce8de0594061f63bbbe0" class="card-img-top" alt="No Resume Found">
+                            <div class="card-body text-center">
+                                <p class="card-text">No Resume Available</p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for each resume -->
+            <div class="modal fade" id="imageModal-<%= resume.id %>" tabindex="-1" aria-labelledby="imageModalLabel-<%= resume.id %>" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel-<%= resume.id %>">Apply for Resume ID <%= resume.id %></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="resume-apply-form" data-resume-id="<%= resume.id %>">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="name-<%= resume.id %>" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name-<%= resume.id %>" name="name" placeholder="Enter Your Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email-<%= resume.id %>" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email-<%= resume.id %>" name="email" placeholder="Enter Your Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone_number-<%= resume.id %>" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone_number-<%= resume.id %>" name="phone_number" placeholder="Enter Your Number" maxlength="10" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+                <img src="https://img.freepik.com/free-vector/page-found-concept-illustration_114360-1869.jpg?t=st=1719822666~exp=1719823266~hmac=c7a525bc4742282f3ff4515dfb81cda8551b033ad60bce8de0594061f63bbbe0" class="card-img-top" alt="No Resume Found">
+                <div class="card-body text-center">
+                    <p class="card-text">No Resume Available</p>
+                </div>
+            <% } %>
+        <% }); %>
+    </div>
+    </section>
+
+
+
+
+
+
+
+
+  
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <%- include('includes/main_footer.ejs') %>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" /></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+  </script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+
+
+
+<!-- Include Toastr JS and CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.resume-apply-form').on('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      var form = $(this);
+      var resumeId = form.data('resume-id');
+      var formData = form.serialize();  // Serialize form data
+
+      $.ajax({
+        url: '/apply_resume',
+        method: 'POST',
+        data: formData + '&resume_id=' + encodeURIComponent(resumeId),
+        success: function(response) {
+          if (response.success) {
+            toastr.success(response.message); // Show success message
+
+            // Check and open the resume link if it exists
+            if (response.resumeLink && typeof response.resumeLink === 'string' && response.resumeLink.trim()) {
+              console.log('Resume Link:', response.resumeLink); // Debugging line
+              window.open(response.resumeLink, '_blank'); // Open resume link in a new tab
+            }
+
+            // Close the modal and redirect
+            var modalId = '#imageModal-' + resumeId;
+            $(modalId).modal('hide'); // Hide the modal
+
+            // Ensure that modal is closed before redirecting
+            setTimeout(function() {
+              location.reload(); // Redirect after modal has closed
+            }, 500); // Adjust the timeout duration if needed
+          } else {
+            toastr.error(response.message); // Show error message if operation fails
+          }
+        },
+        error: function() {
+          toastr.error('There was an error processing your application. Please try again later.'); // Show error message on AJAX error
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+</body>
+
+</html>

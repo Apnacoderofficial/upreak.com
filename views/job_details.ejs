@@ -1,0 +1,199 @@
+<%- include('includes/header.ejs') %>
+<title><%= locals.heading %> - Upreak a leading recruitment company</title>
+<link rel="stylesheet" href="../css/job.css">
+<style>
+    .card{
+        border-bottom: 0px !important;
+    }
+    @media (min-width: 768px) {
+        #job_title {
+            margin-top: 40px !important;
+        }
+    }
+    @media (max-width: 768px) {
+        #job_icon {
+            text-align: center;
+        }
+        #job_title {
+            text-align: center;
+        }
+        #job_description {
+            text-align: center;
+        }
+    }
+
+</style>
+
+<body>
+    <%- include('includes/main_nav.ejs') %>
+  
+    <!-- Hero Area Start-->
+    <div class="slider-area text-white mt-5">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center text-white" data-background="../images/about.jpg" style="background: url('https://upreak.com/images/about.jpg');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center text-white">
+                            <h2 class="text-white"><%= locals.heading %></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Hero Area End -->
+   <div class="py-5" >
+    <section id="sectionJobList" class="section section-job-list gradient-light--lean-left py-5">
+        <div id="jobs">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Left Content -->
+                                    <div class="col-xl-8 col-lg-8">
+                                        <!-- Job Single -->
+                                        <div class="d-flex align-items-start mb-4 row">
+                                            <div class="me-3 col-lg-3 col-md-12 text-center" id="job_icon">
+                                                <a href="#"><img src="uploads/<%= locals.photo %>" alt="Logo" class="img-fluid rounded-circle"></a>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <h4 class="mb-1" id="job_title" style="font-weight: 700;"><%= locals.heading %></h4>
+                                                <ul class="list-unstyled mb-0" id="job_description">
+                                                    <li><%= locals.sub_heading %></li>
+                                                    <li><i class="fas fa-map-marker-alt"></i> <%= locals.location %></li>
+                                                   
+                                                </ul>
+                                                <% if(locals.url) { %>
+                                                    <a href="<%= locals.url %>" class="d-block mt-2"><h5 class="text-primary"><%= locals.url %></h5></a>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <h4 class="h5 mb-3" style="font-weight: 700;">Job Description</h4>
+                                            <p class="text-justify"><%- locals.description %></p>
+                                        </div>
+                                    </div>
+                                    <!-- Right Content -->
+                                    <div class="col-xl-4 col-lg-4">
+                                        <div class="mb-4">
+                                            <h4 class="h5 mb-3">Job Overview</h4>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><b>Posted date:</b> <span><%= locals.createdAt %></span></li>
+                                                <li class="list-group-item"><b>Location:</b> <span><%= locals.location %></span></li>
+                                                <li class="list-group-item"><b>Vacancy:</b> <span><%= locals.vacancy %></span></li>
+                                                <li class="list-group-item"><b>Experience:</b> <span><%= locals && locals.experience === 'Any' ? 'Any' : locals.experience %></span></li>
+                                                <li class="list-group-item"><b>Job nature:</b> <span><%= locals.job_type %></span></li>
+                                                <li class="list-group-item"><b>CTC:</b> <span><%= locals.amount %></span></li>
+                                            </ul>
+                                            <div class="mt-4 text-center">
+                                                <button type="button" class="btn btn-dark btn-lg w-100" data-bs-toggle="modal" data-bs-target="#jobApplicationModal" data-job-id="<%= locals.job_id %>">Apply Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- End Row -->
+                            </div> <!-- End Card Body -->
+                        </div> <!-- End Card -->
+                    </div> <!-- End Col-md-12 -->
+                </div> <!-- End Row -->
+            </div> 
+        </div><!-- End Container -->
+    </section>
+    
+    </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="jobApplicationModal" tabindex="-1" aria-labelledby="jobApplicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jobApplicationModalLabel">Apply Now</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="applyForm" action="/job_application" method="post" autocomplete="off" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="job_id" name="job_id">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number (without or +91)</label>
+                        <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Enter Your Number" maxlength="10" pattern="[7-9][0-9]{9}" title="Please enter a valid 10-digit phone number without +91 or 0"required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                    <div class="mb-3">
+                        <label for="resume" class="form-label">Resume</label>
+                        <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                        <input type="text" hidden value="<%- typeof locals != 'undefined' ? locals.resume : '' %>" name="resume_link_name">   
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="applyForm" class="btn btn-primary">Apply</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Handle the form submission via AJAX
+        $('#applyForm').on('submit', function(event) {
+            event.preventDefault();
+
+            // Validate the file input (optional, but done on the backend too)
+            var resumeInput = document.getElementById('resume');
+            var file = resumeInput.files[0];
+            var allowedExtensions = ['.pdf', '.doc', '.docx'];
+
+            if (file) {
+                var fileExtension = file.name.split('.').pop().toLowerCase();
+                if (!allowedExtensions.includes('.' + fileExtension)) {
+                    toastr.error('Invalid file format. Please upload a .pdf, .doc, or .docx file.');
+                    return;
+                }
+            }
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: '/job_application',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        $('#jobApplicationModal').modal('hide');  // Close the modal
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error('There was an error processing your application. Please try again later.');
+                }
+            });
+        });
+
+        // Set job ID when the modal is opened
+        var applyButtons = document.querySelectorAll('[data-bs-target="#jobApplicationModal"]');
+        applyButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var jobId = this.getAttribute('data-job-id');
+                document.getElementById('job_id').value = jobId;
+            });
+        });
+    });
+</script>
+
+  
+<%- include('includes/subscribe.ejs') %>
+<%- include('includes/main_footer.ejs') %>
