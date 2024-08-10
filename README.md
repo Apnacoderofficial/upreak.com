@@ -1,19 +1,25 @@
-# Upreak 
+# Upreak Versions List
 
-# Upreak v1.0.9
-New Cetral Database Function Created
+## Version 1.1.5
+- **Pagination Added**: Pagination was added to job listings to improve navigation.
+- **UI Enhancements**: The job listing UI was improved for a better user experience.
 
-# Upreak v1.1.0
-New Whatsapp Cloud API Integrated in web application
+## Version 1.1.4
+- **Resume Features**: 
+  - A resume upload function was introduced.
+  - A resume template download feature was added.
 
-# Upreak v1.1.1
-404 Page Updated
+## Version 1.1.3
+- **Subscription Function**: A new subscription function was created to manage user subscriptions efficiently.
 
-# Upreak v1.1.2
-New Version
+## Version 1.1.2
+- **New Version Release**: General updates and optimizations were made.
 
-# Upreak v1.1.3
-Created Subscription function
+## Version 1.1.1
+- **404 Page Update**: The 404 error page was updated to enhance user experience.
 
-# Upreak v1.1.4
-resume upload and reume template download    function
+## Version 1.1.0
+- **WhatsApp Cloud API Integration**: The WhatsApp Cloud API was integrated into the web application, enhancing communication capabilities.
+
+## Version 1.0.9
+- **Central Database Function**: A central database function was created to improve data management.

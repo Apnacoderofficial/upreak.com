@@ -2,13 +2,14 @@
 <title>Job Boards - Upreak a leading recruitment company</title>
 <link rel="stylesheet" href="css/job.css">
 
+
   <body>
     
     <%- include('includes/main_nav.ejs') %>
 
     <!-- END nav -->
     <div class=" p-1  pb-0 mb-4" style="margin-top: 12%;">
-      <h1 class="custom-heading animate mb-2">Welcome to Upreak Job Center!</h1>
+      <h1 class="custom-heading animate mb-2">Find your dream job now!</h1>
       <p class="text-center custom-para animate">We’re always searching for amazing people. Take a look at our current openings.</p>
       <!-- <div class="d-flex justify-content-center align-items-center text-center">
         <a href="services" class="btn-lg btn-dark text-white explore-btn mr-1 explore">Explore More</a>
@@ -16,11 +17,11 @@
       </div> -->
       </div>
 
-    <div class="job-listing-area pt-120 pb-120" id="jobs">
+    <div class="job-listing-area pt-50 pb-120" id="jobs">
       <div class="container-fluid">
           <div class="row">
               <!-- Left content -->
-              <div class="col-xl-3 col-lg-3 col-md-4 ">
+              <div class="col-xl-3 col-lg-3 col-md-4  p-3" >
                   <div class="row">
                       <div class="col-12">
                               <div class="small-section-tittle2 mb-45">
@@ -38,7 +39,7 @@
                   </div>    
                     <form id="filterForm" action="/jobs" method="POST">
                         <!-- Job Category Listing start -->
-                        <div class="job-category-listing mb-10 p-3">
+                        <div class="job-category-listing mb-10 p-3  bg-white"style="border-radius: 15px;">
                             <!-- single one -->
                             <div class="single-listing">
                                 <!-- select-Categories start -->
@@ -100,6 +101,27 @@
                                 <a href="/jobs" class="btn btn-outline-secondary ">Reset</a>
                               </div>
                         </div>
+                        <div class="job-category-listing mb-10 p-3 bg-white ad-content" style="border-radius: 15px;">
+                            <div class="">
+                                
+                                <div class="ad-text">
+                                    <h3>Create a Professional Resume in Minutes!</h3>
+                                    <p>Stand out from the crowd with a resume that showcases your strengths. Our easy-to-use resume builder helps you craft a polished and professional resume in just a few clicks. No design skills needed!</p>
+                                    <a href="/resume-builder" class="ad-button text-right">Try It Now >></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="job-category-listing mb-10 p-3 bg-white" style="border-radius: 15px;">
+                            <div class="ad-text">
+                                <h5>For More Updates, Join Our Groups Now!</h5>
+                                <a href="https://whatsapp.com/channel/0029VakqglnFnSzBl9TPPs0t" class="whatsapp-join-btn" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="whatsapp-logo">
+                                    Join WhatsApp Group
+                                </a>
+                            </div>
+                        </div>
                         
                     </form>
                     
@@ -107,65 +129,126 @@
                   <!-- Job Category Listing End -->
               </div>
               <!-- Right content -->
-              
+              <style>
+                .pagination-controls {
+                    text-align: center;
+                    margin-top: 20px;
+                }
+                .pagination-controls button {
+                    margin: 0 5px;
+                    padding: 5px 10px;
+                    background-color: #007bff;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .pagination-controls button:disabled {
+                    background-color: #cccccc;
+                    cursor: not-allowed;
+                }
+            </style>
               <div class="col-xl-9 col-lg-9 col-md-8">
-                  <!-- Featured_job_start -->
-                  <section class="featured-job-area">
-                      <div class="containerfluid">
-                            <!-- Count of Job list Start -->
-                            <div class="row">
-                                <div class="col-lg-12 ">
-                                    <div class="count-job mb-35">
-                                        <span><%= locals.length %> Jobs Found</span>
-                                    </div>
+                <!-- Featured_job_start -->
+                <section class="featured-job-area">
+                    <div class="containerfluid">
+                        <!-- Count of Job list Start -->
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <div class="count-job mb-35">
+                                    <span id="job-count"><%= locals.length %> Jobs Found</span>
                                 </div>
                             </div>
-                            <!-- Count of Job list End -->
-                            <!-- single-job-content -->
-                            <div class="job-list-container">
-                                <% for (let i = 0; i < locals.length; i++) { %>
-                                    <a href="/job_details?jobId=<%= locals[i].job_id %>">
-                                        <div class="single-job-items mb-20 border-bottom border-5">
-                                            <div class="job-items">
-                                                <div class="company-img">
-                                                    <img  src="../uploads/<%= locals[i].photo %>" alt="Logo" width="80" height="80">
-                                                </div>
-                                                <div class="job-tittle job-tittle2">
-
-                                                        <h4 class="truncated-heading"><%= locals[i].heading %></h4>
-                                                
-                                                    <ul>
-                                                        <li><%= locals[i].job_type %></li> &nbsp;
-                                                        <%  const locations = locals[i].location.split(',').map(location => location.trim()); %>
-                                                        <li>
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                        <% locations.forEach((location, index) => { %>
-                                                        <%= location %><%= (index % 2 === 0 && index < locations.length - 1) ? ', ' : '' %>
-                                                            <% if ((index + 1) % 2 === 0 && index < locations.length) { %>
-                                                                <br>
-                                                            <% } %>
-                                                        <% }) %>
-                                                        </li>
-                                                        <li> <%= locals[i].amount %></li>
-                                                    </ul>
-                                                </div>
+                        </div>
+                        <!-- Count of Job list End -->
+                        <!-- single-job-content -->
+                        <div class="job-list-container" id="job-list-container">
+                            <!-- Job items will be inserted here dynamically -->
+                        </div>
+                        <!-- Pagination Controls -->
+                        <div class="pagination-controls">
+                            <button id="prev-page" disabled>Previous</button>
+                            <span id="page-info">Page 1</span>
+                            <button id="next-page">Next</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Featured_job_end -->
+            </div>
+            
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    const jobsPerPage = 10;
+                    let currentPage = 1;
+                    const jobs = <%- JSON.stringify(locals) %>; // Pass the locals variable as JSON
+                    const totalPages = Math.ceil(jobs.length / jobsPerPage);
+            
+                    function renderJobs(page) {
+                        const startIndex = (page - 1) * jobsPerPage;
+                        const endIndex = startIndex + jobsPerPage;
+                        const jobsToDisplay = jobs.slice(startIndex, endIndex);
+            
+                        const jobListContainer = $('#job-list-container');
+                        jobListContainer.empty();
+            
+                        jobsToDisplay.forEach(function (job) {
+                            const jobItem = `
+                                <a href="/job_details?jobId=${job.job_id}">
+                                    <div class="single-job-items mb-20 border-bottom border-5 shadow" style="border-radius: 15px;">
+                                        <div class="job-items">
+                                            <div class="company-img">
+                                                <img src="../uploads/${job.photo}" alt="Logo" width="80" height="80">
                                             </div>
-                                            <div class="items-link items-link2 f-right">
-                                                <% if (locals[i].status == 1)  { %>
-                                                    <a class="btn btn-success text-white" href="/job_details?jobId=<%= locals[i].job_id %>">Apply</a>
-                                                <% } else { %>
-                                                    <strong>Closed</strong>
-                                                <% } %>
-                                                <span><%= locals[i].createdAt %></span>
+                                            <div class="job-tittle job-tittle2">
+                                                <h4 class="truncated-heading">${job.heading}</h4>
+                                                <ul>
+                                                    <li>${job.job_type}</li> &nbsp;
+                                                    <li>
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        ${job.location.split(',').join(', ')}
+                                                    </li>
+                                                    <li>${job.amount}</li>
+                                                </ul>
                                             </div>
                                         </div>
-                                    </a>
-                                <% } %>
-                            </div>
-                      </div>
-                  </section>
-                  <!-- Featured_job_end -->
-              </div>
+                                        <div class="items-link items-link2 f-right">
+                                            ${job.status == 1 ? `<a class="btn btn-success text-white" href="/job_details?jobId=${job.job_id}">Apply</a>` : '<strong>Closed</strong>'}
+                                            <span>${job.createdAt}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                            jobListContainer.append(jobItem);
+                        });
+            
+                        // Update pagination controls
+                        $('#page-info').text(`Page ${currentPage}`);
+                        $('#prev-page').prop('disabled', currentPage === 1);
+                        $('#next-page').prop('disabled', currentPage === totalPages);
+            
+                        // Update job count
+                        $('#job-count').text(`${jobs.length} Jobs Found`);
+                    }
+            
+                    $('#prev-page').click(function () {
+                        if (currentPage > 1) {
+                            currentPage--;
+                            renderJobs(currentPage);
+                        }
+                    });
+            
+                    $('#next-page').click(function () {
+                        if (currentPage < totalPages) {
+                            currentPage++;
+                            renderJobs(currentPage);
+                        }
+                    });
+            
+                    // Initial render
+                    renderJobs(currentPage);
+                });
+            </script>
               
           </div>
       </div>

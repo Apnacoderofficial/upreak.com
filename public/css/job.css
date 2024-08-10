@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow:300,400,500,600,700,900|Muli:300,400,500,600,700,800,900&display=swap");
 
+body{
+    background-color: #f8f9fa;
+}
+
 .white-bg {
     background: #ffffff
 }
@@ -6254,7 +6258,9 @@ form.search-box .search-form a {
     -webkit-transition: .4s;
     -moz-transition: .4s;
     -o-transition: .4s;
-    transition: .4s
+    transition: .4s;
+    box-shadow:#001f38;
+    background-color: #fff;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -7258,9 +7264,9 @@ form.search-box .search-form a {
 }                 
 
 .job-list-container {
-    max-height: 520px; /* Set the desired height for the container */
+    /* max-height: 520px; Set the desired height for the container */
     overflow-y: scroll; /* Enable vertical scrollbar */
-    border-bottom: 1px black solid;
+    /* border-bottom: 1px black solid; */
 }
 
 .truncated-heading {
@@ -7277,3 +7283,72 @@ form.search-box .search-form a {
     }
   }
   
+  .ad-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ad-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ad-text {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.ad-text h3 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.ad-text p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.ad-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ad-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.whatsapp-join-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-join-btn:hover {
+    background-color: #1EBE5B;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
