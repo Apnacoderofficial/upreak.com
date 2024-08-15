@@ -59,13 +59,15 @@
                                                 <td><%= locals[i].createdAt %></td>                                                
                                                 <td>Applied</td>
                                                 <td>
-                                                  <% if( locals[i].resume_link && locals[i].resume_link.publicUrls ) {%>
+                                                  <% if (locals[i].resume_link && locals[i].resume_link.publicUrls) { %>
                                                     <a class="btn m-1 btn-outline-info" href="<%= locals[i].resume_link.publicUrls %>" target="_blank">View Resume</a>
-                                                    <!-- <a class="btn m-1 btn-outline-info" href="/download_resume?id=<%= locals[i].id %>"  type="">Download</a> -->
-                                                <% } else {%>
-                                                  <a class="btn m-1 btn-outline-info" href="/uploads/<%= locals[i].resume %>">Resumes</a>
-                                                <% }%>
-                                            </td>
+                                                    <!-- <a class="btn m-1 btn-outline-info" href="/download_resume?id=<%= locals[i].id %>">Download</a> -->
+                                                  <% } else if (locals[i].resume) { %>
+                                                    <a class="btn m-1 btn-outline-info" href="/uploads/<%= locals[i].resume %>">Resume</a>
+                                                  <% } else { %>
+                                                    No Resume Found
+                                                  <% } %>
+                                                </td>
                                             </tr>
                                         <% } %>
                                     </tbody>

@@ -39,14 +39,34 @@
   </style>
   <style>
     .card {
-      border-radius: 8px;
-      height: auto;
-      width: 100%
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Ensure text inside the card is centered */
+    height: 100%; /* Make the card take up the full height of the container */
+}
 
-    .card.border {
-      border: 1px solid #e8ebf2
-    }
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Ensure the body takes up the remaining space within the card */
+}
+
+.card-img-top {
+    width: 100%; /* Make the image take up the full width of the card */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensures the image covers the entire width and height without stretching */
+    border-radius: 0; /* Removes any default border-radius if present */
+}
+
+
+.card-text {
+    margin-top: 10px; /* Add some space between the image and text */
+}
+
 
     .image,
     .image-container {
@@ -95,6 +115,10 @@
 
     p {
       font-size: 20px !important;
+    }
+    .fa{
+      margin-top: 20px;
+
     }
   </style>
 </head>
@@ -145,7 +169,7 @@
             <div class="card text-center">
                 <div class="card-body">
                     
-                    <img src="https://img.icons8.com/?size=256w&id=121324&format=png" class="card-img-top mb-3" alt="Step 1">
+                    <img src="../images/resume-builder/1.png" class="card-img-top mb-3" alt="Step 1">
                     <p class="card-text">Visit Upreak Resume Builder</p>
                 </div>
             </div>
@@ -154,16 +178,16 @@
             <div class="card text-center">
                 <div class="card-body">
                     
-                    <img src="https://img.icons8.com/?size=256w&id=115635&format=png" class="card-img-top mb-3" alt="Step 2">
+                    <img src="../images/resume-builder/2.png" class="card-img-top mb-3" alt="Step 2">
                     <p class="card-text">Fill Your Details</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
-            <div class="card text-center">
+            <div class="card text-center justify-content-center">
                 <div class="card-body">
                     
-                    <img src="https://img.icons8.com/?size=256w&id=32528&format=png" class="card-img-top mb-3" alt="Step 3">
+                    <img src="../images/resume-builder/3.png" class="card-img-top mb-3" alt="Step 3">
                     <p class="card-text">Download Your PDF</p>
                 </div>
             </div>
