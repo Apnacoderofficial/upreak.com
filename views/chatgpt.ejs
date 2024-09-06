@@ -1,0 +1,138 @@
+<%- include('includes/head.ejs') %>
+    <style>
+        .response-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+        .spinner-border {
+            display: none;
+            margin-left: 10px;
+        }
+    </style>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <%- include('includes/navbar.ejs') %>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+            <%- include('includes/sidebar.ejs') %>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+
+                    <div class="row">
+                        <div class="col-md-12 p-3">
+                            <div class="container">
+                                <h1 class="text-center">OpenAI API Chat Interface</h1>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <!-- Inside your EJS template for the form -->
+                                        <form id="api-form" method="POST" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                            <label for="userMessage">Your Message:</label>
+                                            <input type="text" class="form-control" id="userMessage" name="message" placeholder="Enter your message here">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="file">Upload a PDF:</label>
+                                            <input type="file" class="form-control" id="file" name="file">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </form>
+                                        <div class="response-box mt-4">
+                                            <h4>Response:</h4>
+                                            <p id="api-response" class="text-muted">Waiting for your input...</p>
+                                        </div>
+                                         <!-- jQuery for AJAX handling -->
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <script>
+ $(document).ready(function() {
+    $('#api-form').on('submit', function(event) {
+        event.preventDefault();
+
+        // Create FormData object to handle file and text
+        const formData = new FormData(this);
+
+        // Show loading spinner
+        $('.spinner-border').show();
+
+        $.ajax({
+            url: '/gptchat', // Adjust the endpoint based on your Node.js setup
+            type: 'POST',
+            data: formData,
+            processData: false, // Important for FormData
+            contentType: false, // Important for FormData
+            success: function(response) {
+                $('#api-response').text(response.message);
+            },
+            error: function(xhr) {
+                $('#api-response').text('Error: ' + (xhr.responseJSON ? xhr.responseJSON.message : 'Unexpected error occurred.'));
+            },
+            complete: function() {
+                // Hide loading spinner
+                $('.spinner-border').hide();
+            }
+        });
+    });
+});
+
+ </script>
+  
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <%- include('includes/footer.ejs') %>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+ <!-- Bootstrap JS and dependencies -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ <!-- jQuery for AJAX handling -->
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <script>
+     $(document).ready(function() {
+         $('#api-form').on('submit', function(event) {
+             event.preventDefault();
+
+             // Show loading spinner
+             $('.spinner-border').show();
+
+             const userMessage = $('#userMessage').val();
+             
+             $.ajax({
+                 url: '/gptchat', // Adjust the endpoint based on your Node.js setup
+                 type: 'POST',
+                 contentType: 'application/json',
+                 data: JSON.stringify({ message: userMessage }),
+                 success: function(response) {
+                     $('#api-response').text(response.message);
+                 },
+                 error: function(xhr) {
+                     $('#api-response').text('Error: ' + xhr.responseJSON.message || 'Unexpected error occurred.');
+                 },
+                 complete: function() {
+                     // Hide loading spinner
+                     $('.spinner-border').hide();
+                 }
+             });
+         });
+     });
+ </script>
+</body>

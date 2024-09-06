@@ -1,0 +1,120 @@
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+.nav,.nav-item,.nav-link{
+  color: black !important;
+}
+.bg-dark{
+  color: white !important;
+}
+  /* top bold heading */
+  /* Global styles */
+  .custom-container {
+    padding: 5rem; /* Padding for the container */
+    margin-top: 130px;
+    margin-bottom: 120px;
+  }
+  
+  .custom-heading {
+    text-align: center;
+    font-size: 4rem; /* Large font size for heading */
+    font-weight: 600;
+    line-height: 1.2; /* Adjust line height for readability */
+  }
+  /* CSS for animated words */
+.animated-word {
+  opacity: 0;
+  transition: opacity 0.5s ease transform 0.5s ease;
+}
+
+.animated-word.show {
+  opacity: 1;
+}
+  
+  .text-center {
+    text-align: center; /* Center align text */
+  }
+  
+  .explore-btn {
+    background-color: black; /* Set background color of the button */
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .custom-container {
+    padding:1rem; /* Padding for the container */
+    margin-top: 0;
+    margin-bottom: 0; /* Remove bottom margin */
+  }
+    .custom-heading {
+      font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+    .custom-para{
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .custom-container {
+    padding:1rem; /* Padding for the container */
+    margin-top: 0;
+    margin-bottom: 0; /* Remove bottom margin */
+  }
+  .custom-para{
+      font-size: 1rem;
+    }
+    .custom-heading {
+      font-size: 2rem; /* Further adjust font size for extra small screens */
+    }
+  }
+
+
+  /* list grop serverice and index animations */
+  .list-group h6{
+    font-size: 15px;
+    font-weight: 700;
+    text-align: justify;
+   }
+   .list-group p{
+    font-size: 15px;
+    text-align: justify;
+    line-height: normal;
+   }
+
+
+
+
+/* Define keyframe animation for fading in list group items */
+@keyframes fadeIn {
+from {
+ opacity: 0;
+ transform: translateY(20px); /* Optional: Start with a slight upward translation */
+}
+to {
+ opacity: 1;
+ transform: translateY(0); /* End at original position */
+}
+}
+
+/* Apply the animation to list group items */
+.list-group-item {
+opacity: 0; /* Initially hide the list items */
+transition: opacity 0.5s ease, transform 0.5s ease; /* Apply transition for smooth animation */
+}
+
+/* Apply animation when 'animated' class is added */
+.list-group-item.animated {
+opacity: 1;
+transform: translateY(0);
+}
+  

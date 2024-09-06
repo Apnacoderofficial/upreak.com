@@ -1,0 +1,220 @@
+<style>
+    /* Base Styles */
+    #subscription .subscription.bg-white {
+        background: none;
+    }
+    
+    #subscription .bg-white {
+        background-color: #fff !important;
+    }
+    
+    #subscription .subscription.bg-white .subscription-wrapper {
+        background: #fff;
+    }
+    
+    /* Subscription Wrapper */
+    #subscription .subscription-wrapper {
+        padding: 70px 50px;
+        z-index: 1;
+        width: 100%;
+        top: 100px;
+        box-shadow: 0px 15px 39px 0px rgba(8, 18, 109, 0.1) !important;
+        border-radius: 10px;
+    }
+    
+    #subscription .subscription-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #subscription h3, .h3 {
+        font-size: 40px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    /* Form Styles */
+    #subscription .subscription.bg-white .form-control {
+        border: 1px solid #000 !important;
+        background: linear-gradient(80deg, #0030cc 0%, #00a4db 100%);
+        color: #fff;
+    }
+    
+    #subscription .subscription-wrapper .form-control {
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 45px;
+        border: 0.5px solid #000 !important;
+        padding: 0 20px;
+    }
+    
+    #subscription .subscription-wrapper .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        outline: 0;
+        box-shadow: none;
+        color: #fff;
+    }
+    
+    /* Button Styles */
+    #subscription .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+    
+    #subscription .btn-primary {
+        border: 0;
+        color: #fff;
+    }
+    
+    #subscription .btn {
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        text-transform: capitalize;
+        padding: 18px 45px;
+        border-radius: 45px;
+        font-weight: 500;
+        border: 1px solid;
+        position: relative;
+        z-index: 1;
+        transition: .3s ease-in;
+        overflow: hidden;
+    }
+    
+    #subscription .btn-primary:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 102%;
+        height: 100%;
+        background: linear-gradient(45deg, #00a8f4 0%, #02d1a1 100%);
+        z-index: -1;
+        transition: ease 0.3s;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        #subscription .subscription-wrapper {
+            padding: 50px 30px;
+            top: 50px;
+        }
+        
+        #subscription h3, .h3 {
+            font-size: 35px;
+        }
+        
+        #subscription .btn {
+            padding: 15px 40px;
+            font-size: 15px;
+        }
+        
+        #subscription .subscription-content {
+            flex-direction: column;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        #subscription .subscription-wrapper {
+            padding: 40px 20px;
+        }
+        
+        #subscription h3, .h3 {
+            font-size: 30px;
+        }
+        
+        #subscription .form-control {
+            height: 50px;
+        }
+        
+        #subscription .btn {
+            padding: 14px 35px;
+            font-size: 14px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        #subscription .subscription-wrapper {
+            padding: 30px 15px;
+        }
+        
+        #subscription h3, .h3 {
+            font-size: 25px;
+        }
+        
+        #subscription .form-control {
+            height: 45px;
+        }
+        
+        #subscription .btn {
+            padding: 12px 30px;
+            font-size: 13px;
+        }
+        
+        #subscription .subscription-content {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    </style>
+    
+<section class="subscription bg-white mb-5" id="subscription">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="subscription-wrapper">
+            <div class="subscription-content justify-content-between align-items-center flex-column flex-md-row text-center text-md-left">
+              <h3 class="flex-fill">Subscribe to <br>our jobs newsletter</h3>
+              <form id="subscription-form" class="row flex-fill">
+                <div class="col-lg-12 my-md-2 my-2">
+                  <input type="email" class="form-control px-4 border-0 w-100 text-center text-md-left" id="email" placeholder="Your Email" name="email" required>
+                </div>
+                <div class="col-lg-12 my-md-2 my-2">
+                  <button type="submit" class="btn btn-primary btn-lg border-0 w-100">Subscribe Now</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Toastr CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+  <!-- Toastr JS CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<script>
+    $(document).ready(function() {
+      $('#subscription-form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+    
+        const email = $('#email').val();
+    
+        $.ajax({
+          type: 'POST',
+          url: '/subscribe', // Your API endpoint
+          data: JSON.stringify({ email: email }),
+          contentType: 'application/json',
+          success: function(response) {
+            toastr.success('Subscribed successful!');
+            $('#email').val(''); // Clear the input field
+          },
+          error: function(xhr) {
+            const errorMessage = xhr.responseJSON.message;
+            if (errorMessage.includes('Email is already subscribed')) {
+              toastr.warning('This email is already subscribed.');
+            } else {
+              toastr.error('Subscription failed: ' + errorMessage);
+            }
+          }
+        });
+      });
+    });
+    </script>
+    
+    
