@@ -242,7 +242,7 @@ const sendVerificationFailureEmail = async (recipientEmail) => {
   }
 };
 
-const sendWelcomeEmail = async (recipientEmail, password) => {
+const sendWelcomeEmail = async (name,recipientEmail, password) => {
   try {
     const wlcmHtml =`<html>
     <head>
@@ -274,7 +274,7 @@ const sendWelcomeEmail = async (recipientEmail, password) => {
                          <center>
                             <img src="https://gifdb.com/images/high/welcome-greeting-1y2timm763pcwtl2.webp" width="100%"  style="display: block; border: 0px;" />
                              </center>
-                          <h3>Dear Candidate</h3>
+                          <h3>Dear ${name}</h3>
                           <p style="font-size: 16px;font-family: rubik,sans-serif;">Welcome to upreak ! We are happy to see you <br>  Your login credentials are given below :</p>
                             <p style="font-size: 16px;font-family: rubik,sans-serif;" >Email: <b style="font-size:16px;font-weight: bolder;">${recipientEmail}</b>
                             <p style="font-size: 16px;font-family: rubik,sans-serif;" >Password: <b style="font-size:16px;font-weight: bolder;">${password}</b>
@@ -951,6 +951,402 @@ const sendNewJobAlertMail = async (recipientEmail, jobTitle, jobLocation, jobExp
     console.error('Error sending job alert email:', error);
   }
 };
+const sendAppliedMail = async (recipientEmail, recipientName, applicationId, jobTitle, jobExperience, jobNature, jobCTC, jobLink , jobApplyLink) => {
+  try {
+    const jobAppliedHtml = `
+    <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <style>
+        body {
+          font-family: 'Rubik', sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+        .container {
+          background-color: #ffffff;
+          margin: 0 auto;
+          padding: 20px;
+          max-width: 600px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+          text-align: center;
+          padding: 20px;
+          color: #000;
+          border-radius: 8px 8px 0 0;
+        }
+        .header img {
+          width: 120px;
+          margin-bottom: 10px;
+        }
+        .header h2 {
+          font-size: 22px;
+          margin: 0;
+        }
+        .content {
+          padding: 20px;
+        }
+        .content h3 {
+          color: #333333;
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        .content p {
+          color: #666666;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        .job-details {
+          margin: 20px 0;
+          background-color: #f8f8f8;
+          padding: 15px;
+          border-radius: 8px;
+        }
+        .job-details p {
+          margin: 5px 0;
+          font-size: 16px;
+        }
+        .cta {
+          text-align: center;
+          margin-top: 30px;
+        }
+        .cta a {
+          text-decoration: none;
+          background-color: #28a745;
+          color: #ffffff;
+          padding: 14px 28px;
+          border-radius: 4px;
+          font-size: 16px;
+          font-weight: bold;
+          display: inline-block;
+        }
+        .cta a:hover {
+          background-color: #218838;
+        }
+        .footer {
+          text-align: center;
+          margin-top: 30px;
+          font-size: 14px;
+          color: #999999;
+        }
+        .social-links a {
+          margin: 0 10px;
+          display: inline-block;
+        }
+        .social-links img {
+          width: 20px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <img src="https://upreak.com/images/main_logo.png" alt="Upreak Logo" />
+          <h2>Application Successfully Submitted!</h2>
+        </div>
+        <div class="content">
+          <h3>Dear ${recipientName},</h3>
+          <p>We are pleased to inform you that your application for the position of <strong>${jobTitle}</strong> has been successfully received. Here are the details of your application:</p>
+
+          <div class="job-details">
+            <p><strong>Application ID:</strong> ${applicationId}</p>
+            <p><strong>Job Title:</strong> ${jobTitle}</p>
+            <p><strong>Experience Required:</strong> ${jobExperience}</p>
+            <p><strong>Job Type:</strong> ${jobNature}</p>
+            <p><strong>CTC:</strong> ${jobCTC}</p>
+            <p><strong>Job Link:</strong> <a href="${jobLink}">Link</a></p>
+            <p><strong>Applied Date:</strong> ${new Date().toLocaleDateString()}</p>
+          </div>
+
+          <div class="cta">
+            <a href="${jobApplyLink}">Track Your Application</a>
+          </div>
+
+          <p>If you wish to monitor the progress of your application, you can click the button above or log in to your account on Upreak.</p>
+        </div>
+        
+        <div class="footer">
+          <p>For more updates, join our WhatsApp group: <a href="https://whatsapp.com/channel/0029VakqglnFnSzBl9TPPs0t">Join WhatsApp Group</a></p>
+          <p>Follow us on social media:</p>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/company/upreak" target="_blank"><img src="https://upreak.com/images/social/li.png" alt="LinkedIn" /></a>
+            <a href="https://www.facebook.com/upreak" target="_blank"><img src="https://upreak.com/images/social/f.png" alt="Facebook" /></a>
+            <a href="https://twitter.com/upreak" target="_blank"><img src="https://upreak.com/images/social/t.png" alt="Twitter" /></a>
+            <a href="https://www.instagram.com/upreakofficial/" target="_blank"><img src="https://upreak.com/images/social/i.png" alt="Instagram" /></a>
+          </div>
+          <p>If you have any questions, feel free to <a href="mailto:info@upreak.com">contact us</a>.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+    `;
+    
+    const msg = await transporter.sendMail({
+      to: recipientEmail,
+      from: MAIL_SETTINGS.auth.user,
+      subject: `Application Successfully Received for ${jobTitle}`,
+      html: jobAppliedHtml,
+    });
+
+    console.log('Application confirmation email sent successfully!');
+  } catch (error) {
+    console.error('Error sending application confirmation email:', error);
+  }
+};
+const sendAppliedReferredMail = async (recipientEmail, recipientName, referrerName, jobTitle, applicationId, jobExperience, jobNature, jobCTC, jobLink,jobApplyLink) => {
+  try {
+    const referredAppliedHtml = `
+    <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <style>
+        body {
+          font-family: 'Rubik', sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+        .container {
+          background-color: #ffffff;
+          margin: 0 auto;
+          padding: 20px;
+          max-width: 600px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+          text-align: center;
+          padding: 20px;
+          background-color: #007bff;
+          color: #ffffff;
+          border-radius: 8px 8px 0 0;
+        }
+        .header img {
+          width: 120px;
+          margin-bottom: 10px;
+        }
+        .header h2 {
+          font-size: 22px;
+          margin: 0;
+        }
+        .content {
+          padding: 20px;
+        }
+        .content h3 {
+          color: #333333;
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        .content p {
+          color: #666666;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        .job-details {
+          margin: 20px 0;
+          background-color: #f8f8f8;
+          padding: 15px;
+          border-radius: 8px;
+        }
+        .job-details p {
+          margin: 5px 0;
+          font-size: 16px;
+        }
+        .cta {
+          text-align: center;
+          margin-top: 30px;
+        }
+        .cta a {
+          text-decoration: none;
+          background-color: #28a745;
+          color: #ffffff;
+          padding: 14px 28px;
+          border-radius: 4px;
+          font-size: 16px;
+          font-weight: bold;
+          display: inline-block;
+        }
+        .cta a:hover {
+          background-color: #218838;
+        }
+        .footer {
+          text-align: center;
+          margin-top: 30px;
+          font-size: 14px;
+          color: #999999;
+        }
+        .social-links a {
+          margin: 0 10px;
+          display: inline-block;
+        }
+        .social-links img {
+          width: 20px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <img src="https://upreak.com/images/main_logo.png" alt="Upreak Logo" />
+          <h2>Application Successfully Submitted with Referral!</h2>
+        </div>
+        <div class="content">
+          <h3>Dear ${recipientName},</h3>
+          <p>We are pleased to inform you that your application for the position of <strong>${jobTitle}</strong> has been successfully received, and you have been referred by <strong>${referrerName}</strong>. Here are the details of your application:</p>
+
+          <div class="job-details">
+            <p><strong>Application ID:</strong> ${applicationId}</p>
+            <p><strong>Job Title:</strong> ${jobTitle}</p>
+            <p><strong>Experience Required:</strong> ${jobExperience}</p>
+            <p><strong>Job Type:</strong> ${jobNature}</p>
+            <p><strong>CTC:</strong> ${jobCTC}</p>
+            <p><strong>Job Link:</strong> <a href="${jobLink}">Link</a></p>
+            <p><strong>Applied Date:</strong> ${new Date().toLocaleDateString()}</p>
+          </div>
+
+          <div class="cta">
+            <a href="${jobApplyLink}">Track Your Application</a>
+          </div>
+
+          <p>If you wish to monitor the progress of your application, you can click the button above or log in to your account on Upreak.</p>
+        </div>
+        
+        <div class="footer">
+          <p>For more updates, join our WhatsApp group: <a href="https://whatsapp.com/channel/0029VakqglnFnSzBl9TPPs0t">Join WhatsApp Group</a></p>
+          <p>Follow us on social media:</p>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/company/upreak" target="_blank"><img src="https://upreak.com/images/social/li.png" alt="LinkedIn" /></a>
+            <a href="https://www.facebook.com/upreak" target="_blank"><img src="https://upreak.com/images/social/f.png" alt="Facebook" /></a>
+            <a href="https://twitter.com/upreak" target="_blank"><img src="https://upreak.com/images/social/t.png" alt="Twitter" /></a>
+            <a href="https://www.instagram.com/upreakofficial/" target="_blank"><img src="https://upreak.com/images/social/i.png" alt="Instagram" /></a>
+          </div>
+          <p>If you have any questions, feel free to <a href="mailto:info@upreak.com">contact us</a>.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+    `;
+    
+    const msg = await transporter.sendMail({
+      to: recipientEmail,
+      from: MAIL_SETTINGS.auth.user,
+      subject: `Application Submitted for ${jobTitle} via Referral`,
+      html: referredAppliedHtml,
+    });
+
+    console.log('Referred candidate application email sent successfully!');
+  } catch (error) {
+    console.error('Error sending referred candidate application email:', error);
+  }
+};
+
+const sendReferrerMail = async (referrerEmail, referrerName, candidateName, jobTitle, applicationId) => {
+  try {
+    const referrerThankYouHtml = `
+    <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <style>
+        body {
+          font-family: 'Rubik', sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+        .container {
+          background-color: #ffffff;
+          margin: 0 auto;
+          padding: 20px;
+          max-width: 600px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+          text-align: center;
+          padding: 20px;
+          background-color: #007bff;
+          color: #ffffff;
+          border-radius: 8px 8px 0 0;
+        }
+        .header img {
+          width: 120px;
+          margin-bottom: 10px;
+        }
+        .header h2 {
+          font-size: 22px;
+          margin: 0;
+        }
+        .content {
+          padding: 20px;
+        }
+        .content h3 {
+          color: #333333;
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        .content p {
+          color: #666666;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        .footer {
+          text-align: center;
+          margin-top: 30px;
+          font-size: 14px;
+          color: #999999;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <img src="https://upreak.com/images/main_logo.png" alt="Upreak Logo" />
+          <h2>Thank You for Referring a Candidate!</h2>
+        </div>
+        <div class="content">
+          <h3>Dear ${referrerName},</h3>
+          <p>Thank you for referring <strong>${candidateName}</strong> for the position of <strong>${jobTitle}</strong>. We have successfully received their application with the ID <strong>${applicationId}</strong>.</p>
+          <p>We will keep you updated about the progress of your referral.</p>
+        </div>
+        
+        <div class="footer">
+          <p>Follow us on social media:</p>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/company/upreak" target="_blank"><img src="https://upreak.com/images/social/li.png" alt="LinkedIn" /></a>
+            <a href="https://www.facebook.com/upreak" target="_blank"><img src="https://upreak.com/images/social/f.png" alt="Facebook" /></a>
+            <a href="https://twitter.com/upreak" target="_blank"><img src="https://upreak.com/images/social/t.png" alt="Twitter" /></a>
+            <a href="https://www.instagram.com/upreakofficial/" target="_blank"><img src="https://upreak.com/images/social/i.png" alt="Instagram" /></a>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+    `;
+    
+    const msg = await transporter.sendMail({
+      to: referrerEmail,
+      from: MAIL_SETTINGS.auth.user,
+      subject: `Thank You for Referring ${candidateName} for ${jobTitle}`,
+      html: referrerThankYouHtml,
+    });
+
+    console.log('Referrer thank you email sent successfully!');
+  } catch (error) {
+    console.error('Error sending referrer thank you email:', error);
+  }
+};
+
+
+
 
 
 
@@ -969,7 +1365,10 @@ module.exports = {
   sendrequestreceivedmail,
   sendTwoStepEmail,
   sendSubscribedMail,
-  sendNewJobAlertMail
+  sendNewJobAlertMail,
+  sendAppliedMail,
+  sendAppliedReferredMail,
+  sendReferrerMail
 };
 
 

@@ -1,0 +1,188 @@
+﻿<%- include('includes/header') %>
+<title>My Profile - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+    <%- include('includes/user_header') %>
+    <section class="section-box mt-30">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                                            <div class="content-single">
+                                                <h4 class="mb-20">Biography</h4>
+                                                <%- user.bio %>
+                                                <% if(user.exp_seeker_type === "Exprienced"){ %>
+                                                    <div class="divider"></div>
+                                                    <h4 class="mb-20 mt-25">Work Experience</h4>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-sm-6 col-12 mb-10">
+                                                            <strong class="text-md-bold"><%= user.company_project_name %></strong><br>
+                                                            <strong class=""><%= user.position %> | Project Role : <%= user.project_role_summary %> </strong>
+                                                            <span class="dis-block text-muted text-md-lh24">
+                                                                <%= user.job_location %>, India<br />
+                                                                <%= user.exp_sdate %> — <%= user.exp_edate?user.exp_edate:'Present' %>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                <% } %>
+                                                <div class="divider"></div>
+                                                <h4 class="mt-30 mb-30">Education</h4>
+                                                <div class="row">
+                                                   <!-- pg -->
+                                                   <% if(user.pgqualification && user.pguniversity && user.pgctype && user.pgpercent && user.pgyos && user.pgyoc && user.pgcollege && user.pgstate) { %>
+                                                    <div class="col-lg-12 mb-10 border-start">
+                                                        <strong class="text-md-bold"><%= user.pgcollege %></strong><br>
+                                                        <strong class="text-md-bold">(<%= user.pguniversity %>)</strong><br>
+                                                        <strong class="">Course Type : <%= user.pgctype %> | Percentage : <%= user.pgpercent %> % </strong>
+                                                        <span class="dis-block text-muted text-md-lh24">
+                                                            <%= user.pgstate %>, India<br />
+                                                            April <%= user.pgyos %> — April <%= user.pgyoc ? user.pgyoc:'Present' %>
+                                                        </span>
+                                                    </div>                                                       
+                                                    <% } %>
+                                                        <!-- ug -->
+                                                    <% if(user.ugqualification && user.uguniversity && user.ugctype && user.ugpercent && user.ugyos && user.ugyoc && user.ugcollege && user.ugstate) { %>
+                                                        <div class="col-lg-12 mb-10 border-start">
+                                                            <strong class="text-md-bold"><%= user.ugcollege %></strong><br>
+                                                            <strong class="text-md-bold">(<%= user.uguniversity %>)</strong><br>
+                                                            <strong class="">Course Type : <%= user.ugctype %> | Percentage : <%= user.ugpercent %> % </strong>
+                                                            <span class="dis-block text-muted text-md-lh24">
+                                                                <%= user.ugstate %>, India<br />
+                                                                April <%= user.ugyos %> — April <%= user.ugyoc ? user.ugyoc:'Present' %>
+                                                            </span>
+                                                        </div>                                                       
+                                                        <% } %>
+                                                        <!-- diploma -->
+                                                    <% if(user.qualification_diploma && user.university_diploma && user.ctype_diploma && user.percent_diploma && user.yos_diploma && user.yoc_diploma && user.college_diploma && user.state_diploma) { %>
+                                                        <div class="col-lg-12 mb-10 border-start">
+                                                            <strong class="text-md-bold"><%= user.college_diploma %></strong><br>
+                                                            <strong class="text-md-bold">(<%= user.university_diploma %>)</strong><br>
+                                                            <strong class="">Course Type : <%= user.ctype_diploma %> | Percentage : <%= user.percent_diploma %> % </strong>
+                                                            <span class="dis-block text-muted text-md-lh24">
+                                                                <%= user.state_diploma %>, India<br />
+                                                                April <%= user.yos_diploma %> — April <%= user.yoc_diploma ? user.yoc_diploma:'Present' %>
+                                                            </span>
+                                                        </div>                                                                                                          
+                                                        <% } %>
+                                                        <!-- 12 -->
+                                                    <% if(user.qualification_12 && user.university_12 && user.ctype_12 && user.percent_12 && user.yos_12 && user.yoc_12 && user.college_12 && user.state_12) { %>
+                                                        <div class="col-lg-12 mb-10 border-start">
+                                                            <strong class="text-md-bold"><%= user.college_12 %></strong><br>
+                                                            <strong class="text-md-bold">(<%= user.university_12 %>)</strong><br>
+                                                            <strong class="">Course Type : <%= user.ctype_12 %> | Percentage : <%= user.percent_12 %> % </strong>
+                                                            <span class="dis-block text-muted text-md-lh24">
+                                                                <%= user.state_12 %>, India<br />
+                                                                April <%= user.yos_12 %> — April <%= user.yoc_12 ? user.yoc_12:'Present' %>
+                                                            </span>
+                                                        </div>                                                       
+                                                        <% } %>
+                                                        <!-- 10 -->
+                                                    <% if(user.qualification_10 && user.university_10 && user.ctype_10 && user.percent_10 && user.yos_10 && user.yoc_10 && user.college_10 && user.state_10) { %>
+                                                        <div class="col-lg-12 border-start">
+                                                            <strong class="text-md-bold"><%= user.college_10 %></strong><br>
+                                                            <strong class="text-md-bold">(<%= user.university_10 %>)</strong><br>
+                                                            <strong class="">Course Type : <%= user.ctype_10 %> | Percentage : <%= user.percent_10 %> % </strong>
+                                                            <span class="dis-block text-muted text-md-lh24">
+                                                                <%= user.state_10 %>, India<br />
+                                                                April <%= user.yos_10 %> — April <%= user.yoc_10 ? user.yoc_10:'Present' %>
+                                                            </span>
+                                                        </div>                                                       
+                                                        <% } %>
+                                                </div>
+                                               
+                                                <h4 class="mt-30 mb-30">Work Process</h4>
+                                                <img src="/assets/imgs/page/candidates/work-order-management-process.svg" alt="jobhub">
+                                            </div>
+                        
+                                            <!-- <div class="single-apply-jobs">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-5">
+                                                        <a href="#" class="btn btn-default mr-15">Hire Now</a>
+                                                        <a href="#" class="btn btn-border">Save</a>
+                                                    </div>
+                                                    <div class="col-md-7 text-lg-end social-share">
+                                                        <a href="#" class="btn btn-border btn-sm mr-10"><img alt="jobhub" src="assets/imgs/theme/icons/share-fb.svg" /> Share</a>
+                                                        <a href="#" class="btn btn-border btn-sm mr-10"><img alt="jobhub" src="assets/imgs/theme/icons/share-tw.svg" /> Tweet</a>
+                                                        <a href="#" class="btn btn-border btn-sm"><img alt="jobhub" src="assets/imgs/theme/icons/share-pinterest.svg" /> Pin</a>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                        
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+                                            <div class="sidebar-shadow">
+                                            
+                                                <h5 class="font-bold">Overview</h5>
+                                                <div class="sidebar-list-job mt-10">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
+                                                            <div class="sidebar-text-info">
+                                                                <span class="text-description">Experience</span>
+                                                                <strong class="small-heading"><%= user.experience %> years</strong>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
+                                                            <div class="sidebar-text-info">
+                                                                <span class="text-description">From</span>
+                                                                <strong class="small-heading"><%= user.city %> , <%= user.state %> </strong>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
+                                                            <div class="sidebar-text-info">
+                                                                <span class="text-description">Prefered Designation</span>
+                                                                <strong class="small-heading"><%= user.preferred_designation%></strong>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
+                                                            <div class="sidebar-text-info">
+                                                                <span class="text-description">Member since</span>
+                                                                <strong class="small-heading"><%= new Date(user.createdAt).toDateString() %>
+                                                                </strong>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                        
+                                                <div class="sidebar-list-job mt-10">
+                                                    <a href="mailto:<%= user.emailid %>?cc=info@upreak.com" class="btn btn-default mr-10">Contact Me</a>
+                                                </div>
+                        
+                                            </div>
+                        
+                                            <div class="sidebar-shadow">
+                                                <h5 class="sidebar-title">Skill Overview</h5>
+                                                <div class="block-tags">
+                                                    <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user.skill1 %></a>
+                                                    <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user.skill2 %></a>
+                                                    <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user.skill3 %></a>
+                                                    <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user.skill4 %></a>
+                                                    <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user.skill5 %></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+
+    
+    <%- include('includes/footer') %>

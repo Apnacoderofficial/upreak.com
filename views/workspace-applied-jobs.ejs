@@ -1,0 +1,441 @@
+﻿<%- include('includes/header') %>
+<title><%= title %> - Upreak A leading recruitment company</title>
+<style>
+    #timeline {
+        width: 100%;
+        height: 100%;
+        margin: 20px 0;
+        overflow-y:scroll;
+        white-space: nowrap;
+        /* Prevent wrapping */
+    }
+
+    #timeline .timeline {
+        display: inline-flex;
+        justify-content: flex-start;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        min-width: 1300px;
+        position: relative;
+    }
+
+    #timeline .timeline::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #ddd;
+        z-index: 1;
+    }
+
+    #timeline .timeline li {
+        position: relative;
+        width: 12.5%;
+        text-align: center;
+        z-index: 2;
+        color: #999;
+        font-weight: bold;
+        font-size: 12px;
+        padding: 0 10px;
+        white-space: normal;
+        /* Allow text to wrap */
+    }
+
+    #timeline .timeline li.active {
+        color: #000;
+        
+    }
+
+    #timeline .timeline li::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ddd;
+        position: absolute;
+        top: calc(50% - 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    #timeline .timeline li.active::before {
+        background: green;
+        /* Active step color */
+    }
+
+    #timeline .timeline li.active+li::before {
+        background: green;
+    }
+
+    #timeline .timeline li:first-child::before {
+        left: 0;
+        transform: none;
+    }
+
+    #timeline .timeline li:last-child::before {
+        right: 0;
+        left: auto;
+        transform: none;
+    }
+
+    /* Icons for each status */
+    #timeline .timeline li .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        background: #ddd;
+        border-radius: 50%;
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    #timeline .timeline li.active .icon {
+        background: green;
+        /* Active step icon color */
+        color: white;
+    }
+
+    /* Ensure text is placed beneath the icon */
+    #timeline .timeline li .text {
+        margin-top: 30px !important;
+        font-size: 12px;
+        font-weight: normal;
+        color: #666;
+        line-height: 1.2;
+    }
+
+    #timeline .timeline li.active .text {
+        font-weight: bold;
+        color: #000;
+    }
+</style>
+<!-- Content -->
+<main class="main">
+    <%- include('includes/user_header') %>
+
+    <section class="section-box mt-30">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <span class="text-small">
+                                        <%= title %>
+                                    </span>
+                                </div>
+
+                                <div class="col-lg-5 text-lg-end mt-sm-15">
+                                    <div class="display-flex2">
+                                        <div class="box-view-type">
+                                            <a href="job-list" class="view-type"><img
+                                                    src="/assets/imgs/theme/icons/icon-list.svg" alt="jobhub" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs">
+                                <!-- Check if there are jobs in locals -->
+                                <% if (locals && locals.length > 0) { %>
+                                <div class="row">
+                                    <!-- Left-side job titles (Tabs) -->
+                                    <div class="col-lg-4">
+                                        <div class="list-group " id="list-tab" role="tablist">
+                                            <% locals.forEach((job, index) => { %>
+                                            <div class="card-job hover-up wow animate__animated  p-0 m-0 mb-2 <% if (index === 0) { %>active<% } %>"
+                                                id="list-job-<%= index %>-list" data-bs-toggle="list"
+                                                href="#list-job-<%= index %>" role="tab"
+                                                aria-controls="list-job-<%= index %>">
+                                                <div class="card-job-top">
+
+                                                    <div class="card-job-top--info p-2">
+                                                        <h6 class="card-job-top--info-heading  fs-6 ">
+                                                            <a
+                                                                href="job-details?jobId=<%= job.job_id %>"><%= job.heading %></a>
+                                                        </h6>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+
+                                                                <span class="card-job-top--location text-sm"><i
+                                                                        class="fi-rr-marker"></i> <%= job.location %>,
+                                                                    India</span>
+                                                                <span class="card-job-top--type-job text-sm"><i
+                                                                        class="fi-rr-briefcase"></i>
+                                                                    <%= job.job_type ? job.job_type : "Not defined" %></span>
+                                                                <span class="card-job-top--post-time text-sm"
+                                                                    data-createdat="<%= job.createdAt %>">
+                                                                    <i class="fi-rr-clock"></i>
+                                                                    <span class="time-display"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% }); %>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right-side job details -->
+                                    <div class="col-lg-8">
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <% locals.forEach((job, index) => { %>
+                                            <div class="tab-pane fade <% if (index === 0) { %>show active<% } %>"
+                                                id="list-job-<%= index %>" role="tabpanel"
+                                                aria-labelledby="list-job-<%= index %>-list">
+                                                <div class="card-job">
+                                                    <div class="card-job-top">
+                                                        <div class="card-job-top--image">
+                                                            <figure><img alt="jobhub"
+                                                                    src="/assets/imgs/page/job/digital.png" /></figure>
+                                                        </div>
+                                                        <div class="card-job-top--info">
+                                                            <h6 class="card-job-top--info-heading">
+                                                                <a
+                                                                    href="job-details?jobId=<%= job.job_id %>"><%= job.heading %></a>
+                                                            </h6>
+                                                            <div class="row">
+                                                                <div class="col-lg-7">
+                                                                    <a href="job-details?jobId=<%= job.job_id %>">
+                                                                        <span class="card-job-top--company">Upreak,
+                                                                            Inc</span>
+                                                                    </a>
+                                                                    <span class="card-job-top--location text-sm"><i
+                                                                            class="fi-rr-marker"></i>
+                                                                        <%= job.location %>, India</span>
+                                                                    <span class="card-job-top--type-job text-sm"><i
+                                                                            class="fi-rr-briefcase"></i>
+                                                                        <%= job.job_type ? job.job_type : "Not defined" %></span>
+                                                                    <span class="card-job-top--post-time text-sm"
+                                                                        data-createdat="<%= job.createdAt %>">
+                                                                        <i class="fi-rr-clock"></i>
+                                                                        <span class="time-display"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-lg-5 text-lg-end">
+                                                                    <a href="job-grid-2"
+                                                                        class="btn btn-small background-blue-light mr-5">Already
+                                                                        Applied</a>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-job-description mt-20">
+                                                        <%= job.sub_heading %>
+                                                    </div>
+
+                                                    <div class="card-job-bottom mt-25">
+                                                        <div class="row">
+                                                            <div class="col-lg-9 col-sm-8 col-12">
+                                                                <% 
+                                                                            const createdAtDate = new Date(job.createdAt);
+                                                                            const now = new Date();
+                                                                            const diffTime = now - createdAtDate;
+                                                                            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                                                                        %>
+                                                                <!-- Show "ACTIVELY HIRING" if the job was posted within the last 3 days -->
+                                                                <% if (diffDays <= 3) { %>
+                                                                <a href="job-grid"
+                                                                    class="btn btn-small background-urgent btn-pink mr-5">ACTIVELY
+                                                                    HIRING</a>
+                                                                <% } %>
+                                                                <a href="job-grid-2"
+                                                                    class="btn btn-small background-blue-light mr-5">Experience
+                                                                    : <%= job.experience %></a>
+                                                                <a href="job-grid"
+                                                                    class="btn btn-small background-6 disc-btn"><%= job.job_type ? job.job_type : "Not defined" %></a>
+                                                            </div>
+                                                            <div
+                                                                class="col-lg-3 col-sm-4 col-12 text-lg-end d-lg-block d-none">
+                                                                <span><img
+                                                                        src="/assets/imgs/theme/icons/shield-check.svg"
+                                                                        alt="jobhub"></span>
+                                                                <span class="ml-5"><img
+                                                                        src="/assets/imgs/theme/icons/bookmark.svg"
+                                                                        alt="jobhub"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-job">
+
+
+                                                    <div class="">
+                                                        <h5>Application Status</h5>
+                                                        <% jobs.forEach(function(jobss) { %>
+                                                        <% if(jobss.job_id === job.job_id){ %>
+                                                        <div id="timeline">
+                                                            <ul class="timeline">
+                                                                <li class="<%= jobss.status >= 1 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Application Sent -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path d="M8 0L2 6h3v10h6V6h3L8 0z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Application Sent</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 2 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Application Viewed -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M8 0C4.69 0 1.73 1.92 0 5c1.73 3.08 4.69 5 8 5s6.27-1.92 8-5c-1.73-3.08-4.69-5-8-5zM8 8.5c-1.2 0-2.2-1-2.2-2.2S6.8 4.1 8 4.1c1.2 0 2.2 1 2.2 2.2S9.2 8.5 8 8.5z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Application Viewed</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 3 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Resume Viewed -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M0 1h16v2H0zM0 5h16v10H0zM8 6l-4 4h8z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Resume Viewed</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 4 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Awaiting Recruiter Action -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 15C4.14 15 1 11.86 1 8S4.14 1 8 1s7 3.14 7 7-3.14 7-7 7z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Awaiting Recruiter Action</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 5 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Recruiter Seen -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M4 0h8v1H4zM4 4h8v1H4zM4 8h8v1H4zM4 12h8v1H4zM2 0v14H1V0h1zM15 0v14h-1V0h1zM0 15h16v1H0v-1z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Recruiter Seen</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 6 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Application Sent to Round -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M8 0L2 6h12L8 0zM2 7v2h12V7H2zm0 3v2h12v-2H2zm0 3v3h12v-3H2z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Application Sent to Round</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 7 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Hired -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M8 0L0 8h16L8 0zm0 1.5l6.4 6.4H1.6L8 1.5zM8 15l4-4H4l4 4z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Hired</div>
+                                                                </li>
+                                                                <li class="<%= jobss.status >= 8 ? 'active' : '' %>">
+                                                                    <div class="icon">
+                                                                        <!-- SVG for Rejected -->
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M0 0h16v16H0V0zm7 4.5v7l6-3.5-6-3.5z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="text">Rejected</div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <% } %>
+                                                        <% }); %>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                                <div class="card-job">
+                                                    <%- job.description %>
+                                                </div>
+
+                                            </div>
+                                            <% }); %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                <div class="author-bio p-30 mt-50 border-radius-15 bg-white">
+                                    <div class="author-des text-center">
+                                        <h3>No Jobs are Listed</h3>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Function to calculate the difference in days
+        function timeAgo(date) {
+            const now = new Date(); // Current date
+            const givenDate = new Date(date); // Date to compare
+
+            // Calculate the difference in milliseconds
+            const differenceInMs = now - givenDate;
+
+            // Convert milliseconds to days
+            const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+
+            if (differenceInDays === 0) {
+                return 'Today';
+            } else if (differenceInDays === 1) {
+                return '1 day ago';
+            } else {
+                return differenceInDays + ' days ago';
+            }
+        }
+
+        // Function to update all time elements
+        function updateTimeDisplay() {
+            // Get all elements with 'data-createdat'
+            const timeElements = document.querySelectorAll('.card-job-top--post-time');
+
+            timeElements.forEach(function (element) {
+                const createdAt = element.getAttribute('data-createdat'); // Get the data-createdat attribute
+                const timeDisplay = timeAgo(createdAt); // Calculate the time difference
+                element.querySelector('.time-display').textContent = timeDisplay; // Update the display
+            });
+        }
+
+        // Call the function to update the times
+        updateTimeDisplay();
+    </script>
+    <%- include('includes/footer') %>
+</main>

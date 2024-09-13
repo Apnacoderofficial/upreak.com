@@ -1,0 +1,99 @@
+<%- include('includes/header') %>
+<title><%= title%> - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+
+    <%- include('includes/user_header') %>
+
+    <section class="section-box mt-80">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <span class="text-small fs-3">
+                                        <%= title %>
+                                    </span>
+                                </div>
+
+                                <div class="col-lg-5 text-lg-end mt-sm-15">
+                                    <div class="display-flex2">
+                                        <div class="box-view-type">
+                                            <a href="job-list" class="view-type"><img
+                                                    src="/assets/imgs/theme/icons/icon-list.svg" alt="jobhub" /></a>
+                                            <!-- <a href="job-list" class="view-type"><img src="/assets/imgs/theme/icons/icon-grid.svg" alt="jobhub" /></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs">
+                                <div class=" table-responsive">
+
+                                  <table class="table table-striped display expandable-table" width="100%" cellspacing="0">
+                                    <thead class="table-light">
+                                      <tr class="text-center">
+                                        <th>SNo.</th> <!-- Added SNo Column -->
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Provider Reference ID</th>
+                                        <th>Merchant ID</th>
+                                        <th>Payment ID</th>
+                                        <th>Amount</th>
+                                        <th>Payment Status</th>
+                                        <th>Payment At</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% if (payment.length > 0) { %> <!-- Check if payment array is not empty -->
+                                        <% for (var i = 0; i < payment.length; i++) { %>
+                                          <% if (true) { %>
+                                            <tr>
+                                              <td><%= i + 1 %></td> <!-- Display SNo -->
+                                              <td><%= payment[i].name %></td>
+                                              <td><%= payment[i].email %></td>
+                                              <td><%= payment[i].phone %></td>
+                                              <td><%= payment[i].providerReferenceId %></td>
+                                              <td><%= payment[i].merchantId %></td>
+                                              <td><%= payment[i].transactionId %></td>
+                                              <td>Rs <%= payment[i].amount %></td>
+                                              <td>
+                                                <% if (payment[i].code === "PAYMENT_SUCCESS") { %>  
+                                                  <span class="text-success font-weight-bold">Success</span>
+                                                <% } else if (payment[i].code === "PAYMENT_INITIATED") { %>
+                                                  <span class="text-warning font-weight-bold">Initiated</span>  
+                                                <% } else { %>
+                                                  <span class="text-danger font-weight-bold">Failed</span>   
+                                                <% } %>
+                                              </td>
+                                              <td><%= moment(payment[i].createdAt).format("MM/DD/YYYY, h:mm:ss A") %></td> <!-- Format date using moment.js -->
+                                            </tr>
+                                          <% } %>
+                                        <% } %>
+                                      <% } else { %> <!-- Display no data message if payment array is empty -->
+                                        <tr>
+                                          <td colspan="10" class="text-center">No data found</td>
+                                        </tr>
+                                      <% } %>
+                                    </tbody>
+                                    <tfoot></tfoot>
+                                  </table>
+                                  
+                                  
+                                          </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+
+
+    <%- include('includes/footer') %>

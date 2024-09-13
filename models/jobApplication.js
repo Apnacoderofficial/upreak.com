@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.JSON,
         allowNull: true,
     },
+    refered: { 
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
       status: { 
         type: DataTypes.INTEGER,
         allowNull: true,

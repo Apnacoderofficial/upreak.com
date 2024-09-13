@@ -1,0 +1,76 @@
+<%- include('includes/header') %>
+<title><%= title%> - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+
+    <%- include('includes/user_header') %>
+
+    <section class="section-box mt-80">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <span class="text-small fs-3">
+                                        <%= title %>
+                                    </span>
+                                </div>
+
+                                <div class="col-lg-5 text-lg-end mt-sm-15">
+                                    <div class="display-flex2">
+                                        <div class="box-view-type">
+                                            <a href="job-list" class="view-type"><img
+                                                    src="/assets/imgs/theme/icons/icon-list.svg" alt="jobhub" /></a>
+                                            <!-- <a href="job-list" class="view-type"><img src="/assets/imgs/theme/icons/icon-grid.svg" alt="jobhub" /></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs p-3">
+                                <form id="formAccountSettings" method="POST">
+                                    <div class="row">
+                                        <input type="hidden" name="name" value="<%= user && user.name ? user.name : '' %>">
+                                        <input type="hidden" name="email" value="<%= user && user.emailid ? user.emailid : 'default@example.com' %>">
+                                        
+                                        <input type="hidden" name="category" value="ticket">
+                                        <!-- Subject Field -->
+                                        <div class="mb-3 col-md-12">
+                                            <div class="form-group">
+                                                <label for="question1">Subject</label>
+                                                <input type="text" id="question1" name="title" class="form-control" autocomplete="off" placeholder="Enter Your Subject" required>
+                                            </div>
+                                        </div>
+                        
+                                        <!-- Description Field -->
+                                        <div class="mb-3 col-md-12">
+                                            <div class="form-group">
+                                                <label for="question2">Description</label>
+                                                <textarea id="question2" name="message" rows="30" class="form-control" autocomplete="off" placeholder="Enter Your Description" required></textarea>
+                                            </div>
+                                        </div>
+                        
+                                        <!-- Buttons -->
+                                        <div class="col-md-12 mt-2">
+                                            <button type="submit" class="btn btn-primary me-2">Save</button>
+                                            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+
+
+    <%- include('includes/footer') %>

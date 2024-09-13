@@ -1,0 +1,203 @@
+﻿<%- include('includes/header') %>
+<title>My Workspace - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+
+    <%- include('includes/user_header') %>
+
+    <section class="section-box mt-30">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <span class="text-small">
+                                        Showing <strong><%= startIndex %> - <%= endIndex %></strong> of
+                                        <strong><%= totalJobs %></strong> jobs
+                                    </span>
+                                </div>
+
+                                <div class="col-lg-5 text-lg-end mt-sm-15">
+                                    <div class="display-flex2">
+                                        <div class="box-view-type">
+                                            <a href="job-list" class="view-type"><img
+                                                    src="/assets/imgs/theme/icons/icon-list.svg" alt="jobhub" /></a>
+                                            <!-- <a href="job-list" class="view-type"><img src="/assets/imgs/theme/icons/icon-grid.svg" alt="jobhub" /></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs">
+                                <!-- Item job -->
+                                <% if(locals.length > 0){  %>
+                                    <% for (var i = locals.length - 1; i >= 0; i--) { %>
+                                    <div class="card-job hover-up wow animate__animated animate__fadeIn">
+                                        <div class="card-job-top">
+                                            <div class="card-job-top--image">
+                                                <figure><img alt="jobhub" src="/assets/imgs/page/job/digital.png" /></figure>
+                                            </div>
+                                            <div class="card-job-top--info">
+                                                <h6 class="card-job-top--info-heading"><a
+                                                        href="job-details?jobId=<%= locals[i].job_id %>"><%= locals[i].heading %></a>
+                                                </h6>
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <a href="job-details?jobId=<%= locals[i].job_id %>"> <a
+                                                                href="job-details?jobId=<%= locals[i].job_id %>"><span
+                                                                    class="card-job-top--company">Upreak ,
+                                                                    Inc</span></a></a>
+                                                        <span class="card-job-top--location text-sm"><i
+                                                                class="fi-rr-marker"></i> <%= locals[i].location %> ,
+                                                            India</span>
+                                                        <span class="card-job-top--type-job text-sm"><i
+                                                                class="fi-rr-briefcase"></i>
+                                                            <%= locals[i].job_type ?locals[i].job_type: "Not defined" %>
+                                                        </span>
+                                                        <span class="card-job-top--post-time text-sm"
+                                                            data-createdat="<%= locals[i].createdAt %>">
+                                                            <i class="fi-rr-clock"></i>
+                                                            <span class="time-display"></span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-lg-5 text-lg-end">
+                                                        <span
+                                                            class="card-job-top--price"><%= locals[i].amount %><span></span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-job-description mt-20">
+                                            <%= locals[i].sub_heading %>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti fuga velit
+                                            qui optio inventore ea accusamus molestias, explicabo, facere autem animi
+                                            reprehenderit natus porro, omnis tempore soluta perferendis impedit.
+                                            Accusantium.
+                                        </div>
+                                        <div class="card-job-bottom mt-25">
+                                            <div class="row">
+                                                <div class="col-lg-9 col-sm-8 col-12">
+                                                    <% 
+                                                                    // Parse the createdAt date
+                                                                    const createdAtDate = new Date(locals[i].createdAt);
+    
+                                                                    // Calculate the difference in time from now (in milliseconds)
+                                                                    const now = new Date();
+                                                                    const diffTime = now - createdAtDate;
+    
+                                                                    // Convert the difference from milliseconds to days
+                                                                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                                                                    %>
+    
+                                                    <!-- Check if the date is within the last 3 days -->
+                                                    <% if (diffDays <= 3) { %>
+                                                    <a href="job-grid"
+                                                        class="btn btn-small background-urgent btn-pink mr-5">ACTIVELY
+                                                        HIRING</a>
+                                                    <% } %>
+                                                    <a href="job-grid-2"
+                                                        class="btn btn-small background-blue-light mr-5">Experience :
+                                                        <%= locals[i].experience %></a>
+                                                    <a href="job-grid"
+                                                        class="btn btn-small background-6 disc-btn"><%= locals[i].job_type ?locals[i].job_type: "Not defined" %></a>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-4 col-12 text-lg-end d-lg-block d-none">
+                                                    <span><img src="/assets/imgs/theme/icons/shield-check.svg"
+                                                            alt="jobhub"></span>
+                                                    <span class="ml-5"><img src="/assets/imgs/theme/icons/bookmark.svg"
+                                                            alt="jobhub"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <!-- Pagination Section -->
+                                    <div class="pagination">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination justify-content-center">
+                                                <!-- Previous Page -->
+                                                <% if (currentPage > 1) { %>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page=<%= currentPage - 1 %>"
+                                                        aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                    </a>
+                                                </li>
+                                                <% } %>
+    
+                                                <!-- Page Numbers -->
+                                                <% for (var i = 1; i <= totalPages; i++) { %>
+                                                <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                                                    <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                                                </li>
+                                                <% } %>
+    
+                                                <!-- Next Page -->
+                                                <% if (currentPage < totalPages) { %>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page=<%= currentPage + 1 %>"
+                                                        aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                    </a>
+                                                </li>
+                                                <% } %>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <% } else { %>
+                                    <div class="author-bio p-30 mt-50 border-radius-15 bg-white">
+    
+                                        <div class="author-des text-center">
+                                            <h3>No Jobs are Listed</h3>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Function to calculate the difference in days
+        function timeAgo(date) {
+            const now = new Date(); // Current date
+            const givenDate = new Date(date); // Date to compare
+
+            // Calculate the difference in milliseconds
+            const differenceInMs = now - givenDate;
+
+            // Convert milliseconds to days
+            const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+
+            if (differenceInDays === 0) {
+                return 'Today';
+            } else if (differenceInDays === 1) {
+                return '1 day ago';
+            } else {
+                return differenceInDays + ' days ago';
+            }
+        }
+
+        // Function to update all time elements
+        function updateTimeDisplay() {
+            // Get all elements with 'data-createdat'
+            const timeElements = document.querySelectorAll('.card-job-top--post-time');
+
+            timeElements.forEach(function (element) {
+                const createdAt = element.getAttribute('data-createdat'); // Get the data-createdat attribute
+                const timeDisplay = timeAgo(createdAt); // Calculate the time difference
+                element.querySelector('.time-display').textContent = timeDisplay; // Update the display
+            });
+        }
+
+        // Call the function to update the times
+        updateTimeDisplay();
+    </script>
+    
+    <%- include('includes/footer') %>

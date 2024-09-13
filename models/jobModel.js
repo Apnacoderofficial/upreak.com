@@ -1,3 +1,5 @@
+const { industry } = require("../config/dbconfig");
+
 module.exports = (sequelize, DataTypes) => {
     const jobs = sequelize.define( "jobs", {
         description: { 
@@ -49,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         vacancy: { 
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        industry: { 
             type: DataTypes.STRING,
             allowNull: true,
         },
