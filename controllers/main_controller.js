@@ -62,6 +62,7 @@ const Activitylog = db.activitylog;
 const Jobs = db.jobs;
 const JobApplications = db.job_applications;
 const Industry = db.industry;
+const docs = db.docs;
 
 // controllers/main_controller.js
 
@@ -96,6 +97,67 @@ exports.index1 = async (req, res) => {
   });
 };
 
+exports.docs = async (req, res) => {
+  const page = parseInt(req.query.page) || 1; // Default to page 1 if no page query param
+  const limit = 9; // Limit to 10 items per page
+  const offset = (page - 1) * limit; // Calculate offset
+
+  // Find and count all blogs
+  const { rows: blogs, count } = await docs.findAndCountAll({
+    limit,
+    offset,
+  });
+
+  // Calculate total pages
+  const totalPages = Math.ceil(count / limit);
+
+  // Render blogs with pagination data
+  res.render('docs', {
+    blog: blogs,
+    currentPage: page,
+    totalPages,
+  });
+};
+exports.preview_docs = async (req, res) => {
+  try {
+    // Get file_url from the query parameters
+    const url_title = req.query.file_url;
+    console.log("Requested file_url:", url_title);
+    
+    // If file_url is not provided, redirect to the docs page
+    if (!url_title) {
+      return res.redirect("/docs");
+    }
+
+    // Get all documents for the 'docs' section
+    let docsAll = await docs.findAll();
+    console.log("All documents:", docsAll);
+    
+    // Find the specific document by file_url
+    let data = await docs.findOne({
+      where: {
+        file_url: url_title.trim() // Ensure trimming of any excess spaces
+      }
+    });
+    console.log("Single document found:", data);
+    
+    // If the document is found, render the 'docs-single' view
+    if (data) {
+      return res.render('docs-single', {
+        blog: data,
+        blogs: docsAll
+      });
+    } else {
+      // If the document is not found, redirect to the docs page
+      return res.redirect("/docs");
+    }
+  } catch (err) {
+    console.error("Error fetching document:", err);
+    return res.redirect("/docs");
+  }
+};
+
+
 exports.blogGrid = (req, res) => {
   res.render('blog-grid');
 };
@@ -104,9 +166,28 @@ exports.blogGrid2 = (req, res) => {
   res.render('blog-grid-2');
 };
 
-exports.blogList = (req, res) => {
-  res.render('blog-list');
+exports.blogs = async (req, res) => {
+  const page = parseInt(req.query.page) || 1; // Default to page 1 if no page query param
+  const limit = 9; // Limit to 10 items per page
+  const offset = (page - 1) * limit; // Calculate offset
+
+  // Find and count all blogs
+  const { rows: blogs, count } = await Blogs.findAndCountAll({
+    limit,
+    offset,
+  });
+
+  // Calculate total pages
+  const totalPages = Math.ceil(count / limit);
+
+  // Render blogs with pagination data
+  res.render('blogs', {
+    blog: blogs,
+    currentPage: page,
+    totalPages,
+  });
 };
+
 
 exports.blogSingle = (req, res) => {
   res.render('blog-single');
@@ -161,7 +242,7 @@ exports.candidatesList = (req, res) => {
 
 // Employers-related routes
 exports.employersGrid = (req, res) => {
-  res.render('employers-grid');
+  res.render('for-employers');
 };
 
 exports.employersGrid2 = (req, res) => {

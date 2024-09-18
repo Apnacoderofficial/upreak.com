@@ -37,7 +37,7 @@
             <div class="main-header">
                 <div class="header-left">
                     <div class="header-logo">
-                        <a href="index" class="d-flex"><img alt="jobhub" src="/assets/imgs/theme/jobhub-logo.svg" /></a>
+                        <a href="/index" class="d-flex"><img alt="jobhub" src="/assets/imgs/theme/jobhub-logo.svg" /></a>
                     </div>
                     <div class="header-nav">
                         <nav class="nav-main-menu d-none d-xl-block">
@@ -53,7 +53,7 @@
                                     <a href="/job-list">Browse Jobs</a>
                                 </li>
                                 <li class="">
-                                    <a href="/become-employers">Become Employers</a>
+                                    <a href="/employers">For Employer</a>
                                 </li>
                                 <li class="">
                                     <a href="/contactUs">Contact</a>
@@ -115,301 +115,7 @@
                                 <a class="btn btn-primary btn-shadow ml-10 hover-up" id="employer-signin">Student Sign
                                     in</a>
                             </div>
-                            <% } %>
-
-
-
-
-
-
-                        <!-- Login Modal HTML -->
-                        <div id="employerModal" class="modal">
-                            <div class="modal-dialog modal-login">
-                                <div class="modal-content">
-                                    <div class="row">
-                                        <div class="">
-                                            <div id="phase1-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Student Login</h4>
-                                                    <span class="close">&times;</span>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div>
-                                                            <!-- Google Login Button -->
-                                                            <a href="/auth/google" class="login-with-google-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
-                                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/IOS_Google_icon.png/640px-IOS_Google_icon.png" alt="Google" width="20" height="20" class="mr-2">
-                                                                Sign in with Google
-                                                            </a>
-
-                                                            <!-- LinkedIn Login Button -->
-                                                            <!-- <a href="/auth/linkedin" class="login-with-linkedin-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
-                                                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20" height="20" class="mr-2">
-                                                                Sign in with LinkedIn
-                                                            </a> -->
-
-                                                                
-                                                                <!-- Microsoft Login Button -->
-                                                                <!-- <a href="/auth/microsoft" class="login-with-microsoft-btn btn-outline-primary btn-block d-block mb-10">
-                                                                    Sign in with Microsoft
-                                                                </a> -->
-                                                                
-  
-                                                        <hr>
-                                                        <form id="loginForm">
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control"
-                                                                    placeholder="Email" required="required">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="password" class="form-control"
-                                                                    placeholder="Password" required="required">
-                                                            </div>
-                                                            <div class="clearfix">
-                                                                <a href="#" class="float-right">Forgot Password?</a>
-                                                            </div>
-       
-                                                            <div class="form-group mt-3">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary btn-block w-100 d-block">Log
-                                                                    in</button>
-                                                            </div>
-                                                        </form>
-                                                        <button id="button-otp-login"
-                                                            class="btn btn-outline-primary btn-block w-100 d-block mt-10">Log
-                                                            in with OTP</button>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer text-center justify-content-center">
-                                                    <p>Don't have an account? <b><a id="button-signup" style="font-weight: 900;" >Sign Up</a></b></p>
-                                                </div>
-                                            </div>
-
-                                            <div id="phase2-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Student Sign Up</h4>
-                                                    <span class="close">&times;</span>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div>
-                                                         <!-- Google Login Button -->
-                                                         <a href="/auth/google" class="login-with-google-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/IOS_Google_icon.png/640px-IOS_Google_icon.png" alt="Google" width="20" height="20" class="mr-2">
-                                                            Sign up with Google
-                                                        </a>
-
-                                                        <!-- LinkedIn Login Button -->
-                                                        <!-- <a href="/auth/linkedin" class="login-with-linkedin-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20" height="20" class="mr-2">
-                                                            Sign up with LinkedIn
-                                                        </a> -->
-                                                        <hr>
-                                                        <form id="signup-form" method="post">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" placeholder="Email" required name="emailid">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="tel" class="form-control" placeholder="Phone Number" name="phonenumber" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="password" class="form-control" placeholder="Password" name="password" required>
-                                                            </div>
-                                                            <div class="form-group mt-3">
-                                                                <button type="submit" class="btn btn-primary btn-block w-100 d-block">Sign Up</button>
-                                                            </div>
-                                                        </form>
-                                                        <script>
-                                                            document.addEventListener('DOMContentLoaded', function () {
-                                                                const form = document.getElementById('signup-form');
-                                                            
-                                                                form.addEventListener('submit', async function (e) {
-                                                                    e.preventDefault();
-                                                            
-                                                                    const formData = new FormData(form);
-                                                                    const data = {
-                                                                        name: formData.get('name'),
-                                                                        emailid: formData.get('emailid'),
-                                                                        phonenumber: formData.get('phonenumber'),
-                                                                        password: formData.get('password')
-                                                                    };
-                                                            
-                                                                    try {
-                                                                        const response = await axios.post('/signup', data);
-                                                                        if (response.data.success) {
-                                                                            toastr.success('Signup successful!');
-                                                                            form.reset(); // Optionally reset the form
-                                                                            window.location.href = '/myworkspace';
-                                                                        } else {
-                                                                            toastr.error(response.data.message || 'Signup failed. Please try again.');
-                                                                        }
-                                                                    } catch (error) {
-                                                                        toastr.error('An error occurred. Please try again.');
-                                                                        console.error('Error during signup:', error);
-                                                                    }
-                                                                });
-                                                            });
-                                                            </script>
-                                                            
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer text-center justify-content-center">
-                                                    <p>Already have an account? <button id="button-login-password"
-                                                            class="btn btn-sm btn-outline-primary">Login Now</button>
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div id="phase3-content">
-                                                <div class="modal-header">
-                                                  <h4 class="modal-title">Student Login OTP</h4>
-                                                  <span class="close">&times;</span>
-                                                </div>
-                                                <div class="modal-body">
-                                                  <div>
-                                                    <form id="otp-form" method="post">
-                                                      <div class="form-group">
-                                                        <input type="tel" class="form-control" id="phone-number" name="phone" placeholder="Phone Number"  required>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <input type="number" class="form-control" id="otp-input" name="otp" placeholder="Enter OTP" style="display: none;" required>
-                                                      </div>
-                                                      <div class="form-group mt-3">
-                                                          <!-- <a class="justify-content-end" href="" id="button-resend-otp" style="display: none !important;">Resend OTP</a> -->
-                                                        <button type="button" id="button-send-otp" class="btn btn-primary btn-block w-100">Send OTP</button>
-                                                        <button type="button" id="button-verify-otp" class="btn btn-primary btn-block w-100" style="display: none !important;">Verify OTP</button>
-                                                      </div>
-                                                    </form>
-                                              
-                                                    <script>
-                                                      document.addEventListener('DOMContentLoaded', function () {
-                                                        const sendOtpButton = document.getElementById('button-send-otp');
-                                                        const resendOtpButton = document.getElementById('button-resend-otp');
-                                                        const verifyOtpButton = document.getElementById('button-verify-otp');
-                                                        const phoneInput = document.getElementById('phone-number');
-                                                        const otpInput = document.getElementById('otp-input');
-                                              
-                                              
-                                                        // Send OTP logic
-                                                        sendOtpButton.addEventListener('click', async function () {
-                                                          const phone = phoneInput.value;
-                                              
-                                                          // Validate phone number input
-                                                          if (!phone) {
-                                                            toastr.error('Please enter a phone number.');
-                                                            return;
-                                                          }
-                                              
-                                                          try {
-                                                            // Send POST request to send OTP
-                                                            const response = await fetch('/verify_phone_number', {
-                                                              method: 'POST',
-                                                              headers: { 'Content-Type': 'application/json' },
-                                                              body: JSON.stringify({ phone })
-                                                            });
-                                              
-                                                            const data = await response.json();
-                                              
-                                                            if (data.otpSent) {
-                                                              toastr.success('OTP sent to ' + phone);
-                                                              phoneInput.disabled = true;
-                                                              otpInput.style.display = 'block';
-                                                              sendOtpButton.style.display = 'none';
-                                                              resendOtpButton.style.display = 'block';
-                                                              verifyOtpButton.style.display = 'block';
-                                                            } else {
-                                                              toastr.error('Failed to send OTP. Please try again.');
-                                                            }
-                                                          } catch (error) {
-                                                            toastr.error('An error occurred while sending OTP. Please try again.');
-                                                          }
-                                                        });
-                                                        resendOtpButton.addEventListener('click', async function () {
-                                                          const phone = phoneInput.value;
-                                              
-                                                          // Validate phone number input
-                                                          if (!phone) {
-                                                            toastr.error('Please enter a phone number.');
-                                                            return;
-                                                          }
-                                              
-                                                          try {
-                                                            // Send POST request to send OTP
-                                                            const response = await fetch('/verify_phone_number', {
-                                                              method: 'POST',
-                                                              headers: { 'Content-Type': 'application/json' },
-                                                              body: JSON.stringify({ phone })
-                                                            });
-                                              
-                                                            const data = await response.json();
-                                              
-                                                            if (data.otpSent) {
-                                                              toastr.success('OTP sent to ' + phone);
-                                                              phoneInput.disabled = true;
-                                                              otpInput.style.display = 'block';
-                                                              sendOtpButton.style.display = 'none';
-                                                              resendOtpButton.style.display = 'block';
-                                                              verifyOtpButton.style.display = 'block';
-                                                            } else {
-                                                              toastr.error('Failed to send OTP. Please try again.');
-                                                            }
-                                                          } catch (error) {
-                                                            toastr.error('An error occurred while sending OTP. Please try again.');
-                                                          }
-                                                        });
-                                              
-                                                        // Verify OTP logic
-                                                        verifyOtpButton.addEventListener('click', async function () {
-                                                          const otp = otpInput.value;
-                                                          const phone = phoneInput.value;
-                                              
-                                                          // Validate OTP input
-                                                          if (!otp) {
-                                                            toastr.error('Please enter the OTP.');
-                                                            return;
-                                                          }
-                                              
-                                                          try {
-                                                            // Send POST request to verify OTP
-                                                            const response = await fetch('/verify_otp', {
-                                                              method: 'POST',
-                                                              headers: { 'Content-Type': 'application/json' },
-                                                              body: JSON.stringify({ phone, otp })
-                                                            });
-                                              
-                                                            const data = await response.json();
-                                              
-                                                            if (data.verified) {
-                                                              toastr.success('OTP verified successfully!');
-                                                              window.location.href = '/myworkspace';
-                                                            } else {
-                                                              toastr.error('Invalid OTP. Please try again.');
-                                                            }
-                                                          } catch (error) {
-                                                            toastr.error('An error occurred while verifying OTP. Please try again.');
-                                                          }
-                                                        });
-                                                      });
-                                                    </script>
-                                                  </div>
-                                                </div>
-                                                <div class="modal-footer text-center justify-content-center">
-                                                  <p>Login With Password? <button id="button-login-password" class="btn btn-sm btn-outline-primary">Login Now</button></p>
-                                                </div>
-                                              </div>
-                                              
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
+                            <% } %>                  
                     </div>
                 </div>
             </div>
@@ -418,13 +124,8 @@
     <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
-                <div class="user-account">
-                    <img src="/assets/imgs/avatar/ava_1.png" alt="jobhub" />
-                    <div class="content">
-                        <h6 class="user-name">Hi, <span class="text-brand">User</span></h6>
-                        <p class="font-xs text-muted">Make Your Dream a job a Reality</p>
-                    </div>
-                </div>
+                <div class="user-account"></div>
+                
                 <div class="burger-icon burger-icon-white d-lg-none">
                     <span class="burger-icon-top"></span>
                     <span class="burger-icon-mid"></span>
@@ -434,38 +135,67 @@
             </div>
             <div class="mobile-header-content-area">
                 <div class="perfect-scroll">
-                    <div class="mobile-search mobile-header-border mb-30">
-                        <form action="#">
-                            <input type="text" placeholder="Search for items…" />
-                            <i class="fi-rr-search"></i>
-                        </form>
-                    </div>
+                    
                     <div class="mobile-menu-wrap mobile-header-border">
                         <!-- mobile menu start -->
                         <nav>
                             <ul class="mobile-menu font-heading">
                                 <li class="">
-                                    <a class="active" href="index">Home</a>
+                                    <a class="active" href="/index">Home</a>
                                 </li>
                                 <li class="">
                                     <a href="https://academy.upreak.com">Academy</a>
                                 </li>
 
                                 <li class="">
-                                    <a href="job-list">Browse Jobs</a>
+                                    <a href="/job-list">Browse Jobs</a>
                                 </li>
                                 <li class="">
-                                    <a href="employers-grid">Become Employers</a>
+                                    <a href="/employers">For Employer</a>
                                 </li>
                                 <li class="">
-                                    <a href="page-contact">Contact</a>
+                                    <a href="/page-contact">Contact</a>
                                 </li>
                             </ul>
                         </nav>
                         <!-- mobile menu end -->
                     </div>
+                    <% if (user) { %>
+                        <div class=" div-logged mt-30">
+                            <div class="user-account">
+                                <img src="/assets/imgs/avatar/ava_1.png" alt="jobhub" />
+                                <div class="content">
+                                    <h6 class="user-name">Hi, <span class="text-brand"><%= user.name ??'Candidate' %></span></h6>
+                                    <p class="font-xs text-muted">Make Your Dream a job a Reality</p>
+                                </div>
+                            </div>
+                            <nav  class="mt-30">
+                                <ul class="mobile-menu font-heading">
+                                    <li class="">
+                                        <a class="hover-up " href="/myworkspace">
+                                            MY Workspace
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="hover-up input-keysearch" href="/logout"
+                                        id="">
+                                       Logout
+                                    </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <% } else { %>
+                            <div class="not-logged p-1 mt-30">
+                                <!-- This section is shown when not logged in -->
+                                <a href="https://portal.upreak.com/"
+                                    class="btn btn-default btn-shadow hover-up d-block mt-1">Employers Sign in</a>
+                                <a class="btn btn-primary btn-shadow hover-up d-block mt-1 mb-1" id="employer-signin" data-bs-toggle="modal" data-bs-target="#employerModal">Student Sign
+                                    in</a>
+                            </div>
+                            <% } %>
 
-                    <div class="mobile-social-icon mb-50">
+                    <div class="mobile-social-icon mb-50 mt-50">
                         <h6 class="mb-25">Follow Us</h6>
                         <a href="https://facebook.com/upreakofficial"><img
                                 src="/assets/imgs/theme/icons/icon-facebook.svg" alt="jobhub" /></a>
@@ -474,7 +204,7 @@
                         <a href="https://www.instagram.com/upreakofficial"><img
                                 src="/assets/imgs/theme/icons/icon-instagram.svg" alt="jobhub" /></a>
                         <a href="https://www.linkedin.com/company/upreak"><img
-                                src="/assets/imgs/theme/icons/icon-linkedin.svg" alt="jobhub" /></a>
+                                src="/assets/imgs/theme/icons/linkedin.svg" alt="jobhub" /></a>
                     </div>
                     <div class="site-copyright">Copyright 2024 © Upreak. <br />Designed by ApnaCoder Group.</div>
                 </div>
@@ -482,3 +212,285 @@
         </div>
     </div>
     <!--End header-->
+     <!-- Login Modal HTML -->
+     <div id="employerModal" class="modal">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="">
+                        <div id="phase1-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Student Login</h4>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                        <!-- Google Login Button -->
+                                        <a href="/auth/google" class="login-with-google-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/IOS_Google_icon.png/640px-IOS_Google_icon.png" alt="Google" width="20" height="20" class="mr-2">
+                                            Sign in with Google
+                                        </a>
+
+                                        <!-- LinkedIn Login Button -->
+                                        <!-- <a href="/auth/linkedin" class="login-with-linkedin-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20" height="20" class="mr-2">
+                                            Sign in with LinkedIn
+                                        </a> -->
+
+                                            
+                                            <!-- Microsoft Login Button -->
+                                            <!-- <a href="/auth/microsoft" class="login-with-microsoft-btn btn-outline-primary btn-block d-block mb-10">
+                                                Sign in with Microsoft
+                                            </a> -->
+                                            
+
+                                    <hr>
+                                    <form id="loginForm">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control"
+                                                placeholder="Email" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control"
+                                                placeholder="Password" required="required">
+                                        </div>
+                                        <div class="clearfix">
+                                            <a href="#" class="float-right">Forgot Password?</a>
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <button type="submit"
+                                                class="btn btn-primary btn-block w-100 d-block">Log
+                                                in</button>
+                                        </div>
+                                    </form>
+                                    <button id="button-otp-login"
+                                        class="btn btn-outline-primary btn-block w-100 d-block mt-10">Log
+                                        in with OTP</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center justify-content-center">
+                                <p>Don't have an account? <b><a id="button-signup" style="font-weight: 900;" >Sign Up</a></b></p>
+                            </div>
+                        </div>
+
+                        <div id="phase2-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Student Sign Up</h4>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                     <!-- Google Login Button -->
+                                     <a href="/auth/google" class="login-with-google-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/IOS_Google_icon.png/640px-IOS_Google_icon.png" alt="Google" width="20" height="20" class="mr-2">
+                                        Sign up with Google
+                                    </a>
+
+                                    <!-- LinkedIn Login Button -->
+                                    <!-- <a href="/auth/linkedin" class="login-with-linkedin-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20" height="20" class="mr-2">
+                                        Sign up with LinkedIn
+                                    </a> -->
+                                    <hr>
+                                    <form id="signup-form" method="post">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email" required name="emailid">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" placeholder="Phone Number" name="phonenumber" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <button type="submit" class="btn btn-primary btn-block w-100 d-block">Sign Up</button>
+                                        </div>
+                                    </form>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const form = document.getElementById('signup-form');
+                                        
+                                            form.addEventListener('submit', async function (e) {
+                                                e.preventDefault();
+                                        
+                                                const formData = new FormData(form);
+                                                const data = {
+                                                    name: formData.get('name'),
+                                                    emailid: formData.get('emailid'),
+                                                    phonenumber: formData.get('phonenumber'),
+                                                    password: formData.get('password')
+                                                };
+                                        
+                                                try {
+                                                    const response = await axios.post('/signup', data);
+                                                    if (response.data.success) {
+                                                        toastr.success('Signup successful!');
+                                                        form.reset(); // Optionally reset the form
+                                                        window.location.href = '/myworkspace';
+                                                    } else {
+                                                        toastr.error(response.data.message || 'Signup failed. Please try again.');
+                                                    }
+                                                } catch (error) {
+                                                    toastr.error('An error occurred. Please try again.');
+                                                    console.error('Error during signup:', error);
+                                                }
+                                            });
+                                        });
+                                        </script>
+                                        
+                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center justify-content-center">
+                                <p>Already have an account? <button id="button-login-password"
+                                        class="btn btn-sm btn-outline-primary">Login Now</button>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="phase3-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Student Login OTP</h4>
+                              <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                              <div>
+                                <form id="otp-form" method="post">
+                                  <div class="form-group">
+                                    <input type="tel" class="form-control" id="phone-number" name="phone" placeholder="Phone Number"  required>
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="number" class="form-control" id="otp-input" name="otp" placeholder="Enter OTP" style="display: none;" required>
+                                  </div>
+                                  <div class="form-group mt-3">
+                                      <!-- <a class="justify-content-end" href="" id="button-resend-otp" style="display: none !important;">Resend OTP</a> -->
+                                    <button type="button" id="button-send-otp" class="btn btn-primary btn-block w-100">Send OTP</button>
+                                    <button type="button" id="button-verify-otp" class="btn btn-primary btn-block w-100" style="display: none !important;">Verify OTP</button>
+                                  </div>
+                                </form>
+                          
+                                <script>
+                                  document.addEventListener('DOMContentLoaded', function () {
+                                    const sendOtpButton = document.getElementById('button-send-otp');
+                                    const resendOtpButton = document.getElementById('button-resend-otp');
+                                    const verifyOtpButton = document.getElementById('button-verify-otp');
+                                    const phoneInput = document.getElementById('phone-number');
+                                    const otpInput = document.getElementById('otp-input');
+                          
+                          
+                                    // Send OTP logic
+                                    sendOtpButton.addEventListener('click', async function () {
+                                      const phone = phoneInput.value;
+                          
+                                      // Validate phone number input
+                                      if (!phone) {
+                                        toastr.error('Please enter a phone number.');
+                                        return;
+                                      }
+                          
+                                      try {
+                                        // Send POST request to send OTP
+                                        const response = await fetch('/verify_phone_number', {
+                                          method: 'POST',
+                                          headers: { 'Content-Type': 'application/json' },
+                                          body: JSON.stringify({ phone })
+                                        });
+                          
+                                        const data = await response.json();
+                          
+                                        if (data.otpSent) {
+                                          toastr.success('OTP sent to ' + phone);
+                                          phoneInput.disabled = true;
+                                          otpInput.style.display = 'block';
+                                          sendOtpButton.style.display = 'none';
+                                          resendOtpButton.style.display = 'block';
+                                          verifyOtpButton.style.display = 'block';
+                                        } else {
+                                          toastr.error('Failed to send OTP. Please try again.');
+                                        }
+                                      } catch (error) {
+                                        toastr.error('An error occurred while sending OTP. Please try again.');
+                                      }
+                                    });
+                                    resendOtpButton.addEventListener('click', async function () {
+                                      const phone = phoneInput.value;
+                          
+                                      // Validate phone number input
+                                      if (!phone) {
+                                        toastr.error('Please enter a phone number.');
+                                        return;
+                                      }
+                          
+                                      try {
+                                        // Send POST request to send OTP
+                                        const response = await fetch('/verify_phone_number', {
+                                          method: 'POST',
+                                          headers: { 'Content-Type': 'application/json' },
+                                          body: JSON.stringify({ phone })
+                                        });
+                          
+                                        const data = await response.json();
+                          
+                                        if (data.otpSent) {
+                                          toastr.success('OTP sent to ' + phone);
+                                          phoneInput.disabled = true;
+                                          otpInput.style.display = 'block';
+                                          sendOtpButton.style.display = 'none';
+                                          resendOtpButton.style.display = 'block';
+                                          verifyOtpButton.style.display = 'block';
+                                        } else {
+                                          toastr.error('Failed to send OTP. Please try again.');
+                                        }
+                                      } catch (error) {
+                                        toastr.error('An error occurred while sending OTP. Please try again.');
+                                      }
+                                    });
+                          
+                                    // Verify OTP logic
+                                    verifyOtpButton.addEventListener('click', async function () {
+                                      const otp = otpInput.value;
+                                      const phone = phoneInput.value;
+                          
+                                      // Validate OTP input
+                                      if (!otp) {
+                                        toastr.error('Please enter the OTP.');
+                                        return;
+                                      }
+                          
+                                      try {
+                                        // Send POST request to verify OTP
+                                        const response = await fetch('/verify_otp', {
+                                          method: 'POST',
+                                          headers: { 'Content-Type': 'application/json' },
+                                          body: JSON.stringify({ phone, otp })
+                                        });
+                          
+                                        const data = await response.json();
+                          
+                                        if (data.verified) {
+                                          toastr.success('OTP verified successfully!');
+                                          window.location.href = '/myworkspace';
+                                        } else {
+                                          toastr.error('Invalid OTP. Please try again.');
+                                        }
+                                      } catch (error) {
+                                        toastr.error('An error occurred while verifying OTP. Please try again.');
+                                      }
+                                    });
+                                  });
+                                </script>
+                              </div>
+                            </div>
+                            <div class="modal-footer text-center justify-content-center">
+                              <p>Login With Password? <button id="button-login-password" class="btn btn-sm btn-outline-primary">Login Now</button></p>
+                            </div>
+                          </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -27,7 +27,9 @@ router.get("/index1", userData,main_controller.index1);
 // Blog routes
 router.get("/blog-grid", userData,main_controller.blogGrid);
 router.get("/blog-grid-2", userData,main_controller.blogGrid2);
-router.get("/blog-list", userData,main_controller.blogList);
+router.get("/docs", userData,main_controller.docs);
+router.get("/preview_docs", userData,main_controller.preview_docs);
+router.get("/blogs", userData,main_controller.blogs);
 router.get("/blog-single", userData,main_controller.blogSingle);
 router.get("/blog-single-2", userData,main_controller.blogSingle2);
 
@@ -37,7 +39,7 @@ router.get("/candidates-grid-2", userData,main_controller.candidatesGrid2);
 router.get("/candidates-list", userData,main_controller.candidatesList);
 
 // Employers routes
-router.get("/become-employers", userData,main_controller.employersGrid);
+router.get("/employers", userData,main_controller.employersGrid);
 router.get("/employers-grid-2", userData,main_controller.employersGrid2);
 router.get("/employers-list", userData,main_controller.employersList);
 
@@ -125,6 +127,7 @@ router.get('/linkedinFailure', main_controller.failureLinkedInLogin);
 router.post("/verify_phone_number", userData,main_controller.verify_phone_number);
 router.post("/verify_otp", userData,main_controller.verify_otp);
 router.post('/submit-enquiry', userData,main_controller.submitEnquiry);
+
 
 
 

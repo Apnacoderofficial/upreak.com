@@ -66,6 +66,7 @@ db.activitylog= require("../models/activitylogModel")(sequelize,Sequelize.DataTy
 db.jobs= require("../models/jobModel")(sequelize,Sequelize.DataTypes); 
 db.job_applications = require("../models/jobApplication")(sequelize,Sequelize.DataTypes); 
 db.industry = require("../models/industriesModel")(sequelize,Sequelize.DataTypes); 
+db.docs = require("../models/docsModel")(sequelize,Sequelize.DataTypes); 
 
 db.sequelize.sync({force:false}).then(() =>{
     console.log("Resync is done");

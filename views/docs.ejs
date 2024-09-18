@@ -1,0 +1,103 @@
+<%- include('includes/header') %>
+<title>Our docs - A leading recruitment company</title>
+
+<!-- Content -->
+<main class="main">
+    <div class="breacrumb-cover">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li><a href="#">Home</a></li>
+                <li>docs</li>
+            </ul>
+        </div>
+    </div>
+    <div class="archive-header pt-50 pb-50 text-center">
+        <div class="container">
+            <h3 class="mb-30 text-center w-75 mx-auto">
+                Relevant news and more for you. Welcome to our docs
+            </h3>
+        </div>
+    </div>
+    <div class="post-loop-grid">
+        <div class="container">
+            <div class="row">
+                <div class="pr-15 pl-15">
+                  <div class="row"> <!-- Added missing row -->
+                    <% if (blog.length > 0) { %>
+                      <% blog.forEach(function(blogs) { %>
+                        <div class="col-lg-4 mb-30">
+                          <div class="card-blog-1 hover-up wow animate__animated animate__fadeIn" data-wow-delay=".0s">
+                            <!-- <figure class="post-thumb mb-15">
+                              <a href="/preview_docs?file_url=<%= blogs.file_url %>">
+                                <img alt="jobhub" src="<%= blogs.photo ? uploadUrl + blogs.photo : 'assets/imgs/blog/blog-thumb-3.png' %>" />
+                              </a>
+                            </figure> -->
+                            <div class="card-block-info">
+                              <h3 class="post-title small mb-15">
+                                <a href="/preview_docs?file_url=<%= blogs.file_url %>"><%= blogs.title %></a>
+                              </h3>
+                              <div class="post-meta text-muted d-flex align-items-center mb-15">
+                                <div class="author d-flex align-items-center mr-30">
+                                  <img alt="jobhub" src="assets/imgs/avatar/ava_17.png" />
+                                  <span>Upreak, In</span>
+                                </div>
+                                <div class="date text-end">
+                                  <span><i class="fi-rr-edit mr-5 text-grey-6"></i><%= blogs.createdAt %></span>
+                                </div>
+                              </div>
+                              <div class="card-2-bottom mt-30">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <div class="keep-reading">
+                                    <a href="/preview_docs?file_url=<%= blogs.file_url %>" class="btn btn-border btn-brand-hover">Keep reading</a>
+                                  </div>
+                                  <div class="tags text-lg-end">
+                                    <a href="#" class="mt-10">
+                                      <img alt="jobhub" src="assets/imgs/theme/icons/bookmark.svg" />
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <% }) %>
+              
+                      <!-- Pagination -->
+                      <div class="col-12"> <!-- Ensure pagination is inside a full-width column -->
+                        <div class="paginations wow animate__animated animate__fadeIn">
+                          <ul class="pager">
+                            <% if (currentPage > 1) { %>
+                              <li><a href="?page=<%= currentPage - 1 %>" class="pager-prev"></a></li>
+                            <% } else { %>
+                              <li><a href="#" class="pager-prev disabled"></a></li>
+                            <% } %>
+              
+                            <% for (let i = 1; i <= totalPages; i++) { %>
+                              <li>
+                                <a href="?page=<%= i %>" class="pager-number <%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+                              </li>
+                            <% } %>
+              
+                            <% if (currentPage < totalPages) { %>
+                              <li><a href="?page=<%= currentPage + 1 %>" class="pager-next"></a></li>
+                            <% } else { %>
+                              <li><a href="#" class="pager-next disabled"></a></li>
+                            <% } %>
+                          </ul>
+                        </div>
+                      </div>
+              
+                    <% } else { %>
+                      <p>No blogs available.</p>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+              
+
+           
+        </div>
+    </div>
+ 
+<!-- End Content -->
+<%- include('includes/footer') %>

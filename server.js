@@ -53,7 +53,7 @@ app.use('/myworkspace', workspace_route);
 
 // Use userData middleware globally
 app.use(userData);
-
+app.locals.uploadUrl = process.env.UPLOAD_URL;
 // Error handling
 app.use((req, res, next) => {
     res.status(404).render('404'); // Customize as needed
