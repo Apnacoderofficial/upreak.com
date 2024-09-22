@@ -67,23 +67,37 @@ const docs = db.docs;
 // controllers/main_controller.js
 
 exports.index = async (req, res) => {
+  // Fetch jobs, industries, and blogs from the database
   let jobs = await Jobs.findAll({
     where: {
       status: 1
     }
   });
   let industries = await Industry.findAll({
-    where :{
-      status:"1"
+    where: {
+      status: "1"
     }
   });
   let blogs = await Blogs.findAll();
-  res.render('index', {
-    locals: jobs,
-    blogs,
-    industries
-  });
+
+  // Check if the request is coming from upreak.in
+  if (req.hostname === 'upreak.in') {
+    // Render index-2 if hostname is 'upreak.in'
+    res.render('index-2', {
+      locals: jobs,
+      blogs,
+      industries
+    });
+  } else {
+    // Render index for other hostnames
+    res.render('index', {
+      locals: jobs,
+      blogs,
+      industries
+    });
+  }
 };
+
 exports.index1 = async (req, res) => {
   let jobs = await Jobs.findAll({
     where: {
