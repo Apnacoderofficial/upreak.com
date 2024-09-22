@@ -1,0 +1,130 @@
+<div class="col-lg-3 col-md-12 col-sm-12 col-12">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+<style>
+    .sidebar .active{
+        background-color: blue;
+        border-radius: 10px;
+    }
+    
+</style>
+
+<nav class="bg-light sidebar mb-2 rounded-3 p-3">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <!-- My Workspace -->
+            <li class="nav-item">
+                <a class="nav-link <%= (title === 'My Workspace') ? 'active text-white' : '' %>" href="/myworkspace">
+                    <i class="bi bi-house-door me-2"></i> My Workspace
+                </a>
+            </li>
+            <!-- View & Edit Profile -->
+            <li class="nav-item">
+                <a class="nav-link <%= (title === 'View & Edit Profile') ? 'active text-white' : '' %>" href="/myworkspace/profile">
+                    <i class="bi bi-person me-2"></i> View & Edit Profile
+                </a>
+            </li>
+            <!-- Applied Jobs -->
+            <li class="nav-item">
+                <a class="nav-link <%= (title === 'Jobs application status') ? 'active text-white' : '' %>" href="/myworkspace/Jobs-application-status">
+                    <i class="bi bi-briefcase me-2"></i> Jobs application status
+                </a>
+            </li>
+         
+            <!-- Subscription -->
+            <!-- <li class="nav-item">
+                <a class="nav-link <%= (title === 'Subscription') ? 'active text-white' : '' %>" href="/myworkspace/subscription">
+                    <i class="bi bi-briefcase me-2"></i> Subscription
+                </a>
+            </li> -->
+            <!-- Build Resume -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="http://academy.upreak.com/">
+                    <i class="bi bi-file-earmark-text me-2"></i> Build Resume <i class="bi bi-arrow-up-right"></i>
+                </a>
+            </li> -->
+            <!-- Choose Resume Templates -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="http://academy.upreak.com/">
+                    <i class="bi bi-layout-text-window me-2"></i> Choose Resume Templates <i class="bi bi-arrow-up-right"></i>
+                </a>
+            </li> -->
+
+            <!-- Payment Details Static Submenu -->
+            <!-- <li class="nav-item">
+                <a class="nav-link <%= (title === 'Payment Details') ? 'active text-white' : '' %>" href="#">
+                    <i class="bi bi-wallet2 me-2"></i> Payment Details
+                </a>
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link <%= (title === 'Payment History') ? 'active text-white' : '' %>" href="/myworkspace/payment-history">
+                            <i class="bi bi-clock-history me-2"></i> Payment History
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+
+            <!-- Mock Interview Section Static Submenu -->
+            <!-- <li class="nav-item">
+                <a class="nav-link <%= (title === 'Mock Interview Section') ? 'active text-white' : '' %>" href="#">
+                    <i class="bi bi-people me-2"></i> Mock Interview Section
+                </a>
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link <%= (title === 'Book Slots') ? 'active text-white' : '' %>" href="/myworkspace/book-slots">
+                            <i class="bi bi-calendar-plus me-2"></i> Book Slots
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <%= (title === 'Booked Slots') ? 'active text-white' : '' %>" href="/myworkspace/booked-slots">
+                            <i class="bi bi-calendar-check me-2"></i> Booked Slots
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <%= (title === 'Interview Results') ? 'active text-white' : '' %>" href="/myworkspace/interview-results">
+                            <i class="bi bi-clipboard-data me-2"></i> Interview Results
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+
+            <!-- Referal Program -->
+            <li class="nav-item">
+                <a class="nav-link <%= (title === 'Referral Program') ? 'active text-white' : '' %>" href="/myworkspace/referral-program">
+                    <i class="bi bi-exclamation-triangle me-2"></i> Referral Program <span class="badge badge-warning">New</span>
+                </a>
+            </li>
+            <!-- Raise Issue -->
+            <li class="nav-item">
+                <a class="nav-link <%= (title === 'Raise Issue') ? 'active text-white' : '' %>" href="/myworkspace/raise-issue">
+                    <i class="bi bi-exclamation-triangle me-2"></i> Raise Issue
+                </a>
+            </li>
+
+            <!-- Logout -->
+            <li class="nav-item">
+                <a class="nav-link text-danger" href="/logout">
+                    <i class="bi bi-box-arrow-right me-2"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    
+    <div class="sidebar-with-bg background-primary bg-sidebar pb-80">
+        <h5 class="medium-heading text-white mb-20 mt-20">Create a Professional Resume in Minutes!</h5>
+        <p class="text-body-999 text-white mb-30">Stand out from the crowd with a resume that showcases
+            your strengths. Our easy-to-use resume builder helps you craft a polished and professional
+            resume in just a few clicks. No design skills needed!</p>
+        <a href="https://academy.upreak.com" class="btn btn-border icon-chevron-right btn-white-sm">Try it Now</a>
+    </div>
+    <div class="sidebar-with-bg">
+        <h5 class="medium-heading mb-20 mt-20">For More Updates, Join Our Groups Now!</h5>
+        <!-- <p class="text-body-999 mb-30">Stand out from the crowd with a resume that showcases your strengths. Our easy-to-use resume builder helps you craft a polished and professional resume in just a few clicks. No design skills needed!</p> -->
+        <a href="https://whatsapp.com/channel/0029VakqglnFnSzBl9TPPs0t"
+            class="btn btn-border icon-chevron-right btn-white-sm">Join WhatsApp Group</a>
+    </div>
+</div>

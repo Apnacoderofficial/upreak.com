@@ -1,0 +1,570 @@
+﻿<%- include('includes/header') %>
+<title><%= locals.heading %> - Upreak a leading recruitment company</title>
+<style>
+    h2{
+        font-size: 20px !important;
+    }
+    p{
+        line-height: 1.5 !important;
+    }
+    
+
+</style>
+<!-- Content -->
+    <main class="main">
+        <section class="section-box">
+            <div class="box-head-single">
+                <div class="container">
+                    <h3><%= locals.heading %></h3>
+                    <ul class="breadcrumbs">
+                        <li><a href="#">Home</a></li>
+                        <li>Jobs listing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="section-box mt-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                        <div class="single-image-feature">
+                            <figure><img alt="jobhub" src="<%= locals.photo ? uploadUrl+locals.photo : 'assets/imgs/page/job-single/img-job-feature.png' %>" class="img-rd-15" />
+                            </figure>
+                        </div>
+                        <div class="content-single">
+                            <h5>The Upreak Team</h5>
+                            <p>
+                                Upreak is a leading recruitment platform dedicated to connecting talented individuals with top companies and organizations. They help job seekers find their dream jobs by using a skill-based matching system that aligns talents and interests with clients' requirements. This ensures that the opportunities offered are well-suited to the job seekers' career objectives. Upreak's dedicated team of recruiters assists job seekers in scheduling interviews and provides support throughout the recruitment process, making it smooth and efficient.
+                            </p>
+                            <p>
+                                We offers a range of valuable services for Freshers & Experienced to kickstart their careers. These include resume creation, mock interviews, and career coaching to build confidence and skills. Additionally, Upreak provides digital solutions, tax services, and consultancy to support businesses in thriving by connecting them with top talent. Applying through Upreak's job boards is beneficial because it offers a guided recruitment process, ensuring that job seekers are well-prepared and matched with the right opportunities.
+                            </p>
+                            <h5>Essential Knowledge, Skills, and Experience</h5>
+                            <p>
+                                <%- locals.description %>
+                            </p>
+                            <h5>Suggested Roadmap</h5>
+                            <p>
+                                <%- locals.roadmap %>
+                            </p>
+                            
+                            
+                        </div>
+                        <div class="author-single">
+                            <span>Upreak Recruitment</span>
+                        </div>
+                        <div class="single-apply-jobs">
+                            <div class="row align-items-center">
+                                <% if(locals.status == 1){ %>
+                                    <div class="col-md-5">
+                                        <a href="#" class="btn btn-default mr-15">Apply now</a>
+                                        <!-- <a href="#" class="btn btn-border">Save job</a> -->
+                                    </div>
+                                    
+                                    <% } else {%>
+        
+                                    <div class="sidebar-with-bg mt-2 col-md-5">
+                                        <h5 class="font-semibold mb-10">Set job reminder</h5>
+                                        <p class="text-body-999">Enter you email address and get job notification.</p>
+                                        <div class="box-email-reminder">
+                                            <form class="subscription-form">
+                                                <div class="form-group mt-15">
+                                                    <input type="text" class="form-control input-bg-white form-icons email-input" placeholder="Enter email address" />
+                                                    <i class="fi-rr-envelope"></i>
+                                                </div>
+                                                <div class="form-group mt-25 mb-5">
+                                                    <button class="btn btn-default btn-md">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                
+                                <div class="col-md-7 text-lg-end social-share">
+                                    <a href="https://facebook.com/upreakofficial" class="btn btn-border btn-sm mr-10"><img alt="jobhub" src="assets/imgs/theme/icons/share-fb.svg" /> Share</a>
+                                    <a href="https://twitter.com/upreakofficial" class="btn btn-border btn-sm mr-10"><img alt="jobhub" src="assets/imgs/theme/icons/share-tw.svg" /> Tweet</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-recent-jobs">
+                            <h4 class="heading-border"><span>Recent jobs</span></h4>
+                            <div class="list-recent-jobs">
+                                <%
+                                // Get the current date and time
+                                const now = new Date();
+                            
+                                // Function to calculate difference in days
+                                function daysAgo(date) {
+                                    const diffTime = now - new Date(date);
+                                    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                                }
+                            
+                                // Filter jobs created within the last 5 days
+                                const recentJobs = jobs.filter(job => daysAgo(job.createdAt) <= 5);
+                            
+                                // Function to shuffle an array
+                                function shuffle(array) {
+                                    for (let i = array.length - 1; i > 0; i--) {
+                                        const j = Math.floor(Math.random() * (i + 1));
+                                        [array[i], array[j]] = [array[j], array[i]];
+                                    }
+                                    return array;
+                                }
+                            
+                                // Shuffle the filtered jobs
+                                const shuffledJobs = shuffle(recentJobs);
+                            %>
+                            
+                            <% for (var i = 0; i < shuffledJobs.length; i++) { %>
+                                <div class="card-job hover-up wow animate__animated animate__fadeIn">
+                                    <div class="card-job-top">
+                                        <div class="card-job-top--image">
+                                            <figure><img alt="jobhub" src="assets/imgs/page/job/digital.png" /></figure>
+                                        </div>
+                                        <div class="card-job-top--info">
+                                            <h6 class="card-job-top--info-heading">
+                                                <a href="job-details?jobId=<%= shuffledJobs[i].job_id %>"><%= shuffledJobs[i].heading %></a>
+                                            </h6>
+                                            <div class="row">
+                                                <div class="col-lg-7">
+                                                    <a href="job-details?jobId=<%= shuffledJobs[i].job_id %>">
+                                                        <span class="card-job-top--company">Upreak, Inc</span>
+                                                    </a>
+                                                    <span class="card-job-top--location text-sm">
+                                                        <i class="fi-rr-marker"></i> <%= shuffledJobs[i].location %> , India
+                                                    </span>
+                                                    <span class="card-job-top--type-job text-sm">
+                                                        <i class="fi-rr-briefcase"></i> <%= shuffledJobs[i].job_type ? shuffledJobs[i].job_type : "Not defined" %>
+                                                    </span>
+                                                    <span class="card-job-top--post-time text-sm" data-createdat="<%= shuffledJobs[i].createdAt %>">
+                                                        <i class="fi-rr-clock"></i>
+                                                        <span class="time-display"></span>
+                                                    </span>                                                              
+                                                </div>
+                                                <div class="col-lg-5 text-lg-end">
+                                                    <span class="card-job-top--price"><%= shuffledJobs[i].amount %><span></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-job-description mt-20">
+                                        <%= shuffledJobs[i].sub_heading %>
+                                      
+                                    </div>
+                                    <div class="card-job-bottom mt-25">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-sm-8 col-12">
+                                                <% 
+                                                    // Calculate the difference in time from now (in milliseconds)
+                                                    const createdAtDate = new Date(shuffledJobs[i].createdAt);
+                                                    const diffTime = now - createdAtDate;
+                            
+                                                    // Convert the difference from milliseconds to days
+                                                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                                                %>
+                            
+                                                <!-- Check if the date is within the last 3 days -->
+                                                <% if (diffDays <= 3) { %>
+                                                    <a href="job-grid" class="btn btn-small background-urgent btn-pink mr-5">Urgent</a>
+                                                <% } %>
+                                                <a href="job-grid-2" class="btn btn-small background-blue-light mr-5">Experience : <%= shuffledJobs[i].experience %></a>
+                                                <a href="job-grid" class="btn btn-small background-6 disc-btn"><%= shuffledJobs[i].job_type ? shuffledJobs[i].job_type : "Not defined" %></a>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-4 col-12 text-lg-end d-lg-block d-none">
+                                                <span><img src="assets/imgs/theme/icons/shield-check.svg" alt="jobhub"></span>
+                                                <span class="ml-5"><img src="assets/imgs/theme/icons/bookmark.svg" alt="jobhub"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                            
+                                
+                                <div class="mb-20">
+                                    <a href="job-list" class="btn btn-default">Explore more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+                        <div class="sidebar-shadow">
+                            <div class="sidebar-heading">
+                                <div class="avatar-sidebar">
+                                    <figure><img alt="jobhub" src="assets/imgs/page/job-single/avatar-job.png" /></figure>
+                                    <div class="sidebar-info">
+                                        <span class="sidebar-company">Upreak, Inc</span>
+                                        <span class="sidebar-website-text">upreak.com</span>
+                                        <div class="dropdowm">
+                                            <button class="btn btn-dots btn-dots-abs-right dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                            <ul class="dropdown-menu dropdown-menu-light">
+                                                <li><a class="dropdown-item" href="#">Contact</a></li>
+                                                <li><a class="dropdown-item" href="#">Bookmark</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-description mt-15">
+                                <%- locals.sub_heading %>
+                            </div>
+                            <% if(locals.status == 1){ %>
+                                <div class="text-start mt-20" id="phase1">
+                                    <a href="#" class="btn btn-default mr-10 d-block">Apply now</a>
+                                    <!-- <a href="#" class="btn btn-border">Save job</a> -->
+                                </div>
+                                
+                                <div class="sidebar-with-bg mt-2" id="phase2" style="display: none;">
+                                    <h5 class="font-semibold mb-10">Apply Now</h5>
+                                    <p class="text-body-999">Enter your details to get more opportunities to get jobs.</p>
+                                    <form id="applyForm" method="POST">
+                                        <div class="form-group mt-15">
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   placeholder="Enter Name" 
+                                                   name="name" 
+                                                   value="<%= userData ? userData.name : '' %>" 
+                                                  
+                                                   required />
+                                        </div>
+                                        
+                                        <div class="form-group mt-15">
+                                            <input type="email" 
+                                                   class="form-control" 
+                                                   placeholder="Enter email address" 
+                                                   name="email" 
+                                                   value="<%= userData ? userData.emailid : '' %>" 
+                                                  
+                                                   required />
+                                        </div>
+                                    
+                                        <div class="form-group mt-15">
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   placeholder="Enter Phone/Whatsapp Number" 
+                                                   name="phone" 
+                                                   value="<%= userData ? userData.phonenumber : '' %>" 
+                                                   
+                                                   required />
+                                        </div>
+                                    
+                                        <input type="hidden" name="jobid" value="<%- locals.job_id %>">
+                                    
+                                        <button class="btn btn-default" type="submit">Apply Now</button>
+                                    </form>
+                                    
+                                    
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                
+                                </div>
+                                
+                                <div class="sidebar-with-bg mt-2" id="phase3" style="display: none;">
+                                    <h5 class="font-semibold mb-10">Thanks For Applying</h5>
+                                    <p>You will get an update regarding this shortly.</p>
+                                </div>
+                                
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const applyNowBtn = document.querySelector('#phase1 .btn-default');
+                                        const applyForm = document.getElementById('applyForm');
+                                        const phase1 = document.getElementById('phase1');
+                                        const phase2 = document.getElementById('phase2');
+                                        const phase3 = document.getElementById('phase3');
+                                    
+                                        // Ensure phase1 is shown, and phase2 & phase3 are hidden initially
+                                        phase1.style.display = 'block';
+                                        phase2.style.display = 'none';
+                                        phase3.style.display = 'none';
+                                    
+                                        // On clicking "Apply now", switch to phase2
+                                        applyNowBtn.addEventListener('click', function (event) {
+                                            event.preventDefault();
+                                            phase1.style.display = 'none';
+                                            phase2.style.display = 'block';
+                                        });
+                                    
+                                        $(document).ready(function () {
+                                            $('#applyForm').on('submit', function (e) {
+                                                e.preventDefault(); // Prevent the default form submission
+                                    
+                                                $.ajax({
+                                                    url: '/job_application', // Route to handle form submission
+                                                    type: 'POST',
+                                                    data: $(this).serialize(), // Serialize form data
+                                                    success: function (response) {
+                                                        if (response.success) {
+                                                            // Show success notification using Toastr
+                                                            toastr.success('Application submitted successfully!', 'Success');
+                                    
+                                                            // Optionally, clear the form fields after submission
+                                                            $('#applyForm')[0].reset();
+                                    
+                                                            // Switch to phase3 after successful submission
+                                                            phase2.style.display = 'none';
+                                                            phase3.style.display = 'block';
+                                    
+                                                        } else {
+                                                            // Show error message from the backend using Toastr
+                                                            toastr.error(response.message, 'Error');
+                                                        }
+                                                    },
+                                                    error: function (xhr, status, error) {
+                                                        // Show error notification using Toastr
+                                                        toastr.error('Failed to submit the application. ' + xhr.responseText, 'Error');
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    });
+                                    </script>
+
+                                <hr>
+                                <div class="text-start mt-20" id="refer-phase1">
+                                    <!-- <b class="mb-3">Refer Your Needy Friend Now!</b> -->
+                                    <a href="#" class="btn btn-outline-primary mr-10 d-block" id="refer-phase1-button">Refer your friend</a>
+                                </div>
+                                
+                                <div class="sidebar-with-bg mt-2" id="refer-phase2" style="display: none;">
+                                    <h5 class="font-semibold mb-10">Enter Candidate Details</h5>
+                                    <p class="text-body-999">Enter the candidate's details to refer them for the job opportunity.</p>
+                                    <form id="referForm" method="POST">
+                                        <div class="form-group mt-15">
+                                            <input type="text" class="form-control" placeholder="Enter Candidate Name" name="name" required />
+                                        </div>
+                                
+                                        <div class="form-group mt-15">
+                                            <input type="email" class="form-control" placeholder="Enter Candidate Email Address" name="email" required />
+                                        </div>
+                                
+                                        <div class="form-group mt-15">
+                                            <input type="text" class="form-control" placeholder="Enter Candidate Phone/Whatsapp Number" name="phone" required />
+                                        </div>
+                                
+                                        <button class="btn btn-default" type="button" id="proceedToNext">Proceed To Next</button>
+                                    </form>
+                                </div>
+                                
+                                <div class="sidebar-with-bg mt-2" id="refer-phase3" style="display: none;">
+                                    <h5 class="font-semibold mb-10">Your Details</h5>
+                                    <p class="text-body-999">Enter your details as the referrer.</p>
+                                    <form id="referrerForm" method="POST">
+                                        <div class="form-group mt-15">
+                                            <input type="text" class="form-control" placeholder="Enter Your Name" name="referrer_name" value="<%= userData ? userData.name : '' %>" required />
+                                        </div>
+                                
+                                        <div class="form-group mt-15">
+                                            <input type="email" class="form-control" placeholder="Enter Your Email Address" name="referrer_email" value="<%= userData ? userData.emailid : '' %>" required />
+                                        </div>
+                                
+                                        <div class="form-group mt-15">
+                                            <input type="text" class="form-control" placeholder="Enter Your Phone/Whatsapp Number" name="referrer_phone" value="<%= userData ? userData.phonenumber : '' %>" required />
+                                        </div>
+                                
+                                        <div class="form-group mt-15">
+                                            <input type="text" class="form-control" placeholder="Relation with Candidate" name="referrer_relation" required />
+                                        </div>
+                                        <input type="hidden" name="jobid" value="<%- locals.job_id %>">
+                                
+                                        <button class="btn btn-default" type="submit">Refer Now</button>
+                                    </form>
+                                </div>
+                                
+                                <div class="sidebar-with-bg mt-2" id="refer-phase4" style="display: none;">
+                                    <h5 class="font-semibold mb-10">Thanks for Referring</h5>
+                                    <p>You will get an update regarding this shortly.</p>
+                                </div>
+                                
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const referNowBtn = document.getElementById('refer-phase1-button');
+                                        const referForm = document.getElementById('referForm');
+                                        const referrerForm = document.getElementById('referrerForm');
+                                        const referPhase1 = document.getElementById('refer-phase1');
+                                        const referPhase2 = document.getElementById('refer-phase2');
+                                        const referPhase3 = document.getElementById('refer-phase3');
+                                        const referPhase4 = document.getElementById('refer-phase4');
+                                        const proceedToNext = document.getElementById('proceedToNext');
+                                
+                                        // Ensure refer-phase1 is shown, and other phases are hidden initially
+                                        referPhase1.style.display = 'block';
+                                        referPhase2.style.display = 'none';
+                                        referPhase3.style.display = 'none';
+                                        referPhase4.style.display = 'none';
+                                
+                                        // On clicking "Refer your friend", switch to refer-phase2
+                                        referNowBtn.addEventListener('click', function (event) {
+                                            event.preventDefault();
+                                            referPhase1.style.display = 'none';
+                                            referPhase2.style.display = 'block';
+                                        });
+                                
+                                        // On clicking "Proceed To Next", switch to refer-phase3
+                                        proceedToNext.addEventListener('click', function () {
+                                            referPhase2.style.display = 'none';
+                                            referPhase3.style.display = 'block';
+                                        });
+                                
+                                        $(document).ready(function () {
+                                            // Collect and submit both forms data in one submission
+                                            $('#referrerForm').on('submit', function (e) {
+                                                e.preventDefault();
+                                
+                                                // Collect data from both referForm and referrerForm
+                                                const candidateData = $('#referForm').serializeArray();
+                                                const referrerData = $(this).serializeArray();
+                                                const formData = candidateData.concat(referrerData);
+                                
+                                                // Send one AJAX request with both candidate and referrer data
+                                                $.ajax({
+                                                    url: '/job_application', // Route to handle form submission
+                                                    type: 'POST',
+                                                    data: $.param(formData), // Serialize combined form data
+                                                    success: function (response) {
+                                                        if (response.success) {
+                                                            toastr.success('Application submitted successfully!', 'Success');
+                                                            referPhase3.style.display = 'none';
+                                                            referPhase4.style.display = 'block';
+                                                        } else {
+                                                            toastr.error(response.message, 'Error');
+                                                        }
+                                                    },
+                                                    error: function (xhr, status, error) {
+                                                        toastr.error('Failed to submit application. ' + xhr.responseText, 'Error');
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    });
+                                </script>
+                                
+                                
+                                    
+                                    
+                            <% } else {%>
+
+                            <div class="sidebar-with-bg mt-2">
+                                <h5 class="font-semibold mb-10">Set job reminder</h5>
+                                <p class="text-body-999">Enter you email address and get job notification.</p>
+                                <div class="box-email-reminder">
+                                    <form class="subscription-form">
+                                        <div class="form-group mt-15">
+                                            <input type="text" class="form-control input-bg-white form-icons email-input" placeholder="Enter email address" />
+                                            <i class="fi-rr-envelope"></i>
+                                        </div>
+                                        <div class="form-group mt-25 mb-5">
+                                            <button class="btn btn-default btn-md">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <% } %>
+                            <div class="sidebar-list-job">
+                                <ul>
+                                    <li>
+                                        <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
+                                        <div class="sidebar-text-info">
+                                            <span class="text-description">Job Type</span>
+                                            <strong class="small-heading"><%- locals.job_type %></strong>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
+                                        <div class="sidebar-text-info">
+                                            <span class="text-description">Location</span>
+                                            <strong class="small-heading"><%- locals.location %> , India</strong>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
+                                        <div class="sidebar-text-info">
+                                            <span class="text-description">Salary</span>
+                                            <strong class="small-heading"><%- locals.amount %></strong>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
+                                        <div class="sidebar-text-info">
+                                            <span class="text-description">Total Applied</span>
+                                            <strong class="small-heading">320+ candidates</strong>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
+                                        <div class="sidebar-text-info">
+                                            <span class="text-description">Date posted</span>
+                                            <strong class="small-heading"><%- locals.createdAt %></strong>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
+                                        <div class="sidebar-text-info">
+                                            <span class="text-description">Apply Before</span>
+                                            <strong class="small-heading"><%
+                                                var createdAt = new Date(locals.createdAt);
+                                                createdAt.setDate(createdAt.getDate() + 29);
+                                            %>
+                                            <%= createdAt.toDateString() %>
+                                            </strong>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sidebar-team-member pt-40">
+                                <h6 class="small-heading">Contact Info</h6>
+                                <div class="info-address">
+                                    
+                                    <span><i class="fi-rr-headset"></i> <span>(+91) - 7975930773</span></span>
+                                    <span><i class="fi-rr-paper-plane"></i> <span>jobs@upreak.com</span></span>
+                                    <span><i class="fi-rr-time-fast"></i> <span>9:30 - 18:00, Mon - Sat </span></span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            // Function to calculate the difference in days
+    function timeAgo(date) {
+        const now = new Date(); // Current date
+        const givenDate = new Date(date); // Date to compare
+        
+        // Calculate the difference in milliseconds
+        const differenceInMs = now - givenDate;
+        
+        // Convert milliseconds to days
+        const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+        
+        if (differenceInDays === 0) {
+            return 'Today';
+        } else if (differenceInDays === 1) {
+            return '1 day ago';
+        } else {
+            return differenceInDays + ' days ago';
+        }
+    }
+    
+    // Function to update all time elements
+    function updateTimeDisplay() {
+        // Get all elements with 'data-createdat'
+        const timeElements = document.querySelectorAll('.card-job-top--post-time');
+        
+        timeElements.forEach(function(element) {
+            const createdAt = element.getAttribute('data-createdat'); // Get the data-createdat attribute
+            const timeDisplay = timeAgo(createdAt); // Calculate the time difference
+            element.querySelector('.time-display').textContent = timeDisplay; // Update the display
+        });
+    }
+    
+    // Call the function to update the times
+    updateTimeDisplay();
+    
+         </script>
+         <!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+       
+        <%- include('includes/footer') %>

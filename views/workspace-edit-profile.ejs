@@ -1,0 +1,523 @@
+﻿<%- include('includes/header') %>
+<title>My Profile - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+    <%- include('includes/user_header') %>
+    <section class="section-box mt-30">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs card p-3">
+                                <form method="post" action="/submitProfile" id="edit-profile">
+                                    <input type="hidden" name="id" value="<%= profile.id %>" id="">
+
+                                    <!-- Personal Information -->
+                                    <h4>Personal Information</h4>
+                                    <hr>
+                                    <div class="row">
+
+                                        <div class="col-auto form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                value="<%= profile.name || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="emailid">Email ID</label>
+                                            <input type="email" class="form-control" id="emailid" name="emailid"
+                                                value="<%= profile.emailid || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="marragestatus">Marital Status</label>
+                                            <input type="text" class="form-control" id="marragestatus"
+                                                name="marragestatus" value="<%= profile.marragestatus || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="dob">Date of Birth</label>
+                                            <input type="date" class="form-control" id="dob" name="dob"
+                                                value="<%= profile.dob || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="phonenumber">Phone Number</label>
+                                            <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                                                value="<%= profile.phonenumber || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="phonenumber">Whatsapp Number</label>
+                                            <input type="text" class="form-control" id="whatsappnumber"
+                                                name="whatsappnumber" value="<%= profile.whatsappnumber || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="phonenumber">Gender</label>
+                                            <input type="text" class="form-control" id="gender" name="gender"
+                                                value="<%= profile.gender || '' %>">
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- Address Details -->
+                                    <h4>Address Details</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="area">Area</label>
+                                            <input type="text" class="form-control" id="area" name="area"
+                                                value="<%= profile.area || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" id="city" name="city"
+                                                value="<%= profile.city || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="state">State</label>
+                                            <input type="text" class="form-control" id="state" name="state"
+                                                value="<%= profile.state || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pincode">Pincode</label>
+                                            <input type="text" class="form-control" id="pincode" name="pincode"
+                                                value="<%= profile.pincode || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- Educational Details -->
+                                    <h4>Educational Qualifications (10th, 12th, UG, PG, Diploma)</h4>
+                                    <hr>
+                                    <br>
+
+                                    <!-- 10th Qualification -->
+                                    <h4>10th Qualification</h4>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="qualification_10">Qualification</label>
+                                            <input type="text" class="form-control" id="qualification_10"
+                                                name="qualification_10" value="<%= profile.qualification_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="university_10">University</label>
+                                            <input type="text" class="form-control" id="university_10"
+                                                name="university_10" value="<%= profile.university_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ctype_10">Course Type</label>
+                                            <input type="text" class="form-control" id="ctype_10" name="ctype_10"
+                                                value="<%= profile.ctype_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="percent_10">Percentage</label>
+                                            <input type="text" class="form-control" id="percent_10" name="percent_10"
+                                                value="<%= profile.percent_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="yos_10">Year of Study</label>
+                                            <input type="text" class="form-control" id="yos_10" name="yos_10"
+                                                value="<%= profile.yos_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="yoc_10">Year of Completion</label>
+                                            <input type="text" class="form-control" id="yoc_10" name="yoc_10"
+                                                value="<%= profile.yoc_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="college_10">College</label>
+                                            <input type="text" class="form-control" id="college_10" name="college_10"
+                                                value="<%= profile.college_10 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="state_10">State</label>
+                                            <input type="text" class="form-control" id="state_10" name="state_10"
+                                                value="<%= profile.state_10 || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- 12th Qualification -->
+                                    <h4>12th Qualification</h4>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="qualification_12">Qualification</label>
+                                            <input type="text" class="form-control" id="qualification_12"
+                                                name="qualification_12" value="<%= profile.qualification_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="university_12">University</label>
+                                            <input type="text" class="form-control" id="university_12"
+                                                name="university_12" value="<%= profile.university_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ctype_12">Course Type</label>
+                                            <input type="text" class="form-control" id="ctype_12" name="ctype_12"
+                                                value="<%= profile.ctype_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="percent_12">Percentage</label>
+                                            <input type="text" class="form-control" id="percent_12" name="percent_12"
+                                                value="<%= profile.percent_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="yos_12">Year of Study</label>
+                                            <input type="text" class="form-control" id="yos_12" name="yos_12"
+                                                value="<%= profile.yos_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="yoc_12">Year of Completion</label>
+                                            <input type="text" class="form-control" id="yoc_12" name="yoc_12"
+                                                value="<%= profile.yoc_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="college_12">College</label>
+                                            <input type="text" class="form-control" id="college_12" name="college_12"
+                                                value="<%= profile.college_12 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="state_12">State</label>
+                                            <input type="text" class="form-control" id="state_12" name="state_12"
+                                                value="<%= profile.state_12 || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- UG Qualification -->
+                                    <h4>Undergraduate Qualification</h4>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="ugqualification">Qualification</label>
+                                            <input type="text" class="form-control" id="ugqualification"
+                                                name="ugqualification" value="<%= profile.ugqualification || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="uguniversity">University</label>
+                                            <input type="text" class="form-control" id="uguniversity"
+                                                name="uguniversity" value="<%= profile.uguniversity || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ugctype">Course Type</label>
+                                            <input type="text" class="form-control" id="ugctype" name="ugctype"
+                                                value="<%= profile.ugctype || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ugpercent">Percentage</label>
+                                            <input type="text" class="form-control" id="ugpercent" name="ugpercent"
+                                                value="<%= profile.ugpercent || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ugyos">Year of Study</label>
+                                            <input type="text" class="form-control" id="ugyos" name="ugyos"
+                                                value="<%= profile.ugyos || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ugyoc">Year of Completion</label>
+                                            <input type="text" class="form-control" id="ugyoc" name="ugyoc"
+                                                value="<%= profile.ugyoc || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ugcollege">College</label>
+                                            <input type="text" class="form-control" id="ugcollege" name="ugcollege"
+                                                value="<%= profile.ugcollege || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ugstate">State</label>
+                                            <input type="text" class="form-control" id="ugstate" name="ugstate"
+                                                value="<%= profile.ugstate || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- PG Qualification -->
+                                    <h4>Postgraduate Qualification</h4>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="pgqualification">Qualification</label>
+                                            <input type="text" class="form-control" id="pgqualification"
+                                                name="pgqualification" value="<%= profile.pgqualification || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pguniversity">University</label>
+                                            <input type="text" class="form-control" id="pguniversity"
+                                                name="pguniversity" value="<%= profile.pguniversity || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pgctype">Course Type</label>
+                                            <input type="text" class="form-control" id="pgctype" name="pgctype"
+                                                value="<%= profile.pgctype || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pgpercent">Percentage</label>
+                                            <input type="text" class="form-control" id="pgpercent" name="pgpercent"
+                                                value="<%= profile.pgpercent || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pgyos">Year of Study</label>
+                                            <input type="text" class="form-control" id="pgyos" name="pgyos"
+                                                value="<%= profile.pgyos || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pgyoc">Year of Completion</label>
+                                            <input type="text" class="form-control" id="pgyoc" name="pgyoc"
+                                                value="<%= profile.pgyoc || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pgcollege">College</label>
+                                            <input type="text" class="form-control" id="pgcollege" name="pgcollege"
+                                                value="<%= profile.pgcollege || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="pgstate">State</label>
+                                            <input type="text" class="form-control" id="pgstate" name="pgstate"
+                                                value="<%= profile.pgstate || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- Diploma Qualification -->
+                                    <h4>Diploma Qualification</h4>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="qualification_diploma">Qualification</label>
+                                            <input type="text" class="form-control" id="qualification_diploma"
+                                                name="qualification_diploma"
+                                                value="<%= profile.qualification_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="university_diploma">University</label>
+                                            <input type="text" class="form-control" id="university_diploma"
+                                                name="university_diploma"
+                                                value="<%= profile.university_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="ctype_diploma">Course Type</label>
+                                            <input type="text" class="form-control" id="ctype_diploma"
+                                                name="ctype_diploma" value="<%= profile.ctype_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="percent_diploma">Percentage</label>
+                                            <input type="text" class="form-control" id="percent_diploma"
+                                                name="percent_diploma" value="<%= profile.percent_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="yos_diploma">Year of Study</label>
+                                            <input type="text" class="form-control" id="yos_diploma" name="yos_diploma"
+                                                value="<%= profile.yos_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="yoc_diploma">Year of Completion</label>
+                                            <input type="text" class="form-control" id="yoc_diploma" name="yoc_diploma"
+                                                value="<%= profile.yoc_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="college_diploma">College</label>
+                                            <input type="text" class="form-control" id="college_diploma"
+                                                name="college_diploma" value="<%= profile.college_diploma || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="state_diploma">State</label>
+                                            <input type="text" class="form-control" id="state_diploma"
+                                                name="state_diploma" value="<%= profile.state_diploma || '' %>">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Repeat similar structure for 12th, UG, PG, Diploma qualifications -->
+
+                                    <!-- Skills and Languages -->
+                                    <h4>Skills & Languages</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="languages">Languages</label>
+                                            <input type="text" class="form-control" id="languages" name="languages"
+                                                value="<%= profile.languages || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="skill1">Skill 1</label>
+                                            <input type="text" class="form-control" id="skill1" name="skill1"
+                                                value="<%= profile.skill1 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="skill2">Skill 2</label>
+                                            <input type="text" class="form-control" id="skill2" name="skill2"
+                                                value="<%= profile.skill2 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="skill3">Skill 3</label>
+                                            <input type="text" class="form-control" id="skill3" name="skill3"
+                                                value="<%= profile.skill3 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="skill4">Skill 4</label>
+                                            <input type="text" class="form-control" id="skill4" name="skill4"
+                                                value="<%= profile.skill4 || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="skill5">Skill 5</label>
+                                            <input type="text" class="form-control" id="skill5" name="skill5"
+                                                value="<%= profile.skill5 || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- Employment Details -->
+                                    <h4>Employment History</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="company_project_name">Company/Project Name</label>
+                                            <input type="text" class="form-control" id="company_project_name"
+                                                name="company_project_name"
+                                                value="<%= profile.company_project_name || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="position">Position</label>
+                                            <input type="text" class="form-control" id="position" name="position"
+                                                value="<%= profile.position || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="exp_sdate">Start Date</label>
+                                            <input type="date" class="form-control" id="exp_sdate" name="exp_sdate"
+                                                value="<%= profile.exp_sdate || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="exp_edate">End Date</label>
+                                            <input type="date" class="form-control" id="exp_edate" name="exp_edate"
+                                                value="<%= profile.exp_edate || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="project_role_summary">Project Role Summary</label>
+                                            <textarea class="form-control" id="project_role_summary"
+                                                name="project_role_summary"
+                                                rows="3"><%= profile.project_role_summary || '' %></textarea>
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="experience">Experience</label>
+                                            <input type="text" class="form-control" id="experience" name="experience"
+                                                value="<%= profile.experience || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_category">Job Category</label>
+                                            <input type="text" class="form-control" id="job_category"
+                                                name="job_category" value="<%= profile.job_category || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_location">Job Location</label>
+                                            <input type="text" class="form-control" id="job_location"
+                                                name="job_location" value="<%= profile.job_location || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_industry">Job Industry</label>
+                                            <input type="text" class="form-control" id="job_industry"
+                                                name="job_industry" value="<%= profile.job_industry || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_role">Job Role</label>
+                                            <input type="text" class="form-control" id="job_role" name="job_role"
+                                                value="<%= profile.job_role || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_department">Job Department</label>
+                                            <input type="text" class="form-control" id="job_department"
+                                                name="job_department" value="<%= profile.job_department || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- Job Preferences -->
+                                    <h4>Job Preferences</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="preferred_designation">Preferred Designation</label>
+                                            <input type="text" class="form-control" id="preferred_designation"
+                                                name="preferred_designation"
+                                                value="<%= profile.preferred_designation || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="preferred_ctc">Preferred CTC</label>
+                                            <input type="text" class="form-control" id="preferred_ctc"
+                                                name="preferred_ctc" value="<%= profile.preferred_ctc || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="present_ctc">Present CTC</label>
+                                            <input type="text" class="form-control" id="present_ctc" name="present_ctc"
+                                                value="<%= profile.present_ctc || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_type">Job Type</label>
+                                            <input type="text" class="form-control" id="job_type" name="job_type"
+                                                value="<%= profile.job_type || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="job_jdate">Job Joining Date</label>
+                                            <input type="date" class="form-control" id="job_jdate" name="job_jdate"
+                                                value="<%= profile.job_jdate || '' %>">
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Reference Details -->
+                                    <h4>Reference Details</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-auto form-group">
+                                            <label for="referee_name">Referee Name</label>
+                                            <input type="text" class="form-control" id="referee_name"
+                                                name="referee_name" value="<%= profile.referee_name || '' %>">
+                                        </div>
+                                        <div class="col-auto form-group">
+                                            <label for="referee_num">Referee Phone Number</label>
+                                            <input type="text" class="form-control" id="referee_num" name="referee_num"
+                                                value="<%= profile.referee_num || '' %>">
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $('#edit-profile').on('submit', function(e) {
+                e.preventDefault(); // Prevent the form from submitting the traditional way
+
+                // Serialize form data
+                var formData = $(this).serialize();
+
+                // Perform AJAX request
+                $.ajax({
+                    url: '/myworkspace/submitProfile', // URL for the POST request
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Show success notification
+                        toastr.success('Profile updated successfully!');
+                        // Optionally handle response or redirect
+                    },
+                    error: function(xhr, status, error) {
+                        // Show error notification
+                        toastr.error('An error occurred while updating the profile.');
+                        // Optionally handle the error
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+
+    <%- include('includes/footer') %>

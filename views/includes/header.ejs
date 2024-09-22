@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/css/plugins/animate.min.css" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TLD42VZP');
+    </script>
+    <!-- End Google Tag Manager -->
+
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLD42VZP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center">
+                    <img src="/assets/imgs/theme/loading.gif" alt="jobhub" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="header sticky-bar">
+        <div class="container">
+            <div class="main-header">
+                <div class="header-left">
+                    <div class="header-logo">
+                        <a href="/index" class="d-flex"><img alt="jobhub"
+                                src="/assets/imgs/theme/jobhub-logo.svg" /></a>
+                    </div>
+                    <div class="header-nav">
+                        <nav class="nav-main-menu d-none d-xl-block">
+                            <ul class="main-menu">
+                                <li class="">
+                                    <a class="active" href="/index">Home</a>
+                                </li>
+                                <li class="">
+                                    <a href="https://academy.upreak.com">Academy</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="/job-list">Browse Jobs</a>
+                                </li>
+                                <li class="">
+                                    <a href="/employers">For Employer</a>
+                                </li>
+                                <li class="">
+                                    <a href="/contactUs">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="burger-icon burger-icon-white d-lg-none">
+                            <span class="burger-icon-top"></span>
+                            <span class="burger-icon-mid"></span>
+                            <span class="burger-icon-bottom"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="block-signin justify-content-start text-start">
+
+
+
+                        <% if (user) { %>
+                        <div class=" div-logged">
+                            <div class="user-account">
+                                <img src="/assets/imgs/avatar/ava_1.png" alt="jobhub" />
+                                <div class="content">
+                                    <h6 class="user-name">Hi, <span
+                                            class="text-brand"><%= user.name ??'Candidate' %></span></h6>
+                                    <p class="font-xs text-muted">Make Your Dream a job a Reality</p>
+                                </div>
+                                <a class="btn btn-primary btn-shadow ml-10 hover-up " href="/myworkspace">
+                                    <svg fill="#fff" width="20px" height="20px" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19,6H16V5a2,2,0,0,0-2-2H10A2,2,0,0,0,8,5V6H5A3,3,0,0,0,2,9v9a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V9A3,3,0,0,0,19,6ZM10,5h4V6H10ZM20,18a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12.39L8.68,14A1.19,1.19,0,0,0,9,14h6a1.19,1.19,0,0,0,.32-.05L20,12.39Zm0-7.72L14.84,12H9.16L4,10.28V9A1,1,0,0,1,5,8H19a1,1,0,0,1,1,1Z" />
+                                    </svg>
+                                </a>
+                                <!-- Logout Button -->
+                                <a class="btn btn-primary btn-shadow ml-10 hover-up input-keysearch" href="/logout"
+                                    id="">
+                                    <?xml version="1.0" encoding="utf-8"?>
+                                    <!-- License: CC Attribution. Made by Dimas nanda: https://www.figma.com/@dimasnanda -->
+                                    <svg width="20px" height="20px" viewBox="0 0 64 64" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M48.86 5.62695H21.89C20.1696 5.6296 18.5203 6.31419 17.3038 7.53073C16.0872 8.74727 15.4027 10.3965 15.4 12.1169V25.597H23.38C23.3887 24.0243 24.0176 22.5186 25.13 21.407C26.2529 20.279 27.7772 19.6424 29.3688 19.6367C30.9603 19.6311 32.4892 20.257 33.62 21.377L39.61 27.3369C39.62 27.3469 39.62 27.3469 39.62 27.3569C39.9257 27.6633 40.1973 28.002 40.43 28.3669C40.5396 28.538 40.6398 28.7149 40.73 28.8969L40.737 28.912C40.6453 28.7245 40.5428 28.5425 40.43 28.3669C40.5474 28.553 40.6545 28.7452 40.751 28.9429C40.807 29.0429 40.851 29.1549 40.896 29.2619C40.9779 29.4461 41.0493 29.6347 41.11 29.8269C41.0534 29.644 40.9867 29.4644 40.91 29.2889C40.932 29.3419 40.962 29.389 40.982 29.447C41.032 29.577 41.072 29.6969 41.112 29.8269C41.2931 30.3994 41.3842 30.9965 41.382 31.597C41.3826 32.1834 41.295 32.7666 41.122 33.3269C41.0737 33.5151 41.0102 33.6991 40.932 33.877C40.8589 34.0582 40.7754 34.2352 40.682 34.407C40.5916 34.5792 40.4915 34.7462 40.382 34.907C40.1627 35.2432 39.9079 35.555 39.622 35.8369L33.642 41.847C33.0843 42.4092 32.4207 42.8551 31.6894 43.1589C30.9581 43.4628 30.1739 43.6185 29.382 43.6169C27.7973 43.6196 26.2761 42.9939 25.152 41.877C24.0247 40.7531 23.3884 39.2287 23.382 37.6369V37.597H15.402V51.067C15.402 52.7891 16.0854 54.4409 17.3022 55.6596C18.5191 56.8783 20.1698 57.5643 21.892 57.567H48.862C50.5842 57.5643 52.2349 56.8783 53.4517 55.6596C54.6685 54.4409 55.352 52.7891 55.352 51.067V12.1169C55.3493 10.3962 54.6645 8.74662 53.4475 7.53003C52.2305 6.31343 50.5808 5.62907 48.86 5.62695Z"
+                                            fill="#fff" />
+                                        <path
+                                            d="M15.4 33.601H19.4H30.567L28.467 35.719L27.974 36.219C27.94 36.253 27.916 36.293 27.885 36.329C27.8281 36.3908 27.775 36.4559 27.726 36.524C27.701 36.562 27.684 36.604 27.661 36.643C27.6161 36.717 27.576 36.7939 27.541 36.873C27.529 36.902 27.524 36.932 27.513 36.962C27.4775 37.0553 27.4494 37.1513 27.429 37.249C27.429 37.26 27.429 37.271 27.429 37.282C27.4081 37.3889 27.3957 37.4972 27.392 37.606H27.399C27.3949 37.8733 27.4448 38.1387 27.5457 38.3863C27.6465 38.6339 27.7963 38.8586 27.986 39.047C28.1712 39.232 28.391 39.3787 28.633 39.4786C28.875 39.5784 29.1342 39.6295 29.396 39.629C29.6597 39.6296 29.9208 39.5778 30.1642 39.4765C30.4077 39.3752 30.6286 39.2265 30.814 39.039L36.801 33.019C36.817 33.004 36.827 32.985 36.842 32.969C36.9154 32.8913 36.9823 32.8077 37.042 32.719C37.067 32.681 37.084 32.64 37.106 32.601C37.1511 32.5285 37.1912 32.453 37.226 32.375C37.247 32.325 37.258 32.275 37.275 32.219C37.3008 32.1479 37.3225 32.0755 37.34 32.002C37.3559 31.9081 37.3652 31.8132 37.368 31.718C37.368 31.681 37.379 31.646 37.379 31.609V31.603C37.3788 31.4713 37.3654 31.34 37.339 31.211C37.3139 31.0878 37.277 30.9672 37.229 30.851V30.838C37.18 30.7227 37.1205 30.6122 37.051 30.508L37.044 30.494C36.9707 30.3864 36.8873 30.2859 36.795 30.194L30.802 24.235C30.4259 23.8611 29.9167 23.652 29.3864 23.6535C28.856 23.655 28.348 23.867 27.974 24.243C27.6113 24.6081 27.4041 25.0995 27.396 25.614H27.388V25.654C27.3926 25.7506 27.4032 25.8468 27.42 25.942C27.42 25.977 27.42 26.012 27.432 26.047C27.444 26.082 27.446 26.091 27.452 26.113C27.4769 26.2192 27.5104 26.3232 27.552 26.424C27.558 26.439 27.568 26.452 27.575 26.467C27.6188 26.5688 27.671 26.6668 27.731 26.76C27.8041 26.8727 27.8882 26.9779 27.982 27.074L30.539 29.612H11.41C10.8795 29.612 10.3709 29.8227 9.99579 30.1978C9.62072 30.5729 9.40997 31.0816 9.40997 31.612C9.40997 32.1424 9.62072 32.6511 9.99579 33.0262C10.3709 33.4013 10.8795 33.612 11.41 33.612H15.402L15.4 33.601Z"
+                                            fill="#fff" />
+                                    </svg>
+                                    <!-- Toastr JS -->
+
+                                </a>
+                            </div>
+                        </div>
+                        <% } else { %>
+                        <div class="not-logged">
+                            <!-- This section is shown when not logged in -->
+                            <a href="https://portal.upreak.com/"
+                                class="btn btn-default btn-shadow ml-10 hover-up">Employers Sign in</a>
+                            <a class="btn btn-primary btn-shadow ml-10 hover-up" id="employer-signin">Student Sign
+                                in</a>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+        <div class="mobile-header-wrapper-inner">
+            <div class="mobile-header-top">
+                <div class="user-account"></div>
+
+                <div class="burger-icon burger-icon-white d-lg-none">
+                    <span class="burger-icon-top"></span>
+                    <span class="burger-icon-mid"></span>
+                    <span class="burger-icon-bottom"></span>
+                </div>
+
+            </div>
+            <div class="mobile-header-content-area">
+                <div class="perfect-scroll">
+
+                    <div class="mobile-menu-wrap mobile-header-border">
+                        <!-- mobile menu start -->
+                        <nav>
+                            <ul class="mobile-menu font-heading">
+                                <li class="">
+                                    <a class="active" href="/index">Home</a>
+                                </li>
+                                <li class="">
+                                    <a href="https://academy.upreak.com">Academy</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="/job-list">Browse Jobs</a>
+                                </li>
+                                <li class="">
+                                    <a href="/employers">For Employer</a>
+                                </li>
+                                <li class="">
+                                    <a href="/page-contact">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- mobile menu end -->
+                    </div>
+                    <% if (user) { %>
+                    <div class=" div-logged mt-30">
+                        <div class="user-account">
+                            <img src="/assets/imgs/avatar/ava_1.png" alt="jobhub" />
+                            <div class="content">
+                                <h6 class="user-name">Hi, <span class="text-brand"><%= user.name ??'Candidate' %></span>
+                                </h6>
+                                <p class="font-xs text-muted">Make Your Dream a job a Reality</p>
+                            </div>
+                        </div>
+                        <nav class="mt-30">
+                            <ul class="mobile-menu font-heading">
+                                <li class="">
+                                    <a class="hover-up " href="/myworkspace">
+                                        MY Workspace
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="hover-up input-keysearch" href="/logout" id="">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <% } else { %>
+                    <div class="not-logged p-1 mt-30">
+                        <!-- This section is shown when not logged in -->
+                        <a href="https://portal.upreak.com/"
+                            class="btn btn-default btn-shadow hover-up d-block mt-1">Employers Sign in</a>
+                        <a class="btn btn-primary btn-shadow hover-up d-block mt-1 mb-1" id="employer-signin"
+                            data-bs-toggle="modal" data-bs-target="#employerModal">Student Sign
+                            in</a>
+                    </div>
+                    <% } %>
+
+                    <div class="mobile-social-icon mb-50 mt-50">
+                        <h6 class="mb-25">Follow Us</h6>
+                        <a href="https://facebook.com/upreakofficial"><img
+                                src="/assets/imgs/theme/icons/icon-facebook.svg" alt="jobhub" /></a>
+                        <a href="https://twitter.com/upreakofficial"><img
+                                src="/assets/imgs/theme/icons/icon-twitter.svg" alt="jobhub" /></a>
+                        <a href="https://www.instagram.com/upreakofficial"><img
+                                src="/assets/imgs/theme/icons/icon-instagram.svg" alt="jobhub" /></a>
+                        <a href="https://www.linkedin.com/company/upreak"><img
+                                src="/assets/imgs/theme/icons/linkedin.svg" alt="jobhub" /></a>
+                    </div>
+                    <div class="site-copyright">Copyright 2024 © Upreak. <br />Designed by ApnaCoder Group.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End header-->
+    <!-- Login Modal HTML -->
+    <div id="employerModal" class="modal">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="">
+                        <div id="phase1-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Student Login</h4>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <!-- Google Login Button -->
+                                    <a href="/auth/google"
+                                        class="login-with-google-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/IOS_Google_icon.png/640px-IOS_Google_icon.png"
+                                            alt="Google" width="20" height="20" class="mr-2">
+                                        Sign in with Google
+                                    </a>
+
+                                    <!-- LinkedIn Login Button -->
+                                    <!-- <a href="/auth/linkedin" class="login-with-linkedin-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20" height="20" class="mr-2">
+                                            Sign in with LinkedIn
+                                        </a> -->
+
+
+                                    <!-- Microsoft Login Button -->
+                                    <!-- <a href="/auth/microsoft" class="login-with-microsoft-btn btn-outline-primary btn-block d-block mb-10">
+                                                Sign in with Microsoft
+                                            </a> -->
+
+
+                                    <hr>
+                                    <form id="loginForm">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email"
+                                                required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password"
+                                                required="required">
+                                        </div>
+                                        <div class="clearfix">
+                                            <a href="#" class="float-right">Forgot Password?</a>
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <button type="submit" class="btn btn-primary btn-block w-100 d-block">Log
+                                                in</button>
+                                        </div>
+                                    </form>
+                                    <button id="button-otp-login"
+                                        class="btn btn-outline-primary btn-block w-100 d-block mt-10">Log
+                                        in with OTP</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center justify-content-center">
+                                <p>Don't have an account? <b><a id="button-signup" style="font-weight: 900;">Sign
+                                            Up</a></b></p>
+                            </div>
+                        </div>
+
+                        <div id="phase2-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Student Sign Up</h4>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <!-- Google Login Button -->
+                                    <a href="/auth/google"
+                                        class="login-with-google-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/IOS_Google_icon.png/640px-IOS_Google_icon.png"
+                                            alt="Google" width="20" height="20" class="mr-2">
+                                        Sign up with Google
+                                    </a>
+
+                                    <!-- LinkedIn Login Button -->
+                                    <!-- <a href="/auth/linkedin" class="login-with-linkedin-btn btn btn-outline-primary btn-block d-flex align-items-center justify-content-center mb-10">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20" height="20" class="mr-2">
+                                        Sign up with LinkedIn
+                                    </a> -->
+                                    <hr>
+                                    <form id="signup-form" method="post">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Name" name="name"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email" required
+                                                name="emailid">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" placeholder="Phone Number"
+                                                name="phonenumber" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password"
+                                                name="password" required>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <button type="submit" class="btn btn-primary btn-block w-100 d-block">Sign
+                                                Up</button>
+                                        </div>
+                                    </form>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const form = document.getElementById('signup-form');
+
+                                            form.addEventListener('submit', async function (e) {
+                                                e.preventDefault();
+
+                                                const formData = new FormData(form);
+                                                const data = {
+                                                    name: formData.get('name'),
+                                                    emailid: formData.get('emailid'),
+                                                    phonenumber: formData.get('phonenumber'),
+                                                    password: formData.get('password')
+                                                };
+
+                                                try {
+                                                    const response = await axios.post('/signup',
+                                                        data);
+                                                    if (response.data.success) {
+                                                        toastr.success('Signup successful!');
+                                                        form.reset(); // Optionally reset the form
+                                                        window.location.href = '/myworkspace';
+                                                    } else {
+                                                        toastr.error(response.data.message ||
+                                                            'Signup failed. Please try again.');
+                                                    }
+                                                } catch (error) {
+                                                    toastr.error(
+                                                        'An error occurred. Please try again.');
+                                                    console.error('Error during signup:', error);
+                                                }
+                                            });
+                                        });
+                                    </script>
+
+
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center justify-content-center">
+                                <p>Already have an account? <button id="button-login-password"
+                                        class="btn btn-sm btn-outline-primary">Login Now</button>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="phase3-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Student Login OTP</h4>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <form id="otp-form" method="post">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" id="phone-number" name="phone"
+                                                placeholder="Phone Number" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" id="otp-input" name="otp"
+                                                placeholder="Enter OTP" style="display: none;" required>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <!-- <a class="justify-content-end" href="" id="button-resend-otp" style="display: none !important;">Resend OTP</a> -->
+                                            <button type="button" id="button-send-otp"
+                                                class="btn btn-primary btn-block w-100">Send OTP</button>
+                                            <button type="button" id="button-verify-otp"
+                                                class="btn btn-primary btn-block w-100"
+                                                style="display: none !important;">Verify OTP</button>
+                                        </div>
+                                    </form>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const sendOtpButton = document.getElementById('button-send-otp');
+                                            const resendOtpButton = document.getElementById(
+                                            'button-resend-otp');
+                                            const verifyOtpButton = document.getElementById(
+                                            'button-verify-otp');
+                                            const phoneInput = document.getElementById('phone-number');
+                                            const otpInput = document.getElementById('otp-input');
+
+
+                                            // Send OTP logic
+                                            sendOtpButton.addEventListener('click', async function () {
+                                                const phone = phoneInput.value;
+
+                                                // Validate phone number input
+                                                if (!phone) {
+                                                    toastr.error('Please enter a phone number.');
+                                                    return;
+                                                }
+
+                                                try {
+                                                    // Send POST request to send OTP
+                                                    const response = await fetch(
+                                                        '/verify_phone_number', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            },
+                                                            body: JSON.stringify({
+                                                                phone
+                                                            })
+                                                        });
+
+                                                    const data = await response.json();
+
+                                                    if (data.otpSent) {
+                                                        toastr.success('OTP sent to ' + phone);
+                                                        phoneInput.disabled = true;
+                                                        otpInput.style.display = 'block';
+                                                        sendOtpButton.style.display = 'none';
+                                                        resendOtpButton.style.display = 'block';
+                                                        verifyOtpButton.style.display = 'block';
+                                                    } else {
+                                                        toastr.error(
+                                                            'Failed to send OTP. Please try again.'
+                                                            );
+                                                    }
+                                                } catch (error) {
+                                                    toastr.error(
+                                                        'An error occurred while sending OTP. Please try again.'
+                                                        );
+                                                }
+                                            });
+                                            resendOtpButton.addEventListener('click', async function () {
+                                                const phone = phoneInput.value;
+
+                                                // Validate phone number input
+                                                if (!phone) {
+                                                    toastr.error('Please enter a phone number.');
+                                                    return;
+                                                }
+
+                                                try {
+                                                    // Send POST request to send OTP
+                                                    const response = await fetch(
+                                                        '/verify_phone_number', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            },
+                                                            body: JSON.stringify({
+                                                                phone
+                                                            })
+                                                        });
+
+                                                    const data = await response.json();
+
+                                                    if (data.otpSent) {
+                                                        toastr.success('OTP sent to ' + phone);
+                                                        phoneInput.disabled = true;
+                                                        otpInput.style.display = 'block';
+                                                        sendOtpButton.style.display = 'none';
+                                                        resendOtpButton.style.display = 'block';
+                                                        verifyOtpButton.style.display = 'block';
+                                                    } else {
+                                                        toastr.error(
+                                                            'Failed to send OTP. Please try again.'
+                                                            );
+                                                    }
+                                                } catch (error) {
+                                                    toastr.error(
+                                                        'An error occurred while sending OTP. Please try again.'
+                                                        );
+                                                }
+                                            });
+
+                                            // Verify OTP logic
+                                            verifyOtpButton.addEventListener('click', async function () {
+                                                const otp = otpInput.value;
+                                                const phone = phoneInput.value;
+
+                                                // Validate OTP input
+                                                if (!otp) {
+                                                    toastr.error('Please enter the OTP.');
+                                                    return;
+                                                }
+
+                                                try {
+                                                    // Send POST request to verify OTP
+                                                    const response = await fetch('/verify_otp', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json'
+                                                        },
+                                                        body: JSON.stringify({
+                                                            phone,
+                                                            otp
+                                                        })
+                                                    });
+
+                                                    const data = await response.json();
+
+                                                    if (data.verified) {
+                                                        toastr.success(
+                                                        'OTP verified successfully!');
+                                                        window.location.href = '/myworkspace';
+                                                    } else {
+                                                        toastr.error(
+                                                            'Invalid OTP. Please try again.');
+                                                    }
+                                                } catch (error) {
+                                                    toastr.error(
+                                                        'An error occurred while verifying OTP. Please try again.'
+                                                        );
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center justify-content-center">
+                                <p>Login With Password? <button id="button-login-password"
+                                        class="btn btn-sm btn-outline-primary">Login Now</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

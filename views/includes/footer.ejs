@@ -1,0 +1,426 @@
+<section class="section-box mt-50 mb-60">
+    <div class="container">
+        <div class="box-newsletter">
+            <h5 class="text-md-newsletter">Sign up to get</h5>
+            <h6 class="text-lg-newsletter">the latest jobs</h6>
+            <div class="box-form-newsletter mt-30">
+                <form class="form-newsletter subscription-form" id="subscription-form">
+                    <input type="text" class="input-newsletter email-input" value="" name="email"
+                        placeholder="contact.alithemes@gmail.com" required />
+                    <button class="btn btn-default font-heading icon-send-letter">Subscribe</button>
+                </form>
+
+                <!-- Toastr CSS -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+                <!-- Toastr JS -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                <script>
+                    $(document).ready(function () {
+                        console.log("Document ready"); // To check if document is ready
+
+                        $('.subscription-form').on('submit', function (e) {
+                            e.preventDefault(); // Prevent the default form submission
+                            console.log(
+                                "Form submission prevented"); // Check if submit event is captured
+
+                            const email = $('.email-input').val(); // Select the email input using class
+                            console.log("Email entered:",
+                                email); // Check if the email is being captured
+
+                            $.ajax({
+                                type: 'POST',
+                                url: '/subscribe', // Your API endpoint
+                                data: JSON.stringify({
+                                    email: email
+                                }),
+                                contentType: 'application/json',
+                                success: function (response) {
+                                    console.log("AJAX success response:",
+                                        response); // Log success response
+                                    toastr.success('Subscribed successfully!');
+                                    $('.email-input').val(
+                                        ''
+                                    ); // Clear the input field after successful subscription
+                                },
+                                error: function (xhr) {
+                                    console.log("AJAX error response:",
+                                        xhr); // Log error response
+                                    const errorMessage = xhr.responseJSON ? xhr.responseJSON
+                                        .message : 'An error occurred';
+                                    if (errorMessage.includes(
+                                            'Email is already subscribed')) {
+                                        toastr.warning('This email is already subscribed.');
+                                    } else {
+                                        toastr.error('Subscription failed: ' +
+                                            errorMessage);
+                                    }
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+            </div>
+        </div>
+        <div class="box-newsletter-bottom">
+            <div class="newsletter-bottom"></div>
+        </div>
+    </div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="footer mt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <a href="index.html"><img alt="jobhub" src="/assets/imgs/theme/jobhub-logo.svg" /></a>
+                <div class="mt-20 mb-20">Connecting talented individuals with top companies and organizations.</div>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <h6>Company</h6>
+                <ul class="menu-footer mt-40">
+                    <li><a href="/page-about">About Upreak</a></li>
+                    <li><a href="/page-contact">Contact Us</a></li>
+                    <li><a href="/page-about#reviews">Review</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <h6>Process & Benefits</h6>
+                <ul class="menu-footer mt-40">
+                    <li><a href="/page-about#how-does-upreak-works">How does upreak works?</a></li>
+                    <li><a href="https://academy.upreak.com/">Recruitment Academy</a></li>
+                    <li><a href="/page-about">Our Team</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <h6>Product</h6>
+                <ul class="menu-footer mt-40">
+                    <li><a href="/job-list">Browse Jobs</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
+                    <li><a href="/page-contact">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 col-xs-6">
+                <h6>Policies</h6>
+                <ul class="menu-footer mt-40">
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/privacypolicy">Privacy & Policy</a></li>
+                    <li><a href="/termsandconditions">Terms & Condition</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom mt-50">
+            <div class="row">
+                <div class="col-md-6">
+                    Copyright ©2024 <a href="#"><strong>Upreak</strong></a>. All Rights Reserved | Developed By :
+                    <b>ApnaCoder Group</b>
+                </div>
+                <div class="col-md-6 text-md-end text-start">
+                    <div class="footer-social">
+                        <a href="https://facebook.com/upreakofficial" class="icon-socials icon-facebook"></a>
+                        <a href="https://twitter.com/upreakofficial" class="icon-socials icon-twitter"></a>
+                        <a href="https://www.instagram.com/upreakofficial" class="icon-socials icon-instagram"></a>
+                        <a href="https://www.linkedin.com/company/upreak" class="icon-socials icon-linkedin"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<!-- Toastr JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#subscription-form').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const email = $('#email').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/subscribe', // Your API endpoint
+                data: JSON.stringify({
+                    email: email
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    toastr.success('Subscribed successful!');
+                    $('#email').val(''); // Clear the input field
+                },
+                error: function (xhr) {
+                    const errorMessage = xhr.responseJSON.message;
+                    if (errorMessage.includes('Email is already subscribed')) {
+                        toastr.warning('This email is already subscribed.');
+                    } else {
+                        toastr.error('Subscription failed: ' + errorMessage);
+                    }
+                }
+            });
+        });
+    });
+</script>
+<!-- Vendor JS-->
+<script src="//assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+<script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/plugins/waypoints.js"></script>
+<script src="/assets/js/plugins/wow.js"></script>
+<script src="/assets/js/plugins/magnific-popup.js"></script>
+<script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/assets/js/plugins/select2.min.js"></script>
+<script src="/assets/js/plugins/isotope.js"></script>
+<script src="/assets/js/plugins/scrollup.js"></script>
+<script src="/assets/js/plugins/swiper-bundle.min.js"></script>
+<script src="/assets/js/plugins/leaflet.js"></script>
+<!-- Template  JS -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="/assets/js/main.js?v=1.0"></script>
+<script src="../..//assets/js/custom.js"></script>
+
+
+
+<!-- // header -->
+<script>
+    // Get modal element
+    var modal = document.getElementById("employerModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("employer-signin");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#employer-signin").click(function () {
+            $("#employerModal").fadeIn();
+        });
+
+        $(".close").click(function () {
+            $("#employerModal").fadeOut();
+        });
+
+        $(window).click(function (event) {
+            if (event.target.id === "employerModal") {
+                $("#employerModal").fadeOut();
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get references to the content sections
+        const phase1Content = document.getElementById('phase1-content');
+        const phase2Content = document.getElementById('phase2-content');
+        const phase3Content = document.getElementById('phase3-content');
+
+        // Hide all phases initially except phase 1
+        phase2Content.style.display = 'none';
+        phase3Content.style.display = 'none';
+
+        // Get the buttons by ID
+        const buttonLoginPassword = document.getElementById('button-login-password');
+        const buttonSignup = document.getElementById('button-signup');
+        const buttonOtpLogin = document.getElementById('button-otp-login');
+
+        // Function to hide all phases
+        function hideAllPhases() {
+            phase1Content.style.display = 'none';
+            phase2Content.style.display = 'none';
+            phase3Content.style.display = 'none';
+        }
+
+        // Show Phase 1 (Student Login with Password)
+        buttonLoginPassword.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default button behavior
+            hideAllPhases();
+            phase1Content.style.display = 'block'; // Show phase 1
+        });
+
+        // Show Phase 2 (Student Sign Up)
+        buttonSignup.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default button behavior
+            hideAllPhases();
+            phase2Content.style.display = 'block'; // Show phase 2
+        });
+
+        // Show Phase 3 (Student Login OTP)
+        buttonOtpLogin.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default button behavior
+            hideAllPhases();
+            phase3Content.style.display = 'block'; // Show phase 3
+        });
+
+        // Optional: Add close functionality to close the modal
+        const closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach(function (closeButton) {
+            closeButton.addEventListener('click', function () {
+                hideAllPhases(); // Hide all content when modal is closed
+            });
+        });
+    });
+</script>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#loginForm').on('submit', function (event) {
+            event
+                .preventDefault(); // Prevent the default form submission
+
+            const email = $('input[type="email"]').val();
+            const password = $('input[type="password"]').val();
+
+            console.log('Submitting form'); // Debugging log
+
+            $.ajax({
+                url: '/login',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    email,
+                    password
+                }),
+                success: function (response) {
+                    console.log('Login successful',
+                        response); // Debugging log
+                    // localStorage.setItem(
+                    //     'authtoken', response
+                    //     .token);
+                    toastr.success(
+                        'Login successful');
+                    window.location.href =
+                        '/myworkspace'; // Redirect to dashboard or another page
+                },
+                error: function (xhr) {
+                    console.log('Login error',
+                        xhr); // Debugging log
+                    toastr.error(xhr.responseJSON
+                        .message ||
+                        'An error occurred');
+                }
+            });
+        });
+    });
+</script>
+<!-- company enquiry modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle modal show event
+        const modalElement = document.getElementById('enquiryModal');
+        const planInput = document.getElementById('plan-choosen');
+
+        // Add event listener for when the modal is shown
+        modalElement.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // Button that triggered the modal
+            const plan = button.getAttribute('data-plan-choosen'); // Get data-plan-choosen value
+            if (planInput) {
+                planInput.value = plan; // Set value to hidden input
+            }
+        });
+
+        const enquiryForm = document.getElementById('enquiryForm');
+
+        enquiryForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(enquiryForm);
+
+            try {
+                const response = await fetch('/submit-enquiry', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        category: formData.get('category'),
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        cname: formData.get('cname'),
+                        cloc: formData.get('cloc'),
+                        plan: formData.get(
+                        'plan'), // Add the selected plan to the request
+                        message: `Company Name: ${formData.get('cname')}, Company Location: ${formData.get('cloc')}`, // Combined message
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    toastr.success('Enquiry sent successfully!');
+                    enquiryForm.reset();
+                    document.querySelector('.btn-close').click(); // Close the modal
+                } else {
+                    toastr.error('Failed to send the enquiry. Please try again.');
+                }
+            } catch (error) {
+                toastr.error('An error occurred. Please try again.');
+            }
+        });
+    });
+</script>
+
+<!-- form ajax raise issue  -->
+<script>
+    $(document).ready(function () {
+        $('#formAccountSettings').on('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            $.ajax({
+                url: '/save_contact', // Form action URL
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+                success: function (response) {
+                    toastr.success('Your message has been successfully submitted!',
+                        'Success');
+                    // Optionally, reset the form
+                    $('#formAccountSettings')[0].reset();
+                },
+                error: function (xhr, status, error) {
+                    toastr.error(
+                        'There was an error submitting your message. Please try again later.',
+                        'Error');
+                }
+            });
+        });
+    });
+</script>
+<!-- form ajax raise issue  -->
+
+
+
+</body>
+
+</html>

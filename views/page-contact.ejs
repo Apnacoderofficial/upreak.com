@@ -1,0 +1,259 @@
+﻿<%- include('includes/header') %>
+<title>Contact Us -  A leading recruitment company</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <!-- Content -->
+    <main class="main">
+        <div class="container wide mb-50">
+            <div class="border-radius-15 overflow-hidden">
+                <div class="responsive-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15384.400939395291!2d76.5278508!3d15.4251405!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x455a07f0db3877d%3A0x20eb5af3d4a9e954!2sUpreak!5e0!3m2!1sen!2sin!4v1725942121651!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+            </div>
+            
+            
+        </div>
+        <div class="container mt-90 mt-md-30">
+            <div class="row">
+                <div class="col-xl-10 col-lg-12 m-auto">
+                    <section class="mb-50">
+                        
+                        <div class="row">
+                            <div class="col-xl-9 col-md-12 mx-auto">
+                                <div class="contact-from-area padding-20-row-col">
+                                    <h5 class="text-blue text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Send Message</h5>
+                                    <h2 class="section-title mt-15 mb-10 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Drop Us a Line</h2>
+                                    <p class="text-muted mb-30 font-md text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Your email address will not be published. Required fields are marked *</p>
+                                    <div class="row mt-50">
+                                        <div class="col-md-4 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                                            <img src="assets/imgs/theme/icons/headset-color.svg" alt="">
+                                            <p class="text-muted font-xs mb-10">Phone</p>
+                                            <p class="mb-0 font-lg">
+                                                +91 9901381877 <br>
+                                                +91 74837 56277
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 mt-sm-30 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
+                                            <img src="assets/imgs/theme/icons/marker-color.svg" alt="">
+                                            <p class="text-muted font-xs mb-10">Email</p>
+                                            <p class="mb-0 font-lg">
+                                                info@upreak.com <br>
+                                                jobs@upreak.com
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 mt-sm-30 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".5s">
+                                            <img src="assets/imgs/theme/icons/plane-color.svg" alt="">
+                                            <p class="text-muted font-xs mb-10">Address</p>
+                                            <p class="mb-0 font-lg">
+                                                Near Kottureshwara College, Gangavati Industrial Estate
+                                                Gangawati
+                                                pampa nagar
+                                                gangavathi, karnataka 
+                                                India - 583227
+                                            </p>
+                                        </div>
+                                    </div>
+                                   <!-- Toastr CSS -->
+                                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+                                    <!-- Contact Form -->
+                                    <form action="/save_contact" class="p-3 mt-80 contact-form-style" method="POST" id="contact-form">
+                                        <div class="row wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="input-style mb-20">
+                                                    <input name="name" placeholder="First Name" type="text" id="name" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="input-style mb-20">
+                                                    <input name="email" placeholder="Your Email" type="email" id="email" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-6">
+                                                <div class="input-style mb-20">
+                                                    <input name="subject" placeholder="Subject" type="text" id="subject" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 text-center">
+                                                <div class="textarea-style mb-30">
+                                                    <textarea name="message" placeholder="Message" id="message" required></textarea>
+                                                </div>
+                                                <input type="hidden" name="category" value="contact">
+                                                <button class="submit submit-auto-width" type="submit">Send message</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- jQuery -->
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                                    <!-- Toastr JS -->
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+                                    <!-- AJAX Script -->
+                                    <script>
+                                        $(document).ready(function() {
+                                            // Intercept the form submission
+                                            $('#contact-form').on('submit', function(event) {
+                                                event.preventDefault(); // Prevent the form from submitting via the browser
+
+                                                // Serialize the form data
+                                                var formData = {
+                                                    name: $('#name').val(),
+                                                    email: $('#email').val(),
+                                                    subject: $('#subject').val(),
+                                                    message: $('#message').val(),
+                                                    category: 'contact' // You can also use $(this).find('input[name="category"]').val()
+                                                };
+
+                                                // Perform AJAX request
+                                                $.ajax({
+                                                    url: '/save_contact', // Your server endpoint
+                                                    type: 'POST',
+                                                    data: formData,
+                                                    success: function(response) {
+                                                        // Handle success
+                                                        toastr.success('Message dropped successfully!');
+                                                        
+                                                        // Optionally, you can clear the form fields
+                                                        $('#contact-form')[0].reset();
+                                                    },
+                                                    error: function(xhr, status, error) {
+                                                        // Handle error
+                                                        toastr.error('Failed to send the message. Please try again later.');
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    </script>
+
+                                    <p class="form-messege"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <section class="mt-80">
+            <div class="container">
+                <div class="row align-items-end mb-50">
+                    <div class="col-lg-5">
+                        <span class="text-blue wow animate__animated animate__fadeInUp">Questions</span>
+                        <h3 class="mt-20 wow animate__animated animate__fadeInUp">Frequently Ask Questions</h3>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-5">
+                        <p class="text-lg text-muted wow animate__animated animate__fadeInUp">
+                            See what are the queries which other candidates asked form upreak and what we offered.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        How does Upreak assist job seekers?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p class="mb-15">
+                                            To begin their journey, job seekers fill out a comprehensive profile detailing their skills and career aspirations. Upreak then utilizes a sophisticated matching algorithm to connect them with fitting job opportunities.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        What unique services does Upreak provide?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Our services include personalized job matching, extensive sector coverage, and access to a network of industry experts. We also offer innovative recruitment solutions at an affordable rate.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                        In what ways does Upreak streamline the recruitment process?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Guiding candidates every step of the way, Upreak's expert recruiters manage interview scheduling and provide all necessary support to ensure a smooth and efficient experience.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                        What are the costs associated with Upreak's services?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Our clients only pay a nominal fee upon the successful placement of a candidate. Additionally, candidates may be eligible for a referral bonus, fostering a mutually beneficial situation.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="accordion accordion-flush" id="accordionFlushExample2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne2" aria-expanded="false" aria-controls="flush-collapseOne2">
+                                        Who stands to benefit from Upreak's services?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample2">
+                                    <div class="accordion-body">
+                                        <p class="mb-15">
+                                            Both job seekers in pursuit of new opportunities and companies in search of top talent will find immense value in our comprehensive services.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo2" aria-expanded="false" aria-controls="flush-collapseTwo2">
+                                        How can I get started with Upreak?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo2" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo2" data-bs-parent="#accordionFlushExample2">
+                                    <div class="accordion-body">Kickstart your Upreak experience by visiting our website to register, or reach out to us directly for more detailed information.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree2" aria-expanded="false" aria-controls="flush-collapseThree2">
+                                        What Can Upreak’s Mock Interviews Offer?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree2" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample2">
+                                    <div class="accordion-body">Gain practical experience with real-life interview scenarios, enhancing your skills and confidence. Get constructive feedback to ace your next job interview.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour2">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour2" aria-expanded="false" aria-controls="flush-collapseFour2">
+                                        How Do Mock Interviews Benefit Me?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour2" class="accordion-collapse collapse show" aria-labelledby="flush-headingFour2" data-bs-parent="#accordionFlushExample2">
+                                    <div class="accordion-body">
+                                        <p class="mb-15">Prepare for common questions, polish your answers, and boost your interview confidence, setting you up for success..</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        
+    <!-- End Content -->
+    <%- include('includes/footer') %>

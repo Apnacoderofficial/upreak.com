@@ -1,0 +1,59 @@
+<section class="section-box">
+    <div class="box-head-single box-head-single-candidate">
+        <div class="container">
+            <div class="heading-image-rd online">
+                <a href="#">
+                    <figure>
+                        <img alt="jobhub" 
+                             src="<%= (user && user.upload_photo) ? 'http://upreak.com/uploads/' + user.upload_photo : '/assets/imgs/page/candidates/img-candidate.png' %>">
+                    </figure>
+                </a>
+            </div>
+            <div class="heading-main-info">
+                <h4><%= user && user.name ? user.name : 'No Name Available' %></h4>
+                <div class="head-info-profile">
+                    <span class="text-small mr-20">
+                        <i class="fi-rr-marker text-mutted"></i> 
+                        <%= user && user.city ? user.city : 'City Not Available' %> 
+                        <%= user && user.state ? user.state : 'State Not Available' %>
+                    </span>
+                    <span class="text-small mr-20">
+                        <i class="fi-rr-briefcase text-mutted"></i> 
+                        <%= user.preferred_designation?user.preferred_designation:'Preferred Designation' %>
+                    </span>
+                    <span class="text-small">
+                        <i class="fi-rr-clock text-mutted"></i> 
+                        <%= user.experience? user.experience + ' Years':'Total Experience' %>
+                    </span>
+                    <div class="rate-reviews-small">
+                        <span><img src="/assets/imgs/theme/icons/star.svg" alt="jobhub" /></span>
+                        <span><img src="/assets/imgs/theme/icons/star.svg" alt="jobhub" /></span>
+                        <span><img src="/assets/imgs/theme/icons/star.svg" alt="jobhub" /></span>
+                        <span><img src="/assets/imgs/theme/icons/star.svg" alt="jobhub" /></span>
+                        <span><img src="/assets/imgs/theme/icons/star.svg" alt="jobhub" /></span>
+                        <span class="ml-10 text-muted text-small">(5.0)</span>
+                    </div>
+                </div>
+                <div class="row align-items-end">
+                    <div class="col-lg-6">
+                        <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user && user.skill1 ? user.skill1 : 'Skill 1' %></a>
+                        <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user && user.skill2 ? user.skill2 : 'Skill 2' %></a>
+                        <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user && user.skill3 ? user.skill3 : 'Skill 3' %></a>
+                        <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user && user.skill4 ? user.skill4 : 'Skill 4' %></a>
+                        <a href="#" class="btn btn-tags-sm mb-10 mr-5"><%= user && user.skill5 ? user.skill5 : 'Skill 5' %></a>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="<%= (user && user.resume_file && user.resume_file.publicUrls) ? user.resume_file.publicUrls : '#' %>" class="btn btn-default">View CV</a>
+                        <a href="/myworkspace/edit-profile" class="btn btn-default">Edit Profile</a>
+                    </div>
+                    <div class="col-lg-3 text-lg-end">
+                        <ul class="breadcrumbs mt-10">
+                            <li><a href="#">My Workspace</a></li>
+                            <li><%= user && user.name ? user.name : 'User' %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

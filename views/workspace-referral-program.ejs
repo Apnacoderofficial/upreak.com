@@ -1,0 +1,106 @@
+<%- include('includes/header') %>
+<title><%= title%> - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+
+    <%- include('includes/user_header') %>
+
+    <section class="section-box mt-80">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <span class="text-small fs-3">
+                                        <%= title %>
+                                    </span>
+                                </div>
+
+                                <div class="col-lg-5 text-lg-end mt-sm-15">
+                                    <div class="display-flex2">
+                                        <div class="box-view-type">
+                                            <a href="job-list" class="view-type"><img
+                                                    src="/assets/imgs/theme/icons/icon-list.svg" alt="jobhub" /></a>
+                                            <!-- <a href="job-list" class="view-type"><img src="/assets/imgs/theme/icons/icon-grid.svg" alt="jobhub" /></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs p-3">
+                              <div class="container-fluid">
+                              
+                                <table id="candidatesTable" class="table table-striped table-bordered bg-grey">
+                                  <thead>
+                                      <tr>
+                                          <th>Referred Candidate Name</th>
+                                          <th>Job Position</th>
+                                          <th>Status</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% if (referDetail && referDetail.length > 0) { %>
+                                          <% referDetail.forEach(function(rd) { %>
+                                              <tr>
+                                                  <td><%= rd.name || 'N/A' %></td>
+                                                  <td><a href="/job-details?jobId=<%= rd.job_id || 'N/A' %>">Job Link</a></td>
+                                                  <td><%= rd.status || 'N/A' %></td>
+                                              </tr>
+                                          <% }); %>
+                                      <% } else { %>
+                                          <tr>
+                                              <td colspan="3">No data found</td>
+                                          </tr>
+                                      <% } %>
+                                  </tbody>
+                              </table>
+                              
+                              
+                              <!-- jQuery -->
+                              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                              
+                              <!-- DataTables JS -->
+                              <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                              
+                              <!-- Bootstrap JS (optional but recommended) -->
+                              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                              
+                              <script>
+                                  $(document).ready(function() {
+                                      $('#candidatesTable').DataTable();
+                                  });
+                              </script>
+                              
+                            </div>
+                            
+                            
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                <%- include('includes/sidebar') %>
+            </div>
+        </div>
+    </section>
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+     <!-- DataTables CSS -->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+ 
+     <!-- DataTables JS -->
+     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+ 
+    <script>
+      $(document).ready(function() {
+          $('#candidatesTable').DataTable();
+      });
+  </script>
+  
+
+    <%- include('includes/footer') %>

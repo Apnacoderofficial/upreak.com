@@ -1,0 +1,476 @@
+﻿<%- include('includes/header') %>
+<title>#1 Job Board - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+ 
+    <section class="section-box bg-banner-about banner-home-3 pt-10">
+        <div class="banner-hero">
+            <div class="banner-inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="block-banner">
+                            <h2 class="heading-banner text-center wow animate__animated animate__fadeInUp">The Best Job Board for Current Jobs opportunities</h2>
+                            <div class="form-find mw-720 mt-80">
+                                <form action="/job-list" method="GET" class="wow animate__animated animate__fadeInUp">
+                                        <input type="text" name="search" class="form-input input-keysearch mr-10" placeholder="Job title, Company... " />
+                                        
+                                        <select name="location" id="city-select" class="form-input mr-10 select-active">
+                                            <option value="">Select City</option>
+                                        </select>
+                                        
+                                        <script>
+                                            async function fetchCities() {
+                                                try {
+                                                    const response = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json'
+                                                        },
+                                                        body: JSON.stringify({
+                                                            country: "India"
+                                                        })
+                                                    });
+                                        
+                                                    const data = await response.json();
+                                                    const cities = data.data;
+                                        
+                                                    const citySelect = document.getElementById('city-select');
+                                        
+                                                    cities.forEach(city => {
+                                                        const option = document.createElement('option');
+                                                        option.value = city;
+                                                        option.textContent = city;
+                                                        citySelect.appendChild(option);
+                                                    });
+                                                } catch (error) {
+                                                    console.error('Error fetching cities:', error);
+                                                }
+                                            }
+                                        
+                                            // Call the function to populate the select dropdown
+                                            fetchCities();
+                                        </script>
+                                        
+                                        
+                                        <!-- Add other filters like job type, experience, salary here as inputs or select fields -->
+                                        
+                                        <button class="btn btn-default btn-find" type="submit">Find now</button>
+                                    </form>
+                            </div>
+                            <div class="list-tags-banner mt-60 text-center wow animate__animated animate__fadeInUp">
+                                <strong>Popular Searches:</strong>
+                                <a href="#">Engineer</a>, <a href="#">Doctor</a>, <a href="#">Sales</a>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-box mt-80">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                    <div class="content-page">
+                        <div class="box-filters-job mt-15 mb-10">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <span class="text-small">
+                                        Showing <strong><%= startIndex %> - <%= endIndex %></strong> of
+                                        <strong><%= totalJobs %></strong> jobs
+                                    </span>
+                                </div>
+
+                                <div class="col-lg-5 text-lg-end mt-sm-15">
+                                    <div class="display-flex2">
+                                        <div class="box-view-type">
+                                            <a href="job-list" class="view-type"><img
+                                                    src="assets/imgs/theme/icons/icon-list.svg" alt="jobhub" /></a>
+                                            <!-- <a href="job-list" class="view-type"><img src="assets/imgs/theme/icons/icon-grid.svg" alt="jobhub" /></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-list-list mb-15">
+                            <div class="list-recent-jobs">
+                                <!-- Item job -->
+                                <% if(locals.length > 0){  %>
+                                <% for (var i = locals.length - 1; i >= 0; i--) { %>
+                                <div class="card-job hover-up wow animate__animated animate__fadeIn">
+                                    <div class="card-job-top">
+                                        <div class="card-job-top--image">
+                                            <figure><img alt="jobhub" src="assets/imgs/page/job/digital.png" /></figure>
+                                        </div>
+                                        <div class="card-job-top--info">
+                                            <h6 class="card-job-top--info-heading"><a
+                                                    href="job-details?jobId=<%= locals[i].job_id %>"><%= locals[i].heading %></a>
+                                            </h6>
+                                            <div class="row">
+                                                <div class="col-lg-7">
+                                                    <a href="job-details?jobId=<%= locals[i].job_id %>"> <a
+                                                            href="job-details?jobId=<%= locals[i].job_id %>"><span
+                                                                class="card-job-top--company">Upreak ,
+                                                                Inc</span></a></a>
+                                                    <span class="card-job-top--location text-sm"><i
+                                                            class="fi-rr-marker"></i> <%= locals[i].location %> ,
+                                                        India</span>
+                                                    <span class="card-job-top--type-job text-sm"><i
+                                                            class="fi-rr-briefcase"></i>
+                                                        <%= locals[i].job_type ?locals[i].job_type: "Not defined" %>
+                                                    </span>
+                                                    <span class="card-job-top--post-time text-sm"
+                                                        data-createdat="<%= locals[i].createdAt %>">
+                                                        <i class="fi-rr-clock"></i>
+                                                        <span class="time-display"></span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-lg-5 text-lg-end">
+                                                    <span
+                                                        class="card-job-top--price"><%= locals[i].amount %><span></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-job-description mt-20">
+                                        <%= locals[i].sub_heading %>
+                                       
+                                    </div>
+                                    <div class="card-job-bottom mt-25">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-sm-8 col-12">
+                                                <% 
+                                                                // Parse the createdAt date
+                                                                const createdAtDate = new Date(locals[i].createdAt);
+
+                                                                // Calculate the difference in time from now (in milliseconds)
+                                                                const now = new Date();
+                                                                const diffTime = now - createdAtDate;
+
+                                                                // Convert the difference from milliseconds to days
+                                                                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                                                                %>
+
+                                                <!-- Check if the date is within the last 3 days -->
+                                                <% if (diffDays <= 3) { %>
+                                                <a href="job-grid"
+                                                    class="btn btn-small background-urgent btn-pink mr-5">ACTIVELY
+                                                    HIRING</a>
+                                                <% } %>
+                                                <a href="job-grid-2"
+                                                    class="btn btn-small background-blue-light mr-5">Experience :
+                                                    <%= locals[i].experience %></a>
+                                                <a href="job-grid"
+                                                    class="btn btn-small background-6 disc-btn"><%= locals[i].job_type ?locals[i].job_type: "Not defined" %></a>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-4 col-12 text-lg-end d-lg-block d-none">
+                                                <span><img src="assets/imgs/theme/icons/shield-check.svg"
+                                                        alt="jobhub"></span>
+                                                <span class="ml-5"><img src="assets/imgs/theme/icons/bookmark.svg"
+                                                        alt="jobhub"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <!-- Pagination Section -->
+                                <div class="pagination">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center">
+                                            <!-- Previous Page -->
+                                            <% if (currentPage > 1) { %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=<%= currentPage - 1 %>"
+                                                    aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+
+                                            <!-- Page Numbers -->
+                                            <% for (var i = 1; i <= totalPages; i++) { %>
+                                            <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                                            </li>
+                                            <% } %>
+
+                                            <!-- Next Page -->
+                                            <% if (currentPage < totalPages) { %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=<%= currentPage + 1 %>"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <% } else { %>
+                                <div class="author-bio p-30 mt-50 border-radius-15 bg-white">
+
+                                    <div class="author-des text-center">
+                                        <h3>No Jobs are Listed</h3>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                                <!-- End item job -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div class="sidebar-with-bg">
+                        <h5 class="font-semibold mb-10">Set job reminder</h5>
+                        <p class="text-body-999">Enter you email address and get job notification.</p>
+                        <div class="box-email-reminder">
+                            <form class="subscription-form">
+                                <div class="form-group mt-15">
+                                    <input type="text" class="form-control input-bg-white form-icons email-input"
+                                        placeholder="Enter email address" />
+                                    <i class="fi-rr-envelope"></i>
+                                </div>
+                                <div class="form-group mt-25 mb-5">
+                                    <button class="btn btn-default btn-md">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="sidebar-shadow none-shadow mb-30">
+                        <form action="/job-list" method="GET">
+                            <div class="sidebar-filters">
+                                <div class="filter-block mb-30">
+                                    <h5 class="medium-heading mb-15">Location</h5>
+                                    <div class="form-group" >
+                                        <select name="location" id="city-select" class="form-input mr-10 select-active">
+                                            <option value="">Select City</option>
+                                            <!-- Cities will be populated here by JavaScript -->
+                                        </select>
+                                        <!-- <i class="fi-rr-marker"></i> -->
+                                    </div>
+                                </div>
+                                
+
+                                <!-- Job Type Filter -->
+                                <div class="filter-block mb-30">
+                                    <h5 class="medium-heading mb-15">Work mode</h5>
+                                    <div class="">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="job_type"
+                                                value="Full Time" id="fullTime">
+                                            <label class="" for="fullTime">Full Time</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="job_type"
+                                                value="Part Time" id="partTime">
+                                            <label class="form-check-label" for="partTime">Part Time</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="job_type" value="Remote"
+                                                id="remoteJobs">
+                                            <label class="form-check-label" for="remoteJobs">Remote Jobs</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="job_type"
+                                                value="Freelance" id="freelance">
+                                            <label class="form-check-label" for="freelance">Freelance</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="job_type"
+                                                value="Temporary" id="temporary">
+                                            <label class="form-check-label" for="temporary">Temporary</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                              <!-- Industry Filter -->
+                                <div class="filter-block mb-30">
+                                    <h5 class="medium-heading mb-15">Industry</h5>
+                                    <div class="">
+                                        <% industries.forEach(industry => { %>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="industry" 
+                                                    value="<%= industry.name %>" id="<%= industry.id %>">
+                                                <label class="form-check-label" for="<%= industry.id %>">
+                                                    <%= industry.name %>
+                                                </label>
+                                            </div>
+                                        <% }) %>
+                                    </div>
+                                </div>
+
+
+                                <!-- Experience Level Filter -->
+                                <div class="filter-block mb-30">
+                                    <h5 class="medium-heading mb-15">Experience Level</h5>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="experience" value="Freshers"
+                                            id="freshers">
+                                        <label class="form-check-label" for="freshers">Freshers</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="experience" value="1-2 Years"
+                                            id="experience1">
+                                        <label class="form-check-label" for="experience1">1-2 Years</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="experience" value="2-5 Years"
+                                            id="experience2">
+                                        <label class="form-check-label" for="experience2">2-5 Years</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="experience"
+                                            value="5-10 Years" id="experience3">
+                                        <label class="form-check-label" for="experience3">5-10 Years</label>
+                                    </div>
+                                </div>
+
+                                <!-- Salary Range Filter -->
+                                <div class="filter-block mb-30">
+                                    <h5 class="medium-heading mb-15">Salary</h5>
+                                    <div class="">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="salary" value="0-2 Lakhs"
+                                                id="salary1">
+                                            <label class="form-check-label" for="salary1">0-2 Lakhs</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="salary" value="3-6 Lakhs"
+                                                id="salary2">
+                                            <label class="form-check-label" for="salary2">3-6 Lakhs</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="salary"
+                                                value="6-10 Lakhs" id="salary3">
+                                            <label class="form-check-label" for="salary3">6-10 Lakhs</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="salary"
+                                                value="15-25 Lakhs" id="salary4">
+                                            <label class="form-check-label" for="salary4">15-25 Lakhs</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="salary"
+                                                value="To be discussed" id="salary5">
+                                            <label class="form-check-label" for="salary5">To be discussed</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Submit and Reset -->
+                                <div class="buttons-filter">
+                                    <button class="btn btn-default" type="submit">Apply filter</button>
+                                    <button class="btn" type="reset">Reset filter</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="sidebar-with-bg background-primary bg-sidebar pb-80">
+                        <h5 class="medium-heading text-white mb-20 mt-20">Create a Professional Resume in Minutes!</h5>
+                        <p class="text-body-999 text-white mb-30">Stand out from the crowd with a resume that showcases
+                            your strengths. Our easy-to-use resume builder helps you craft a polished and professional
+                            resume in just a few clicks. No design skills needed!</p>
+                        <a href="https://academy.upreak.com" class="btn btn-border icon-chevron-right btn-white-sm">Try it Now</a>
+                    </div>
+                    <div class="sidebar-with-bg">
+                        <h5 class="medium-heading mb-20 mt-20">For More Updates, Join Our Groups Now!</h5>
+                        <!-- <p class="text-body-999 mb-30">Stand out from the crowd with a resume that showcases your strengths. Our easy-to-use resume builder helps you craft a polished and professional resume in just a few clicks. No design skills needed!</p> -->
+                        <a href="https://whatsapp.com/channel/0029VakqglnFnSzBl9TPPs0t"
+                            class="btn btn-border icon-chevron-right btn-white-sm">Join WhatsApp Group</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-box">
+        <div class="container">
+            <ul class="list-partners">
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay="0s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/samsung.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".1s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/google.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".2s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/facebook.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".3s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/pinterest.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".4s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/avaya.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".5s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/forbes.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".1s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/avis.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".2s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/nielsen.svg" /></figure>
+                    </a>
+                </li>
+                <li class="wow animate__animated animate__fadeInUp hover-up" data-wow-delay=".3s">
+                    <a href="#">
+                        <figure><img alt="jobhub" src="assets/imgs/jobs/logos/doordash.svg" /></figure>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- End Content -->
+  
+    <script>
+        async function fetchCities() {
+            try {
+                const response = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        country: "India"
+                    })
+                });
+    
+                const data = await response.json();
+                const cities = data.data;
+    
+                const citySelect = document.getElementById('city-select');
+    
+                cities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error fetching cities:', error);
+            }
+        }
+    
+        // Call the function to populate the select dropdown
+        fetchCities();
+    </script>
+    
+    <%- include('includes/footer') %>
