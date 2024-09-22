@@ -23,3 +23,9 @@
 
 ## Version 1.0.9
 - **Central Database Function**: A central database function was created to improve data management.
+
+
+# Version 2.0 
+
+## Version 2.0.0
+- Advance Ui With Multiple Application Tracking and Advance User UI Dashboard.
