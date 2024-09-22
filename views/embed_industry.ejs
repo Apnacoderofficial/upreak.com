@@ -1,0 +1,80 @@
+<%- include('includes/head.ejs') %>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <%- include('includes/navbar.ejs') %>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <%- include('includes/sidebar.ejs') %>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Industries</h3>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 ">
+              <div class="card shadow mb-4">
+                <div class="card-header">
+                  <h5>Embed Industries</h5>
+                </div>
+                <div class="card-body">
+                  <form id="formAccountSettings" method="POST" action="<%= typeof locals.id != 'undefined' ? '/industries-edit?id=' + locals.id : '/industries-create' %>" autocomplete="off">
+                    <div class="row">
+                      <input type="hidden" name="id" value="<%= typeof locals == 'undefined' ? '': locals.id %>">
+
+                      <div class="mb-3 col-md-12">
+                        <div class="form-group">
+                          <label>Enter Name</label>
+                          <input type="text" id="name" name="name" class="form-control" autocomplete="off"
+                            required placeholder="Enter Your name"
+                            value="<%- typeof locals != 'undefined' ? locals.name : '' %>">
+                        </div>
+                      </div>
+
+                      <!-- <div class="mb-3 col-md-12">
+                        <div class="form-group">
+                          <label> Upload photo</label>
+                          <input type="file" id="photo" name="photo" class="form-control">
+                          <br>
+                          <img src="uploads/<%- typeof locals != 'undefined' ? locals.photo : '' %>" width="100px"
+                            height="100px">
+                          <input type="hidden" value="<%- typeof locals != 'undefined' ? locals.photo : '' %>"
+                            name="photo_file_name">
+                        </div>
+                      </div> -->
+
+                      <div class="col-md-12 mt-2">
+                        <button type="submit" class="btn btn-primary me-2">Save</button>
+                        <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                      </div>
+
+                  </form>
+                </div>
+                <!-- /Account -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <%- include('includes/footer.ejs') %>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+  </div>
+
+</body>

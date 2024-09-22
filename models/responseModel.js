@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false, 
     }, 
+    bio: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+  },
     phonenumber: { 
       type: DataTypes.STRING,
       allowNull: true,
@@ -34,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     }, 
+    
       name: { 
         type: DataTypes.STRING,
         allowNull: true,
@@ -354,11 +359,7 @@ module.exports = (sequelize, DataTypes) => {
     resume_file:{ 
       type: DataTypes.JSON,
       allowNull: true,
-    },
-      plan_detail: { 
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    }, 
 
     alldata: { 
       type: DataTypes.JSON,

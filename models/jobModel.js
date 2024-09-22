@@ -1,3 +1,5 @@
+const { industry } = require("../config/dbconfig");
+
 module.exports = (sequelize, DataTypes) => {
     const jobs = sequelize.define( "jobs", {
         description: { 
@@ -52,10 +54,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        industry: { 
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         photo: { 
             type: DataTypes.BLOB,
             allowNull: true,
-        },  
+        },
+        roadmap: { 
+            type: DataTypes.TEXT,
+            allowNull: true,
+          },  
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,

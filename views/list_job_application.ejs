@@ -23,7 +23,40 @@
                       </div>
                     </div>
                   </div>
+                  <!-- <div class="row card p-3 m-1">
+                    <div class="col-lg-12">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="list-group" id="list-tab" role="tablist">
+                            <% jobs.forEach((job, index) => { %>
+                              <a class="list-group-item rounded mt-2 list-group-item-action <%= index === 0 ? 'active' : '' %>" id="list-job-<%= job.id %>-list" data-toggle="list" href="#list-job-<%= job.id %>" role="tab" aria-controls="job-<%= job.id %>" style="border: 1px solid blue;">
+                                <strong><%= job.heading %></strong>
+                                <br><%= job.createdAt %>
+                              </a>
+                            <% }) %>
+                          </div>
+                        </div>
+                        <div class="col-8">
+                          <div class="tab-content border rounded" id="nav-tabContent">
+                            
+                            <% jobs.forEach((job, index) => { %>
+                              <div class="tab-pane fade <%= index === 0 ? 'show active' : '' %>" id="list-job-<%= job.id %>" role="tabpanel" aria-labelledby="list-job-<%= job.id %>-list">
+                                <p><%- job.description %></p>
+                              </div>
+                            <% }) %>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  
                   <div class="row">
+
+                    
+
+
+
                     <div class="col-md-12 ">
                         <div class="card shadow mb-4">
                           <div class="card-header">
@@ -34,8 +67,8 @@
                               <% } %>
                           </div>
                           </div>
-                        <div class="card-body">
-                                <table  class="table  table-striped display rable-responsive  expandable-table"  width="100%" cellspacing="0">
+                        <div class="card-body p-2 w-100">
+                                <table  class="table  table-striped display table-responsive  expandable-table"  width="100%" cellspacing="0">
                                     <thead class="table-light">
                                         <tr class=" text-center">
                                             <th>SNo.</th>
@@ -57,7 +90,24 @@
                                                 <td><%= locals[i].email %></td>
                                                 <td><%= locals[i].phone_number %></td>
                                                 <td><%= locals[i].createdAt %></td>                                                
-                                                <td>Applied</td>
+                                                <td>
+                                                  <select name="jobStatus" 
+                                                          id="jobStatus_<%= locals[i].id %>" 
+                                                          style="font-size: 12px; padding: 2px; width: 120px;"
+                                                          onchange="updateJobStatus('<%= locals[i].id %>', this.value)" 
+                                                          <%= locals[i].status == 8 ? 'disabled' : '' %> >
+                                                          
+                                                    <% const statuses = {1: 'Application Sent', 2: 'Application Viewed', 3: 'Resume Viewed', 4: 'Awaiting Recruiter Action', 5: 'Recruiter Seen', 6: 'Application Sent to Round', 7: 'Hired', 8: 'Rejected'}; %>
+                                                    
+                                                    <% for (let status in statuses) { %>
+                                                      <option value="<%= status %>" <%= locals[i].status == status ? 'selected' : '' %>>
+                                                        <%= statuses[status] %>
+                                                      </option>
+                                                    <% } %>
+                                                  </select>
+                                                </td>
+                                                
+                                                
                                                 <td>
                                                   <% if (locals[i].resume_link && locals[i].resume_link.publicUrls) { %>
                                                     <a class="btn m-1 btn-outline-info" href="<%= locals[i].resume_link.publicUrls %>" target="_blank">View Resume</a>
@@ -94,6 +144,38 @@
                   <!-- content-wrapper ends -->
                   <!-- partial:partials/_footer.html -->
                   <%- include('includes/footer.ejs') %>
+                  <!-- Include jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Toastr CDN for notifications -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+                  <script>
+                    function updateJobStatus(id, status) {
+                      $.ajax({
+                        url: '/updateJobStatus', // The route to handle the update
+                        method: 'POST',
+                        data: {
+                          id: id,
+                          status: status
+                        },
+                        success: function(response) {
+                          if (response.success) {
+                            toastr.success('Status updated successfully.');
+                          } else {
+                            toastr.error('Failed to update status.');
+                          }
+                        },
+                        error: function() {
+                          toastr.error('An error occurred while updating status.');
+                        }
+                      });
+                    }
+                  </script>
+                  
+                  
+                  
+                  
                   <!-- partial -->
                 </div>
                 <!-- main-panel ends -->

@@ -1,17 +1,18 @@
 <%- include('includes/head.ejs') %>
-    <style>
-        .response-box {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            min-height: 100px;
-        }
-        .spinner-border {
-            display: none;
-            margin-left: 10px;
-        }
-    </style>
+<style>
+    .response-box {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        min-height: 100px;
+    }
+
+    .spinner-border {
+        display: none;
+        margin-left: 10px;
+    }
+</style>
 
 <body>
     <div class="container-scroller">
@@ -33,47 +34,56 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-8">
                                         <!-- Inside your EJS template for the form -->
-                                        <form id="api-form" method="POST" enctype="multipart/form-data">
+                                        <form id="api-form" method="POST">
                                             <div class="form-group">
-                                            <label for="userMessage">Your Message:</label>
-                                            <input type="text" class="form-control" id="userMessage" name="message" placeholder="Enter your message here">
-                                            </div>
-                                            <div class="form-group">
-                                            <label for="file">Upload a PDF:</label>
-                                            <input type="file" class="form-control" id="file" name="file">
+                                                <label for="userMessage">Your Message:</label>
+                                                <input type="text" class="form-control" id="userMessage" name="message" placeholder="Enter your message here" required>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Send</button>
+                                            <div class="spinner-border text-primary mt-2" style="display:none;" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </form>
+                                        
                                         <div class="response-box mt-4">
                                             <h4>Response:</h4>
                                             <p id="api-response" class="text-muted">Waiting for your input...</p>
                                         </div>
-                                         <!-- jQuery for AJAX handling -->
- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
- <script>
- $(document).ready(function() {
-    $('#api-form').on('submit', function(event) {
+                                        
+                                        
+                                        
+                                        <!-- jQuery for AJAX handling -->
+                                        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                                        <script>
+                                        $(document).ready(function () {
+    $('#api-form').on('submit', function (event) {
         event.preventDefault();
 
-        // Create FormData object to handle file and text
+        // Create FormData object
         const formData = new FormData(this);
+
+        // Debugging: Check if formData has 'message' field
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
 
         // Show loading spinner
         $('.spinner-border').show();
 
         $.ajax({
-            url: '/gptchat', // Adjust the endpoint based on your Node.js setup
+            url: '/chatgpt', // Ensure this matches your route
             type: 'POST',
             data: formData,
-            processData: false, // Important for FormData
-            contentType: false, // Important for FormData
-            success: function(response) {
-                $('#api-response').text(response.message);
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $('#api-response').text(response.message || 'No response received.');
             },
-            error: function(xhr) {
-                $('#api-response').text('Error: ' + (xhr.responseJSON ? xhr.responseJSON.message : 'Unexpected error occurred.'));
+            error: function (xhr) {
+                const errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'Unexpected error occurred.';
+                $('#api-response').text('Error: ' + errorMessage);
             },
-            complete: function() {
+            complete: function () {
                 // Hide loading spinner
                 $('.spinner-border').hide();
             }
@@ -81,9 +91,11 @@
     });
 });
 
- </script>
-  
+                                        </script>
                                         
+                                        
+
+
                                     </div>
                                 </div>
                             </div>
@@ -99,40 +111,43 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
- <!-- Bootstrap JS and dependencies -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
- <!-- jQuery for AJAX handling -->
- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
- <script>
-     $(document).ready(function() {
-         $('#api-form').on('submit', function(event) {
-             event.preventDefault();
+    <!-- jQuery for AJAX handling -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#api-form').on('submit', function (event) {
+                event.preventDefault();
 
-             // Show loading spinner
-             $('.spinner-border').show();
+                // Show loading spinner
+                $('.spinner-border').show();
 
-             const userMessage = $('#userMessage').val();
-             
-             $.ajax({
-                 url: '/gptchat', // Adjust the endpoint based on your Node.js setup
-                 type: 'POST',
-                 contentType: 'application/json',
-                 data: JSON.stringify({ message: userMessage }),
-                 success: function(response) {
-                     $('#api-response').text(response.message);
-                 },
-                 error: function(xhr) {
-                     $('#api-response').text('Error: ' + xhr.responseJSON.message || 'Unexpected error occurred.');
-                 },
-                 complete: function() {
-                     // Hide loading spinner
-                     $('.spinner-border').hide();
-                 }
-             });
-         });
-     });
- </script>
+                const userMessage = $('#userMessage').val();
+
+                $.ajax({
+                    url: '/gptchat', // Adjust the endpoint based on your Node.js setup
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        message: userMessage
+                    }),
+                    success: function (response) {
+                        $('#api-response').text(response.message);
+                    },
+                    error: function (xhr) {
+                        $('#api-response').text('Error: ' + xhr.responseJSON.message ||
+                            'Unexpected error occurred.');
+                    },
+                    complete: function () {
+                        // Hide loading spinner
+                        $('.spinner-border').hide();
+                    }
+                });
+            });
+        });
+    </script>
 </body>

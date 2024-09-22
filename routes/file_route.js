@@ -48,7 +48,15 @@ module.exports = app => {
   router.post("/job_application", upload.single('resume'), dash_path.save_job_application);
   router.get("/delete_job/:id", dash_path.job_delete);
   router.get("/list_job_application", dash_path.list_job_application);
+  
+  router.post("/updateJobStatus", dash_path.updateJobStatus);
 
+  router.get('/industries', dash_path.getAllIndustries);
+  router.get('/industries-create', dash_path.createIndustry);
+  router.post('/industries-create', upload.single('photo'), dash_path.createIndustry);
+  router.get('/industries-edit', dash_path.editIndustry);
+  router.post('/industries-edit', dash_path.updateIndustry);
+  router.post('/industries-delete', dash_path.deleteIndustry);
 
   router.get("/export/:tableName", dash_path.export_table);
   router.post("/uploadCSV/:tableName",upload.single('bulk_csv'), dash_path.import_csv);

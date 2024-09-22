@@ -11,7 +11,7 @@ const QRCode = require('qrcode');
 const { sendMessageToWhatsApp } = require('./whatsAppSender');
 const { sendOTP } = require('./smsOTPSender');
 const moment = require("moment");
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 const { createEvent, deleteEvent } = require('./teamsMeeting');
 const json2csv = require('json2csv');
 const parseCSV = require("../controllers/parseCSV");
@@ -70,6 +70,8 @@ const corporateservices = db.corporateservices;
 const Activitylog = db.activitylog;
 const Jobs = db.jobs;
 const JobApplications = db.job_applications;
+const Industry = db.industry;
+const docs = db.docs;
 
 exports.import_csv = (upload.single('bulk_csv'), async function (req, res, next) {
   try {
@@ -83,7 +85,7 @@ exports.import_csv = (upload.single('bulk_csv'), async function (req, res, next)
     let columnNames = Object.keys(tableInfo);
 
     // Define an array of columns to be excluded
-    const excludedColumns = ['alldata', 'createdAt', 'updatedAt', 'id', 'application_id', 'email_verify', 'phone_verify', 'whatsapp_verify', 'plan_detail', 'upload_photo', 'resume_file'];
+    const excludedColumns = ['alldata', 'createdAt', 'updatedAt', 'id', 'application_id', 'email_verify', 'phone_verify', 'whatsapp_verify', 'plan_detail', 'upload_icon', 'resume_file'];
 
     // // Remove excluded columns from columnNames array
     columnNames = columnNames.filter(columnName => !excludedColumns.includes(columnName));
@@ -115,7 +117,7 @@ exports.export_table = async (req, res) => {
 
     // Remove 'alldata' from columnNames array
     // columnNames = columnNames.filter(columnName => columnName !== 'id');
-    const excludedColumns = ['alldata', 'updatedAt', 'id', 'application_id', 'email_verify', 'phone_verify', 'whatsapp_verify', 'plan_detail', 'upload_photo', 'resume_file', 'resume'];
+    const excludedColumns = ['alldata', 'updatedAt', 'id', 'application_id', 'email_verify', 'phone_verify', 'whatsapp_verify', 'plan_detail', 'upload_icon', 'resume_file', 'resume'];
 
     // // Remove excluded columns from columnNames array
     columnNames = columnNames.filter(columnName => !excludedColumns.includes(columnName));
@@ -318,7 +320,9 @@ exports.jobs = async (req, res) => {
       ['id', 'DESC']
     ]
   });
-  res.render('jobs', { locals: data, bData: undefined })
+  
+  
+  res.render('jobs', { locals: data, bData: undefined})
 }
 
 // Adjust as needed
@@ -438,16 +442,16 @@ exports.add_candidate_details = (req, res) => {
 };
 
 
-exports.save_candidate_details = (upload.fields([{ name: 'photo' }, { name: 'resume' }]), async function (req, res, next) {
+exports.save_candidate_details = (upload.fields([{ name: 'icon' }, { name: 'resume' }]), async function (req, res, next) {
 
   let id = req.body && req.body.id && req.body.id != '' ? req.body.id : null;
   try {
     let googleData;
     if (req.session.role == 'Master' || req.session.role == 'Manager') {
-      if (req.files['photo']) {
-        var imageFile = req.files['photo'][0];
+      if (req.files['icon']) {
+        var imageFile = req.files['icon'][0];
       } else {
-        var imageFile = req.body.photo_file_name;
+        var imageFile = req.body.icon_file_name;
       }
       if (req.files['resume']) {
         pdfFile = req.files['resume'][0];
@@ -475,7 +479,7 @@ exports.save_candidate_details = (upload.fields([{ name: 'photo' }, { name: 'res
         gender: req.body.gender,
         languages: req.body.languages,
         marragestatus: req.body.maritalstatus,
-        upload_photo: imageFile.filename,
+        upload_icon: imageFile.filename,
         resume_file: googleData,
         skill1: req.body.skill1,
         skill2: req.body.skill2,
@@ -1329,14 +1333,14 @@ exports.edit_resumes = async (req, res) => {
     res.redirect("/login");
 };
 
-exports.save_resume = (upload.fields([{ name: 'photo' }, { name: 'resume_link' }]), async (req, res) => {
+exports.save_resume = (upload.fields([{ name: 'icon' }, { name: 'resume_link' }]), async (req, res) => {
 
   if (req.session.role == 'Master') {
     let googleData; 
-    if (req.files['photo']) {
-      var imageFile = req.files['photo'][0];
+    if (req.files['icon']) {
+      var imageFile = req.files['icon'][0];
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     if (req.files['resume_link']) {
       pdfFile = req.files['resume_link'][0];
@@ -1352,7 +1356,7 @@ exports.save_resume = (upload.fields([{ name: 'photo' }, { name: 'resume_link' }
     }
     
     const data = {
-      photo: imageFile.filename,
+      icon: imageFile.filename,
       resume_title: req.body.resume_title,
       resume_category: req.body.resume_category,
       resume_link : googleData
@@ -1498,11 +1502,11 @@ exports.add_products = (req, res) => {
     res.redirect("/login");
 };
 
-exports.save_products = (upload.single('photo'), async (req, res) => {
+exports.save_products = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const data = {
-      photo: req.file.photo,
+      icon: req.file.icon,
       description: req.body.description,
       name: req.body.name,
       link: req.body.link,
@@ -1542,17 +1546,17 @@ exports.save_products = (upload.single('photo'), async (req, res) => {
   else
     res.redirect("/login");
 });
-exports.update_products = (upload.single('photo'), async (req, res) => {
+exports.update_products = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const id = req.body.id;
     if (req.file) {
       var imageFile = req.file;
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     const data = {
-      photo: imageFile.filename,
+      icon: imageFile.filename,
       description: req.body.description,
       name: req.body.name,
       link: req.body.link,
@@ -1684,7 +1688,7 @@ exports.add_mou = (req, res) => {
     res.redirect("/login");
 };
 
-exports.save_mou = (upload.single('photo'), async (req, res) => {
+exports.save_mou = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const data = {
@@ -1694,7 +1698,7 @@ exports.save_mou = (upload.single('photo'), async (req, res) => {
       email: req.body.email,
       number: req.body.number,
       description: req.body.description,
-      photo: req.file.photo,
+      icon: req.file.icon,
       address: req.body.address,
       city: req.body.city,
       facebook: req.body.facebook,
@@ -1720,14 +1724,14 @@ exports.save_mou = (upload.single('photo'), async (req, res) => {
   else
     res.redirect("/login");
 });
-exports.update_mou = (upload.single('photo'), async (req, res) => {
+exports.update_mou = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const id = req.body.id;
     if (req.file) {
       var imageFile = req.file;
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     const data = {
       name: req.body.name,
@@ -1736,7 +1740,7 @@ exports.update_mou = (upload.single('photo'), async (req, res) => {
       email: req.body.email,
       number: req.body.number,
       description: req.body.description,
-      photo: imageFile.filename,
+      icon: imageFile.filename,
       address: req.body.address,
       city: req.body.city,
       facebook: req.body.facebook,
@@ -2346,7 +2350,12 @@ exports.postlogin = async (req, res) => {
    if(!user){
       req.flash("Error", "Invalid Email/Password!");
       return res.redirect("/login");
-    }else {
+    }
+    else if(user.role == 'user' || user.role == 'candidate'){
+      req.flash("Error", "Access Denied");
+      return res.redirect("/login");
+    }
+    else {
       let phoneNumberResponse;
       if (email != 'superadmin@upreak.com') {
         phoneNumberResponse = await Response.findOne({
@@ -2834,11 +2843,11 @@ exports.view_testimonials = (req, res) => {
       res.redirect("/error-500");
     });
 };
-exports.save_testimonials = (upload.single('photo'), async (req, res) => {
+exports.save_testimonials = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const data = {
-      photo: req.file.filename,
+      icon: req.file.filename,
       description: req.body.description,
       author: req.body.author
     };
@@ -2875,17 +2884,17 @@ exports.save_testimonials = (upload.single('photo'), async (req, res) => {
   else
     res.redirect("/login");
 });
-exports.update_testimonials = (upload.single('photo'), async (req, res) => {
+exports.update_testimonials = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const id = req.body.id;
     if (req.file) {
       var imageFile = req.file;
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     const data = {
-      photo: imageFile.filename,
+      icon: imageFile.filename,
       description: req.body.description,
       author: req.body.author
     };
@@ -2996,12 +3005,12 @@ exports.view_blogs = (req, res) => {
       res.redirect("/error-500");
     });
 };
-exports.save_blogs = (upload.single('photo'), async (req, res) => {
+exports.save_blogs = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const data = {
       url_title: req.body.url_title,
-      photo: req.file.filename,
+      icon: req.file.filename,
       summary: req.body.description,
       heading: req.body.title,
       metatitle: req.body.title,
@@ -3021,18 +3030,18 @@ exports.save_blogs = (upload.single('photo'), async (req, res) => {
   else
     res.redirect("/login");
 });
-exports.update_blogs = (upload.single('photo'), async (req, res) => {
+exports.update_blogs = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const id = req.body.id;
     if (req.file) {
       var imageFile = req.file;
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     const data = {
       url_title: req.body.url_title,
-      photo: imageFile.filename,
+      icon: imageFile.filename,
       summary: req.body.description,
       heading: req.body.title,
       metatitle: req.body.title,
@@ -3216,13 +3225,13 @@ exports.view_details = (req, res) => {
   }
 };
 
-exports.save_job_seekers = (upload.fields([{ name: 'photo' }, { name: 'resume' }]), async function (req, res, next) {
+exports.save_job_seekers = (upload.fields([{ name: 'icon' }, { name: 'resume' }]), async function (req, res, next) {
 
   let googleData;
-  if (req.files['photo']) {
-    var imageFile = req.files['photo'][0];
+  if (req.files['icon']) {
+    var imageFile = req.files['icon'][0];
   } else {
-    var imageFile = req.body.photo_file_name;
+    var imageFile = req.body.icon_file_name;
   }
   if (req.files['resume']) {
     pdfFile = req.files['resume'][0];
@@ -3252,7 +3261,7 @@ exports.save_job_seekers = (upload.fields([{ name: 'photo' }, { name: 'resume' }
       gender: req.body.gender,
       languages: req.body.languages,
       marragestatus: req.body.maritalstatus,
-      upload_photo: imageFile.filename,
+      upload_icon: imageFile.filename,
       resume_file: googleData,
       skill1: req.body.skill1,
       skill2: req.body.skill2,
@@ -3847,7 +3856,7 @@ exports.addcorporatecorner = async (req, res) => {
   } else
     res.redirect("/login");
 };
-exports.savecorporatecorner = (upload.single('photo'), async (req, res) => {
+exports.savecorporatecorner = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const data = {
@@ -3862,7 +3871,7 @@ exports.savecorporatecorner = (upload.single('photo'), async (req, res) => {
       partner_status: req.body.contact_status,
       email: req.body.email,
       phone: req.body.phone,
-      photo: imageFile.filename,
+      icon: imageFile.filename,
     };
     console.log(data);
     Corporatecorner.create(data, { raw: true })
@@ -3900,14 +3909,14 @@ exports.editcorporatecorner = (req, res) => {
     res.redirect("/login");
   }
 };
-exports.updatecorporatecorner = (upload.single('photo'), async (req, res) => {
+exports.updatecorporatecorner = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const id = req.body.id;
     if (req.file) {
       var imageFile = req.file;
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     const data = {
       heading: req.body.heading,
@@ -3920,7 +3929,7 @@ exports.updatecorporatecorner = (upload.single('photo'), async (req, res) => {
       partner_status: req.body.contact_status,
       email: req.body.email,
       phone: req.body.phone,
-      photo: imageFile.filename,
+      icon: imageFile.filename,
     };
 
     await Corporatecorner.update(data, {
@@ -3982,7 +3991,7 @@ exports.addcorporateservices = async (req, res) => {
   }
 };
 
-exports.save_corporateservices = (upload.single('photo'), async (req, res) => {
+exports.save_corporateservices = (upload.single('icon'), async (req, res) => {
   if (req.session.role == 'Master') {
     try {
       const data = {
@@ -4028,21 +4037,21 @@ exports.editcorporateservices = async (req, res) => {
   }
 };
 
-exports.update_corporateservices = (upload.single('photo'), async (req, res) => {
+exports.update_corporateservices = (upload.single('icon'), async (req, res) => {
 
   if (req.session.role == 'Master') {
     const id = req.body.id;
     if (req.file) {
       var imageFile = req.file;
     } else {
-      var imageFile = req.body.photo_file_name;
+      var imageFile = req.body.icon_file_name;
     }
     const data = {
       partner_id: req.body.partner_id,
       service_name: req.body.service_name,
       service_description: req.body.service_description,
       service_price: req.body.service_price,
-      photo: imageFile.filename,
+      icon: imageFile.filename,
     };
 
     await corporateservices.update(data, {
@@ -4111,7 +4120,7 @@ exports.list_job_application = async (req, res) => {
 
     let applications;
     if (req.session.role === 'Master' || req.session.role === 'Admin') {
-      applications = await JobApplications.findAll({ where: { status: 1 } });
+      applications = await JobApplications.findAll();
     } else if (req.session.role === 'User') {
       let email = req.session.userid;
       applications = await JobApplications.findAll({ where: { status: 1, email } });
@@ -4122,6 +4131,62 @@ exports.list_job_application = async (req, res) => {
     res.redirect("/error-500");
   }
 };
+
+exports.updateJobStatus = async (req, res) => {
+  const { id, status } = req.body;
+  console.log(req.body);
+  
+  try {
+    // Update the job application based on the 'id' field
+    const result = await JobApplications.update(
+      { status: status },
+      { where: { id: id } }
+    );
+    let user = await JobApplications.findOne({ where: { id: id }});
+    let job = await Jobs.findOne({ where: { job_id: user.job_id }});
+    console.log('user name',user.name);
+    console.log('user job',user.job_id);
+    console.log('user status',user.status);
+    console.log('user no.', user.phone_number);
+
+
+    let statusText;  // Variable to store the status string
+
+    if (user.status == 1) {
+      statusText = 'Application Sent';
+    } else if (user.status == 2) {
+      statusText = 'Application Viewed';
+    } else if (user.status == 3) {
+      statusText = 'Resume Viewed';
+    } else if (user.status == 4) {
+      statusText = 'Awaiting Recruiter Action';
+    } else if (user.status == 5) {
+      statusText = 'Recruiter Seen';
+    } else if (user.status == 6) {
+      statusText = 'Application Sent to Round';
+    } else if (user.status == 7) {
+      statusText = 'Hired';
+    } else if (user.status == 8) {
+      statusText = 'Rejected';
+    } else {
+      statusText = 'Unknown Status'; // Fallback for unknown status codes
+    }
+
+    // Check if any rows were affected
+    if (result[0] > 0) { // Use result[0] for Sequelize update
+      sendMessageToWhatsApp('jobapplicationstatus', `91${user.phone_number}`, user.name, [user.name,job.heading,statusText],'https://upreak.com/appliedjobs','track Application')
+      return res.json({ success: true, message: 'Status updated successfully.' });
+    } else {
+      return res.json({ success: false, message: 'No records were updated.' });
+    }
+  } catch (error) {
+    console.error('Error updating status:', error);
+    return res.json({ success: false, message: 'Error updating status.' });
+  }
+};
+
+
+
 
 exports.list_jobs = async (req, res) => {
   try {
@@ -4140,24 +4205,81 @@ exports.add_job = async (req, res) => {
   try {
     if (req.session.role != 'Master' && req.session.role != 'Admin')
       return res.redirect("/error-500");
-    res.render("add_job", { locals: undefined, session: req.session });
+    let industry = await Industry.findAll();
+    res.render("add_job", { locals: undefined, session: req.session,industry });
   } catch (err) {
     console.error(err);
     res.redirect("/error-500");
   };
 };
 
+exports.save_job = async (req, res) => {
+  if (req.session.role !== 'Master' && req.session.role !== 'Admin') {
+    return res.redirect("/login");
+  }
+
+  try {
+    // Construct job data object
+    const job_data = {
+      heading: req.body.heading,
+      sub_heading: req.body.sub_heading,
+      job_type: req.body.job_type,
+      location: req.body.location,
+      company_size: req.body.company_size,
+      website: req.body.website,
+      relocation: req.body.relocation,
+      amount: req.body.amount,
+      industry:req.body.industry,
+      description: req.body.description,
+      icon: req.file ? req.file.filename : req.body.icon_file_name, // Handle uploaded icon
+      status: 1, // Default status is 1 (active)
+      vacancy: req.body.vacancy || null, // Set vacancy or null
+      experience: req.body.experience
+    };
+
+    // Log the job data for debugging purposes
+    // console.log(job_data);
+    // console.log(req.body.id);
+    
+
+    // Perform add or update based on job id
+    if (req.body.id) {
+      // If job ID is present, update existing job
+      console.log('job edited');
+      await Jobs.update(job_data, { where: { id: req.body.id } });
+      
+    } else {
+      // If no job ID, create a new job and send job alert
+      console.log('job added');
+      await Jobs.create(job_data);
+      await exports.NewJobAlert(req.body); // Send job alert to subscribers
+    
+    }
+
+    // Redirect to job listing page
+    res.redirect("/list_jobs");
+  } catch (err) {
+    console.error("Error saving job:", err);
+    res.redirect("/error-500");
+  }
+};
+
+
 exports.edit_job = async (req, res) => {
   try {
     if ((req.session.role != 'Master' && req.session.role != 'Admin') || !req.query.id)
       return res.redirect("/error-500");
     let data = await Jobs.findOne({ where: { status: 1, id: req.query.id } });
-    res.render("add_job", { locals: data, session: req.session });
+    let industry = await Industry.findAll();
+    // console.log(industry);
+    res.render("add_job", { locals: data, session: req.session,industry });
   } catch (err) {
     console.error(err);
     res.redirect("/error-500");
   };
 };
+
+
 
 exports.save_job_application = async (req, res) => {
     let job_id = req.body.job_id;
@@ -4207,44 +4329,6 @@ exports.save_job_application = async (req, res) => {
         return res.json({ success: false, message: "There was an error processing your application. Please try again later." });
     }
 };
-
-
-
-exports.save_job = (upload.single('photo'), async (req, res) => {
-  if (req.session.role != 'Master' && req.session.role != 'Admin')
-    return res.redirect("/login");
-  try {
-    const job_data = {
-      heading: req.body.heading,
-      sub_heading: req.body.sub_heading,
-      job_type: req.body.job_type,
-      location: req.body.location,
-      company_size: req.body.company_size,
-      website: req.body.website,
-      relocation: req.body.relocation,
-      amount: req.body.amount,
-      description: req.body.description,
-      photo: req.file ? req.file.filename : req.body.photo_file_name,
-      status: 1,
-      vacancy: req.body && req.body.vacancy ? req.body.vacancy : null,
-      experience: req.body.experience
-    };
-
-    if (req.body.id)
-      await Jobs.update(job_data, { where: { id: req.body.id } });
-    else
-      await Jobs.create(job_data);
-
-       // Send job alert to all subscribed users
-    await exports.NewJobAlert(req.body);
-
-    res.redirect("list_jobs");
-  } catch (err) {
-    console.error("Error saving job:", err);
-    res.redirect("/error-500");
-  }
-});
-
 exports.NewJobAlert = async (job,id) => {
   try {
     const subscribers = await ContactUs.findAll({ where: { category: 'subscribed' } });
@@ -4271,25 +4355,100 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Store your API key in an environment variable
 });
 
+exports.getAllIndustries = async (req, res) => {
+  try {
+    const industries = await Industry.findAll();
+    res.render('industry_list', { industries });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+};
+
+exports.createIndustry = async (req, res) => {
+  if (req.method === 'POST') { // Check if the request method is POST
+    try {
+      // Create new industry with uploaded image or existing photo filename
+      const newIndustry = await Industry.create({
+        name: req.body.name,
+        icon: req.file ? req.file.filename : req.body.photo_file_name, // Handle file upload
+      });
+
+      // Redirect to industries list or send success response
+      res.redirect('/industries'); // Adjust the redirect as per your routes
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error creating industry");
+    }
+  } else {
+    // Render the form if it's a GET request
+    res.render('embed_industry', { locals: {} });
+  }
+};
+
+exports.editIndustry = async (req, res) => {
+  try {
+    const industry = await Industry.findByPk(req.query.id);
+    res.render('embed_industry', { locals:industry });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+};
+
+exports.updateIndustry = async (req, res) => {
+  try {
+    // Ensure you're using req.body to get form data
+    const { name } = req.body;
+    const id = req.query.id;
+    console.log(name,id);
+    
+    // Update the industry by ID with the new name
+    const updatedRows = await Industry.update(
+      { name: name },
+      { where: { id: id } }
+    );
+
+    if (updatedRows[0] === 0) {
+      // No rows were updated, meaning the ID might not exist
+      return res.status(404).send("Industry not found or no change in data");
+    }
+
+    // Redirect to the industry list after successful update
+    res.redirect('/industries');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+};
+
+
+exports.deleteIndustry = async (req, res) => {
+  try {
+    await Industry.destroy({ where: { id: req.body.id } });
+    res.redirect('/industries');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+};
+
+
+
 exports.getOpenAIResponse = async (req, res) => {
-  
-    const { message } = req.body;
-    if(message){
+  console.log('Request body:', req.body); // Add this line for debugging
+
+  if (req.method === 'POST') {
+      const { message } = req.body;
+      console.log(req.body);
+      
+
+      if (!message) {
+          return res.status(400).json({ message: 'Message is required.' });
+      }
+
       try {
-  
-        if (!message) {
-            return res.status(400).json({ message: 'Message is required.' });
-        }
-    
-        const completion = await openai.chat.completions.create({
-            messages: [{ role: "user", content: message }],
-            model: "gpt-4",
-        });
-    
-        const responseMessage = completion.choices[0].message.content;
-    
-        // res.status(200).json({ message: responseMessage });
-        res.render("chatgpt", { message: responseMessage });
+          // Your existing code to handle OpenAI request...
       } catch (error) {
           console.error('Error fetching response from OpenAI:', error);
           res.status(500).json({
@@ -4297,11 +4456,11 @@ exports.getOpenAIResponse = async (req, res) => {
               error: error.message,
           });
       }
-    }else{
-      res.render('chatgpt');
-    }
+  } else {
+      res.render('chatgpt', { message: null });
   }
-;
+};
+
 
 exports.gemini = async (req, res) => {
   if (req.session.role !== 'Master' && req.session.role !== 'Admin') {

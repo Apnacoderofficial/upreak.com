@@ -28503,7 +28503,7 @@ div.tagsinput span.tag a {
   -webkit-align-items: center;
   align-items: center;
   white-space: nowrap;
-  padding: 0.8125rem 1.937rem 0.8125rem 1rem;
+  padding: -1.1875rem 1.937rem 0.8125rem 1rem;
   color: #fff;
   border-radius: 8px;
   -webkit-transition-duration: 0.45s;
