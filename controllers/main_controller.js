@@ -79,9 +79,10 @@ exports.index = async (req, res) => {
     }
   });
   let blogs = await Blogs.findAll();
+  // console.log("Hostname:", req.hostname);
 
   // Check if the request is coming from upreak.in
-  if (req.hostname === 'upreak.in') {
+  if (req.hostname === 'www.upreak.in') {
     // Render index-2 if hostname is 'upreak.in'
     res.render('index-2', {
       locals: jobs,
