@@ -1,0 +1,317 @@
+﻿<%- include('includes/header') %>
+<title>For Employers - Upreak A leading recruitment company</title>
+<!-- Content -->
+<main class="main">
+    <section class="section-box">
+        <div class="banner-hero banner-homepage-3">
+            <div class="banner-inner">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="block-banner">
+                            <span class="text-small-primary text-small-primary--disk text-uppercase wow animate__animated animate__fadeInUp">Preferred Recruitment Partner</span>
+                            <h2 class="heading-banner wow animate__animated animate__fadeInUp">The TriadX Process - AI, Human Expertise & Data Analytics</h2>
+                            <div class="banner-description mt-30 wow animate__animated animate__fadeInUp">
+                                At Upreak, we align top-tier talent with strategic business goals. Our TriadX Process ensures precision and a deep understanding of client needs, delivering exceptional recruitment outcomes across all levels and sectors.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="banner-imgs">
+                            <img alt="Upreak" src="assets/imgs/page/homepage3/banner-main.png" class="img-responsive shape-1" />
+                            <span class="banner-sm1"><img alt="Upreak" src="assets/imgs/page/homepage3/banner-sm1.png" class="img-responsive shape-3" /></span>
+                            <span class="banner-sm2"><img alt="Upreak" src="assets/imgs/page/homepage3/banner-sm2.png" class="img-responsive shape-2" /></span>
+                            <span class="banner-sm3"><img alt="Upreak" src="assets/imgs/page/homepage3/banner-sm3.png" class="img-responsive shape-2" /></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="section-box mt-90">
+        <section class="container mt-5">
+            <div class="text-center mb-4">
+                <h2>How to Hire from Upreak</h2>
+                <p>Follow these three simple steps to find and hire the best candidates.</p>
+            </div>
+
+            <div class="row text-center">
+                <!-- Step 1: Post Your Job -->
+                <div class="col-md-4 mb-4 position-relative">
+                    <div class="border-light text-center justify-content-center">
+                        <img src="assets\imgs\page\employers\1.png" class="card-img-top" alt="Post Your Job">
+                        <div class="card-body">
+                            <h5 class="card-title">Post Your Job</h5>
+                            <p class="card-text">Share the JD and your ideal candidate profile.</p>
+                        </div>
+                    </div>
+                    <!-- Vertical Line for connection -->
+                    <div class="line-vertical"></div>
+                </div>
+
+                <!-- Step 2: Review and Shortlist -->
+                <div class="col-md-4 mb-4 position-relative">
+                    <div class=" border-light text-center">
+                        <img src="assets\imgs\page\employers\2.png" class="card-img-top" alt="Review and Shortlist">
+                        <div class="card-body">
+                            <h5 class="card-title">Review and Shortlist</h5>
+                            <p class="card-text">Get access to top profiles matching your job instantly in addition to
+                                applications.</p>
+                        </div>
+                    </div>
+                    <!-- Vertical Line for connection -->
+                    <div class="line-vertical"></div>
+                </div>
+
+                <!-- Step 3: Hire the Best -->
+                <div class="col-md-4 mb-4 position-relative">
+                    <div class="border-light text-center">
+                        <img src="assets\imgs\page\employers\3.png" class="card-img-top" alt="Hire the Best">
+                        <div class="card-body">
+                            <h5 class="card-title">Hire the Best</h5>
+                            <p class="card-text">Use our in-built assignment and interview tools to find your dream
+                                candidate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+   
+    <section class="section-box mt-90 mt-md-30">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <span class="text-lg text-brand wow animate__animated animate__fadeInUp">Job Listings</span>
+                    <h3 class="mt-20 mb-30 wow animate__animated animate__fadeInUp">Driven by Excellence and Tailored Solutions</h3>
+                    <p class="mb-20 wow animate__animated animate__fadeInUp">
+                        At Upreak, we leverage the power of AI, human expertise, and data analytics to help you find top-tier talent that aligns with your business goals. Whether you're hiring for full-time, part-time, or internship positions, our platform ensures you connect with diverse, qualified candidates who are the perfect match for your organization.
+                    </p>
+                    <p class="mb-30 wow animate__animated animate__fadeInUp">
+                        We understand that finding the right talent is critical for long-term success. Our dedicated team is here to guide you through every step of the recruitment process, offering tailored strategies that drive results and build strong, capable teams. Trust Upreak to deliver recruitment solutions that meet your unique needs.
+                    </p>
+                    <!-- Button to trigger modal -->
+                    <div class="mt-10 wow animate__animated animate__fadeInUp">
+                        <a href="#" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#enquiryModal">Partner with Upreak</a>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="row g-0">
+                                    <!-- Left side: Form -->
+                                    <div class="col-md-6">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="enquiryModalLabel">Send Enquiry</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="enquiryForm">
+                                                <input type="hidden" value="company-enquiry" name="category">
+                                                <input type="hidden" name="plan" id="plan-choosen"> <!-- Hidden input for plan choosen -->
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Name</label>
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="phone" class="form-label">Phone Number</label>
+                                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone Number" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="company" class="form-label">Company Details</label>
+                                                    <input type="text" class="form-control" id="cname" name="cname" placeholder="Your Company Name" required>
+                                                    <input type="text" class="form-control" id="cloc" name="cloc" placeholder="Your Company Location" required>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" form="enquiryForm">Send Enquiry</button>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Right side: Image Banner -->
+                                    <div class="col-md-6 d-none d-md-flex justify-content-center align-items-center" style="background-color: #004AAD !important;">
+                                        <img src="/assets/imgs/login-banner/company-login-banner.png" alt="Company Login Banner" class="img-fluid h-auto w-auto">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12 pl-200 d-none d-lg-block">
+                    <div class="banner-imgs banner-imgs-about">
+                        <img alt="jobhub" src="assets/imgs/page/about/banner-online-marketing.png"
+                            class="img-responsive main-banner shape-3" />
+                        <span class="banner-sm-4"><img alt="jobhub" src="assets/imgs/banner/congratulation.svg"
+                                class="img-responsive shape-2" /></span>
+                        <span class="banner-sm-5"><img alt="jobhub" src="assets/imgs/banner/web-dev.svg"
+                                class="img-responsive shape-1" /></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-box bg-blue-full mt-90 mb-50">
+        <div class="container text-center">
+            <h3 class="mb-20">Ready to Discuss Your Strategy? <br>Let's Get Started Today.</h3>
+            <div class="row text-center">
+                <div class="col-lg-12 text-center justify-content-center">
+                    <p class="text-gray-200">
+                        If you're looking for qualified candidates for full-time, part-time, or internship positions that perfectly align with your company’s needs, reach out to us now.
+                    </p>
+                </div>
+                <div class="col-lg-12 mt-4">
+                    <div class="box-button-shadow mr-10">
+                        <a href="#" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#enquiryModal">Contact Us</a>
+                    </div>
+                    <a href="/page-about" class="btn btn-border icon-chevron-right">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section-box mt-70">
+        <div class="container">
+            <h2 class="section-title mb-15 wow animate__animated animate__fadeInUp">Our Happy Customer</h2>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="text-md-lh24 color-black-5 wow animate__animated animate__fadeInUp">
+                        See What Our Satisfied Clients Have to Say! Our Google Reviews .
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-20">
+                <div class="embedsocial-widget" data-ref="8355d37c13f135d89a4e9adc491c6858"> </div>
+                <script>
+                    (function (d, s, id) {
+                        var js;
+                        if (d.getElementById(id)) {
+                            return;
+                        }
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "https://embedsocial.com/cdn/aht.js";
+                        d.getElementsByTagName("head")[0].appendChild(js);
+                    }(document, "script", "EmbedSocialWidgetScript"));
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-box mt-90 mb-50">
+        <div class="container">
+            <div class=" text-center">
+                <h3 class="mb-30 wow animate__animated animate__fadeInUp">Choose The Service That Suits You</h3>
+            </div>
+            <div class="mw-650 text-center wow animate__animated animate__fadeInUp">
+                <p class="mb-35 text-md-lh24 color-black-5">if You'r searching for perfect candidate for your team, start posting job here! </p>
+            </div>
+            <div class="block-pricing mt-125 mt-md-50">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                        <div class="box-pricing-item">
+                            <div>
+                                <h4 class="mb-15">Train & Deploy</h4>
+                                <p class="text-desc-package mb-30">
+                                    Upreak trains individuals in specific skills and technologies before deploying them to client sites, ensuring they are job-ready from day one.
+                                </p>
+                            </div>
+                            <ul class="list-package-feature">
+                                <li>Ready-to-work staff </li>
+                                <li>Reduced training Time</li>
+                                <li>Company & Role specific preparation </li>
+                                <li>Real-world practice </li>
+                            </ul>
+                            <div>
+                                <a href="#" class="btn btn-border" data-bs-toggle="modal" data-plan-choosen="train-deploy"
+                                    data-bs-target="#enquiryModal">Send Enquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
+                        <div class="box-pricing-item">
+                            
+                            <div>
+                                <h4 class="mb-15">Contract Staffing </h4>
+                                <p class="text-desc-package mb-30">
+                                    Contract Staffing provides temporary staff for specific projects or periods, offering flexibility and expertise without long-term commitments.
+                                </p>
+                            </div>
+                            <ul class="list-package-feature">
+                                <li>Flexible workforce </li>
+                                <li>Quick placement </li>
+                                <li>Cost-effective hiring </li>
+                                <li>Skill-specific expertise </li>
+                            </ul>
+                            <div>
+                                <a href="#" class="btn btn-border" data-bs-toggle="modal"
+                                    data-bs-target="#enquiryModal" data-plan-choosen="contract-staffing">Send Enquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
+                        <div class="box-pricing-item most-popular">
+                            
+                            <div class="text-end mb-10">
+                                <a href="#" class="btn btn-white-sm">Most popular</a>
+                            </div>
+                            
+                            <div>
+                                <h4 class="mb-15"> Permanent Placement </h4>
+                                <p class="text-desc-package mb-30">
+                                    Upreak's permanent placement service is dedicated to finding and placing candidates in positions that align with their skills and the client's needs. 
+                                </p>
+                            </div>
+                            <ul class="list-package-feature">
+                                <li>TriadX Process </li>
+                                <li>Skill-matched candidates </li>
+                                <li>Reduced turnover rate</li>
+                                <li>Enhanced team integration</li>
+                            </ul>
+                            <div>
+                                <a href="#" class="btn btn-border" data-bs-toggle="modal"
+                                    data-bs-target="#enquiryModal" data-plan-choosen="permanent-placement">Send Enquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
+                        <div class="box-pricing-item">
+                            
+                            <div>
+                                <h4 class="mb-15">Payroll Management </h4>
+                                <p class="text-desc-package mb-30">
+                                    Upreak handles all aspects of payroll administration for its clients, ensuring compliance and accurate employee compensation. 
+                                </p>
+                            </div>
+                            <ul class="list-package-feature">
+                                <li>Compliance assurance </li>
+                                <li>Timely payments </li>
+                                <li>Administrative ease </li>
+                                <li>Cost management </li>
+                            </ul>
+                            <div>
+                                <a href="#" class="btn btn-border" data-bs-toggle="modal" data-plan-choosen="payroll-management"
+                                    data-bs-target="#enquiryModal">Send Enquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- End Content -->
+    <%- include('includes/footer') %>

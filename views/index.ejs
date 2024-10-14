@@ -137,12 +137,12 @@
                             <div class="row">
                                 <% 
                                     // Calculate the starting index for the last 6 items
-                                    var startIndex = locals.length - 6 >= 0 ? locals.length - 6 : 0;
+                                    var startIndex = jobs.length - 6 >= 0 ? jobs.length - 6 : 0;
                                     %>
-                                    <% for (var i = locals.length - 1; i >= startIndex; i--) { %>
+                                    <% for (var i = jobs.length - 1; i >= startIndex; i--) { %>
                                         <% 
                                           // Parse the createdAt date
-                                          const createdAtDate = new Date(locals[i].createdAt);
+                                          const createdAtDate = new Date(jobs[i].createdAt);
                                           
                                           // Calculate the difference in time from now (in milliseconds)
                                           const now = new Date();
@@ -187,18 +187,18 @@
                                                             </a>
                                                         </div>
                                                         <div class="col-lg-5 col-6 text-end">
-                                                            <a href="/" class="btn btn-grey-small disc-btn"><%= locals[i].job_type %></a>
+                                                            <a href="/" class="btn btn-grey-small disc-btn"><%= jobs[i].job_type %></a>
                                                         </div>
                                                     </div>
-                                                    <h5 class="mt-5"><a href="/job-details?jobId=<%= locals[i].job_id %>"><%= locals[i].heading %></a></h5>
+                                                    <h5 class="mt-5"><a href="/job-details?jobId=<%= jobs[i].job_id %>"><%= jobs[i].heading %></a></h5>
                                                     <div class="mt-15">
                                                         <span class="card-time"><%= timeAgo %></span>
-                                                        <span class="card-location"><%= locals[i].location %> , India</span>
+                                                        <span class="card-location"><%= jobs[i].location %> , India</span>
                                                     </div>
                                                     <div class="card-2-bottom mt-30">
                                                         <div class="row">
                                                             <div class="col-lg-7 col-8">
-                                                                <span class="card-text-price fs-6"> <%= locals[i].amount %><span></span> </span>
+                                                                <span class="card-text-price fs-6"> <%= jobs[i].amount %><span></span> </span>
                                                             </div>
                                                             <div class="col-lg-5 col-4 text-end">
                                                                 <span><img src="assets/imgs/theme/icons/shield-check.svg" alt="jobhub" /></span>

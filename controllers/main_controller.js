@@ -67,37 +67,39 @@ const docs = db.docs;
 // controllers/main_controller.js
 
 exports.index = async (req, res) => {
-  // Fetch jobs, industries, and blogs from the database
-  let jobs = await Jobs.findAll({
-    where: {
-      status: 1
-    }
-  });
-  let industries = await Industry.findAll({
-    where: {
-      status: "1"
-    }
-  });
-  let blogs = await Blogs.findAll();
-  // console.log("Hostname:", req.hostname);
+  try {
+    // Fetch jobs, industries, and blogs from the database
+    const [jobs, industries, blogs] = await Promise.all([
+      Jobs.findAll({ where: { status: 1 } }),
+      Industry.findAll({ where: { status: "1" } }),
+      Blogs.findAll()
+    ]);
 
-  // Check if the request is coming from upreak.in
-  if (req.hostname === 'www.upreak.in') {
-    // Render index-2 if hostname is 'upreak.in'
-    res.render('index-2', {
-      locals: jobs,
-      blogs,
-      industries
+    // Determine which template to render based on the hostname
+    let view;
+    if (req.hostname.includes('upreak.in')) {
+      view = 'index-2';
+    } else if (req.hostname.includes('healthcare.upreak.com')) {
+      view = 'index-3';
+    } else {
+      view = 'index';
+    }
+    
+
+    // Render the selected view with the data
+    res.render(view, {
+      jobs,
+      industries,
+      blogs
     });
-  } else {
-    // Render index for other hostnames
-    res.render('index', {
-      locals: jobs,
-      blogs,
-      industries
-    });
+
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).send("Internal Server Error");
   }
 };
+
+
 
 exports.index1 = async (req, res) => {
   let jobs = await Jobs.findAll({
@@ -255,10 +257,20 @@ exports.candidatesList = (req, res) => {
   res.render('candidates-list');
 };
 
-// Employers-related routes
-exports.employersGrid = (req, res) => {
-  res.render('for-employers');
+exports.employers = (req, res) => {
+  // Check the host using req.headers.host for more flexibility
+  const host = req.headers.host || req.hostname;
+  console.log('Host:', host);
+  
+  // Normalize host to lowercase to avoid case sensitivity issues
+  const view = host.toLowerCase().includes('healthcare.upreak.com') ? 'for-employers-2' : 'for-employers';
+  
+  // Render the selected view
+  res.render(view);
 };
+
+
+
 
 exports.employersGrid2 = (req, res) => {
   res.render('employers-grid-2');
@@ -288,109 +300,49 @@ exports.jobGrid2 = (req, res) => {
 exports.jobList = async (req, res) => {
   try {
     const {
-      page = 1, limit = 10, location, job_type, experience, salary, postedDate, search,industry
+      page = 1, limit = 10, location, job_type, experience, salary, postedDate, search, industry
     } = req.query;
+
+    // Log the incoming query for debugging
     console.log(req.query);
-    
 
-
+    // Initialize filters
     const filters = {};
 
+    // Search filters (using Op.or to match multiple fields)
     if (search) {
-      filters[Op.or] = [{
-          heading: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          description: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          sub_heading: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          job_type: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          location: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          company_size: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          website: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          relocation: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          amount: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          experience: {
-            [Op.like]: `%${search}%`
-          }
-        },
-        {
-          industry: {
-            [Op.like]: `%${industry}%`
-          }
-        }
+      filters[Op.or] = [
+        { heading: { [Op.like]: `%${search}%` } },
+        { description: { [Op.like]: `%${search}%` } },
+        { sub_heading: { [Op.like]: `%${search}%` } },
+        { job_type: { [Op.like]: `%${search}%` } },
+        { location: { [Op.like]: `%${search}%` } },
+        { company_size: { [Op.like]: `%${search}%` } },
+        { website: { [Op.like]: `%${search}%` } },
+        { relocation: { [Op.like]: `%${search}%` } },
+        { amount: { [Op.like]: `%${search}%` } },
+        { experience: { [Op.like]: `%${search}%` } },
+        { industry: { [Op.like]: `%${industry}%` } }
       ];
     }
 
-    // Filters
-    if (location) {
-      filters.location = {
-        [Op.like]: `%${location}%`
-      };
-    }
-    if (job_type) {
-      filters.job_type = job_type;
-    }
-    if (experience) {
-      filters.experience = {
-        [Op.like]: `%${experience}%`
-      };
-    }
-    if (salary) {
-      filters.amount = {
-        [Op.like]: `%${salary}%`
-      };
-    }
-    if (postedDate) {
-      filters.createdAt = {
-        [Op.gte]: new Date(postedDate)
-      };
-    }
-    if (industry) {
-      filters.industry = {
-        [Op.gte]:  `%${industry}%`
-      };
-    }
+    // Apply filters for location, job_type, experience, salary, and postedDate
+    if (location) filters.location = { [Op.like]: `%${location}%` };
+    if (job_type) filters.job_type = job_type;
+    if (experience) filters.experience = { [Op.like]: `%${experience}%` };
+    if (salary) filters.amount = { [Op.like]: `%${salary}%` };
+    if (postedDate) filters.createdAt = { [Op.gte]: new Date(postedDate) };
 
+    // Apply industry filter based on hostname or query
+    if (req.hostname = 'www.healthcare.upreak.com') {
+      filters.industry = 'Healthcare'; // Apply Healthcare industry filter for healthcare subdomain
+    } else if (industry) {
+      filters.industry = { [Op.like]: `%${industry}%` }; // Apply industry filter from query if not healthcare subdomain
+    }
 
     // Pagination logic
     const offset = (page - 1) * limit; // Calculate offset
-    const totalJobs = await Jobs.count({
-      where: filters
-    }); // Total number of jobs that match the filters
+    const totalJobs = await Jobs.count({ where: filters }); // Total number of jobs that match the filters
     const totalPages = Math.ceil(totalJobs / limit); // Total pages
 
     // Fetch jobs with sorting by createdAt in descending order
@@ -398,34 +350,35 @@ exports.jobList = async (req, res) => {
       where: filters,
       limit: parseInt(limit),
       offset: parseInt(offset),
-      order: [
-        ['createdAt', 'DESC']
-      ] // Sort by createdAt in descending order
+      order: [['createdAt', 'DESC']] // Sort by createdAt in descending order
     });
 
     // Calculate start and end indices for the current page
     const startIndex = offset + 1;
     const endIndex = Math.min(offset + limit, totalJobs);
-    
-    let industries = await Industry.findAll({});
 
+    // Fetch all industries (can be used for filtering in UI)
+    const industries = await Industry.findAll();
+
+    // Render the view with the fetched data
     res.render('job-list', {
       locals: jobs,
       currentPage: parseInt(page),
-      totalPages: totalPages,
-      totalJobs: totalJobs,
-      startIndex: startIndex,
-      endIndex: endIndex,
+      totalPages,
+      totalJobs,
+      startIndex,
+      endIndex,
       industries
     });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      message: 'Internal server error'
-    });
+    // Improved error logging
+    console.error('Error in jobList:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
 exports.healthCare = async (req, res) => {
   try {
     const {

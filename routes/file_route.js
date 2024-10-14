@@ -39,7 +39,7 @@ router.get("/candidates-grid-2", userData,main_controller.candidatesGrid2);
 router.get("/candidates-list", userData,main_controller.candidatesList);
 
 // Employers routes
-router.get("/employers", userData,main_controller.employersGrid);
+router.get("/employers", userData,main_controller.employers);
 router.get("/employers-grid-2", userData,main_controller.employersGrid2);
 router.get("/employers-list", userData,main_controller.employersList);
 
