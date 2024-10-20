@@ -27,7 +27,14 @@ const {
 } = require('./emailSender');
 const candidateModel = require("../models/candidateModel");
 
-const Blogs = db.blogs;
+const Jobs = db.jobs;
+const JobApplications = db.job_applications;
+const Response = db.responses;
+const Payment = db.paymentdetails;
+const meetings = db.meetings;
+const Reports = db.assessmentreports;
+
+/*const Blogs = db.blogs;
 const Setting = db.settings;
 const Payment = db.paymentdetails;
 const meetings = db.meetings;
@@ -49,7 +56,7 @@ const Corporatecorner = db.corporatecorner;
 const corporateservices = db.corporateservices;
 const Activitylog = db.activitylog;
 const Jobs = db.jobs;
-const JobApplications = db.job_applications;
+const JobApplications = db.job_applications;*/
 
 exports.workspace = async (req, res) => {
   try {

@@ -39,6 +39,15 @@ const {
 const { response } = require("express");
 
 const Blogs = db.blogs;
+const Jobs = db.jobs;
+const JobApplications = db.job_applications;
+const Industry = db.industry;
+const docs = db.docs;
+const ContactUs = db.contactus;
+const User = db.dashlogins;
+const Response = db.responses;
+
+/*const Blogs = db.blogs;
 const Setting = db.settings;
 const Payment = db.paymentdetails;
 const meetings = db.meetings;
@@ -62,7 +71,7 @@ const Activitylog = db.activitylog;
 const Jobs = db.jobs;
 const JobApplications = db.job_applications;
 const Industry = db.industry;
-const docs = db.docs;
+const docs = db.docs;*/
 
 // controllers/main_controller.js
 
@@ -334,7 +343,7 @@ exports.jobList = async (req, res) => {
     if (postedDate) filters.createdAt = { [Op.gte]: new Date(postedDate) };
 
     // Apply industry filter based on hostname or query
-    if (req.hostname = 'www.healthcare.upreak.com') {
+    if (req.hostname === 'healthcare.upreak.com') {
       filters.industry = 'Healthcare'; // Apply Healthcare industry filter for healthcare subdomain
     } else if (industry) {
       filters.industry = { [Op.like]: `%${industry}%` }; // Apply industry filter from query if not healthcare subdomain
